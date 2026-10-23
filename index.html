@@ -33,11 +33,11 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.st
 #chart:focus-within .modebar-group,#ratio-chart:focus-within .modebar-group{opacity:1!important}
 @media(hover:none),(pointer:coarse){.js-plotly-plot .modebar-group{opacity:1!important}.js-plotly-plot .modebar-btn{padding:6px}}
 .election-sidebar{position:fixed;inset:0 auto 0 0;width:208px;padding:28px 16px;background:#171e23;border-right:1px solid var(--border);overflow-y:auto;z-index:40}.sidebar-heading{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:18px}.sidebar-heading button{display:none}.election-sidebar .election-nav{display:flex;flex-direction:column;gap:6px;border:0;margin:0;padding:0;overflow:visible}.election-sidebar .year-tab{width:100%;white-space:normal;text-align:left;border-radius:5px;padding:10px 12px;min-height:44px}.election-sidebar .year-tab.active{border-left:3px solid var(--focus)}.election-sidebar ~ .page{width:calc(100% - 208px);max-width:1360px;margin:0 auto 0 208px;min-width:0}.election-menu,.nav-backdrop{display:none}
-.chart-workspace{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);column-gap:30px;align-items:start}.growth-panel{min-width:0}.chart-workspace>.ratio-section{grid-column:1;grid-row:2;min-width:0}.source-strip{grid-column:2;grid-row:1;position:sticky;top:24px;display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:16px 0 0;margin:0;max-width:none}.source-strip .frame-zoom{width:100%;padding:0;border:0;border-radius:2px;min-height:0;cursor:zoom-in;background:none}.source-strip .frame-zoom[hidden]{display:none}.source-strip img{width:100%;height:auto}.source-strip figcaption{margin:0;min-width:0}.source-strip #frame-link{display:flex;align-items:flex-start;gap:9px;font-size:12px}.youtube-icon{width:24px;height:18px;flex:none;margin-top:2px}.source-strip[hidden],.source-strip a[hidden]{display:none}.ratio-section{margin-top:8px;padding-top:16px}.ratio-legend{margin-top:10px}.axis-empty-note{margin:8px 0 16px;color:var(--muted)}.axis-empty-note button{padding:4px 12px;margin-left:8px}
+.chart-workspace{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);column-gap:30px;align-items:start}.growth-panel{min-width:0}.chart-workspace>.ratio-section{grid-column:1;grid-row:2;min-width:0}.source-strip{grid-column:2;grid-row:1;position:static;display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:16px 0 0;margin:0;max-width:none}.source-strip .frame-zoom{width:100%;padding:0;border:0;border-radius:2px;min-height:0;cursor:zoom-in;background:none}.source-strip .frame-zoom[hidden]{display:none}.source-strip img{width:100%;height:auto}.source-strip figcaption{margin:0;min-width:0}.source-strip #frame-link{display:flex;align-items:flex-start;gap:9px;font-size:12px}.youtube-icon{width:24px;height:18px;flex:none;margin-top:2px}.source-strip[hidden],.source-strip a[hidden]{display:none}.ratio-section{margin-top:8px;padding-top:16px}.ratio-legend{margin-top:10px}.axis-empty-note{margin:8px 0 16px;color:var(--muted)}.axis-empty-note button{padding:4px 12px;margin-left:8px}
 .error-section{grid-column:2;grid-row:2;min-width:0;margin-top:8px;padding-top:16px;border-top:1px solid var(--border)}.error-table th:first-child{width:60%}.error-table th.numeric{width:40%}.error-table td:first-child{overflow-wrap:anywhere}.error-sort{padding:0 4px;border:0;background:none;color:inherit;white-space:nowrap}.error-sort:hover{background:var(--surface);color:var(--text)}.error-note{margin:12px 0 0;color:var(--muted);font-size:12px;line-height:1.7}.error-empty{color:var(--muted);text-align:center}
 .frame-dialog{position:fixed;max-width:96vw;width:fit-content;max-height:96vh;padding:44px 14px 12px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);overflow:auto}.frame-dialog::backdrop{background:#000c}.frame-dialog img{display:block;max-width:calc(96vw - 30px);max-height:calc(96vh - 120px);object-fit:contain;margin:auto}.frame-dialog p{font-size:12px;margin:8px 0 0;max-width:1000px}.dialog-close{position:absolute;right:8px;top:4px;width:40px;font-size:25px}.nav-open{overflow:hidden}
 @media(max-width:1023px){.election-sidebar ~ .page{width:100%;margin:0 auto;padding-top:12px}.election-menu{display:block;margin:16px 0 0 30px;padding:6px 14px;min-height:44px}.election-sidebar{visibility:hidden;transform:translateX(-100%);width:min(280px,85vw)}.election-sidebar.open{visibility:visible;transform:translateX(0)}.sidebar-heading button{display:block;width:44px;font-size:24px}.nav-backdrop:not([hidden]){display:block;position:fixed;inset:0;background:#0009;z-index:39}}
-@media(max-width:700px){.election-menu{margin-left:16px}.chart-workspace{grid-template-columns:minmax(0,1fr)}.chart-workspace>.ratio-section,.source-strip,.error-section{grid-column:1;grid-row:auto}.source-strip{position:static;padding:12px 0}.source-strip .frame-zoom,.source-strip .frame-zoom img{width:100%}.source-strip #frame-link{display:flex}.source-strip figcaption{font-size:12px}}
+@media(max-width:700px){.election-menu{margin-left:16px}.chart-workspace{grid-template-columns:minmax(0,1fr)}.chart-workspace>.ratio-section,.source-strip,.error-section{grid-column:1;grid-row:auto}.source-strip{padding:12px 0}.source-strip .frame-zoom,.source-strip .frame-zoom img{width:100%}.source-strip #frame-link{display:flex}.source-strip figcaption{font-size:12px}}
 </style>
 </head>
 <body>
@@ -57,22 +57,23 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.st
 <div id="chart" tabindex="0" role="region" aria-label="候選人的得票曲線；方向鍵選取相鄰時間"></div>
 <p id="axis-empty-note" class="axis-empty-note" hidden><span id="axis-empty-text"></span></p>
 </div>
-<figure class="frame source-strip" id="source-strip">
+<figure class="frame source-strip" id="source-strip" aria-labelledby="source-title">
+<div class="chart-heading"><h2 id="source-title">直播截圖</h2></div>
 <button type="button" id="frame-zoom" class="frame-zoom" aria-haspopup="dialog" aria-label="放大畫面截圖"><img id="frame-image" alt=""></button>
 <figcaption><a id="frame-link" target="_blank" rel="noopener"><svg class="youtube-icon" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0033"/><path d="M11 5.5v9l8-4.5z" fill="white"/></svg><span id="frame-caption"></span></a></figcaption>
 </figure>
 <section class="ratio-section" id="ratio-section" aria-labelledby="ratio-title" hidden>
 <div class="chart-heading"><h2 id="ratio-title">走勢偏差</h2></div>
-<p class="ratio-explanation">觀察當選人得票率與實際結果的偏差情況，以及最後如何收斂。</p>
+<p class="ratio-explanation">觀察當選人得票率隨著開票進度的偏差情況，以及最後如何收斂。</p>
 <div id="ratio-chart" tabindex="0" role="region" aria-label="當選人得票率與開票進度曲線"></div>
 </section>
-<section class="error-section" id="error-section" aria-label="各來源整體誤差" hidden>
+<section class="error-section" id="error-section" aria-label="各來源走勢誤差" hidden>
 <table class="error-table" aria-describedby="error-explanation">
-<caption class="sr-only">當選人得票率整體誤差比較</caption>
-<thead><tr><th scope="col">電視臺/計票單位</th><th scope="col" class="numeric" id="error-sort-header" aria-sort="ascending"><button type="button" class="error-sort" id="error-sort">整體誤差 <span id="error-sort-direction" aria-hidden="true">↑</span></button></th></tr></thead>
+<caption class="sr-only">當選人得票率走勢誤差比較</caption>
+<thead><tr><th scope="col">電視臺/計票單位</th><th scope="col" class="numeric" id="error-sort-header" aria-sort="ascending"><button type="button" class="error-sort" id="error-sort">走勢誤差 <span id="error-sort-direction" aria-hidden="true">↓</span></button></th></tr></thead>
 <tbody id="error-rows"></tbody>
 </table>
-<p class="error-note" id="error-explanation">本圖依固定候選人組計算。整體誤差為 10%～90% 開票進度內，沿曲線估算的平均絕對偏差（百分點），越低越接近最終得票率；進度回退段亦計入。未涵蓋完整區間者為資料不足。</p>
+<p class="error-note" id="error-explanation" title="採 10%～90% 開票進度內的已知曲線；無重疊時採全部已知曲線。">走勢誤差＝曲線與最終得票率的進度加權平均絕對偏差（百分點）。</p>
 </section>
 </div>
 <noscript><p>互動圖需要 JavaScript。</p></noscript>
@@ -3730,6 +3731,19 @@ function applyYearQuery(url, year, election, requestedCounty) {
   else url.searchParams.delete('county');
 }
 
+function electionTitle(election, year) {
+  const numericYear = String(election.electionYear || year).match(/^\d{4}/)?.[0] || String(year);
+  const mayor = election.kind === 'mayors' || Array.isArray(election.counties) || String(year).endsWith('-mayors');
+  return numericYear + ' 年' + (mayor ? '縣市首長' : '總統') + '選舉';
+}
+
+function timeRangeLabel(range) {
+  const [start,end] = range;
+  return start.slice(0,10) === end.slice(0,10)
+    ? start.slice(0,10) + '　' + start.slice(11,16) + '–' + end.slice(11,16)
+    : start.slice(0,16).replace('T',' ') + ' – ' + end.slice(0,16).replace('T',' ');
+}
+
 function bindElection(year) {
   const election = hasMultiElection ? masterData.elections[year] : masterData;
   if (election && Array.isArray(election.counties)) {
@@ -3804,8 +3818,11 @@ const evidenceLabels = {provisional:'辨識暫定',ocr_validated:'已核對',vis
 function statusText(row) { const base = (!row.time ? '時計缺讀' : !row.complete ? '不完整' : '完整') + (row.gapBefore ? ' · 前方跳段' : ''); return row.evidenceStatus ? base + ' · ' + (evidenceLabels[row.evidenceStatus] || row.evidenceStatus) : base; }
 function videoTime(offset) { return [Math.floor(offset/3600),Math.floor(offset%3600/60),Math.floor(offset%60)].map(value => String(value).padStart(2,'0')).join(':'); }
 function timeLabel(row, includeBasis = false) {
-  if(row.timeBasis === 'youtube_live_start' && row.x) return row.x.slice(11,19) + (includeBasis ? ' · ' + timeBasisText(row) : '');
-  return row.time ? (row.clockPrecision === 'minute' ? row.time.slice(0,5) : row.time) : '時計缺讀';
+  const label = row.timeBasis === 'youtube_live_start' && row.x
+    ? row.x.slice(11,19) + (includeBasis ? ' · ' + timeBasisText(row) : '')
+    : row.time ? (row.clockPrecision === 'minute' ? row.time.slice(0,5) : row.time) : '時計缺讀';
+  const crossDay = fullTimeRange && fullTimeRange[0].slice(0,10) !== fullTimeRange[1].slice(0,10);
+  return row.x && crossDay ? row.x.slice(0,10) + ' ' + label : label;
 }
 function timeBasisText(row) {
   return row.timeBasis === 'youtube_live_start'
@@ -3855,17 +3872,21 @@ function rowProgress(row) {
   return votes.reduce((sum,value) => sum + value,0) * 100 / officialVoteTotal;
 }
 
-function calculateOverallError(points, finalRatio) {
+function calculateTrendError(points, finalRatio) {
   if(!Number.isFinite(finalRatio)) return null;
   const valid = points.filter(([progress,ratio]) => Number.isFinite(progress) && Number.isFinite(ratio));
-  if(valid.length < 2 || Math.min(...valid.map(point => point[0])) > 10 || Math.max(...valid.map(point => point[0])) < 90) return null;
+  if(valid.length < 2) return null;
+  const progresses = valid.map(point => point[0]);
+  const overlapsWindow = Math.min(...progresses) < 90 && Math.max(...progresses) > 10;
+  const lowerBound = overlapsWindow ? 10 : -Infinity;
+  const upperBound = overlapsWindow ? 90 : Infinity;
   let area = 0, distance = 0;
   for(let index=1;index<valid.length;index++) {
     const [startProgress,startRatio] = valid[index-1];
     const [endProgress,endRatio] = valid[index];
     if(startProgress === endProgress) continue;
-    const low = Math.max(10,Math.min(startProgress,endProgress));
-    const high = Math.min(90,Math.max(startProgress,endProgress));
+    const low = Math.max(lowerBound,Math.min(startProgress,endProgress));
+    const high = Math.min(upperBound,Math.max(startProgress,endProgress));
     if(high <= low) continue;
     const lowError = startRatio + (endRatio-startRatio)*(low-startProgress)/(endProgress-startProgress) - finalRatio;
     const highError = startRatio + (endRatio-startRatio)*(high-startProgress)/(endProgress-startProgress) - finalRatio;
@@ -3887,7 +3908,7 @@ function resetErrorRanking() {
   errorEntries = hasRatio ? stations.map((station,order) => {
     const points = station.observations.map(row => [rowProgress(row),voteRatio(row)]);
     if(!points.some(([progress,ratio]) => Number.isFinite(progress) && Number.isFinite(ratio))) return null;
-    return {sourceId:station.id,name:station.name,order,value:calculateOverallError(points,data.ratioPlot.finalRatio)};
+    return {sourceId:station.id,name:station.name,order,value:calculateTrendError(points,data.ratioPlot.finalRatio)};
   }).filter(Boolean) : [];
   renderErrorRanking();
 }
@@ -3895,8 +3916,8 @@ function resetErrorRanking() {
 function renderErrorRanking() {
   document.getElementById('error-section').hidden = !hasRatio || !stations.length;
   document.getElementById('error-sort-header').setAttribute('aria-sort',errorAscending ? 'ascending' : 'descending');
-  document.getElementById('error-sort-direction').textContent = errorAscending ? '↑' : '↓';
-  document.getElementById('error-sort').setAttribute('aria-label','整體誤差，目前由' + (errorAscending ? '小到大' : '大到小') + '排列；點擊改為由' + (errorAscending ? '大到小' : '小到大') + '排列');
+  document.getElementById('error-sort-direction').textContent = errorAscending ? '↓' : '↑';
+  document.getElementById('error-sort').setAttribute('aria-label','走勢誤差，目前由' + (errorAscending ? '小到大' : '大到小') + '排列；點擊改為由' + (errorAscending ? '大到小' : '小到大') + '排列');
   const rows = document.getElementById('error-rows');
   rows.replaceChildren();
   const visible = errorEntries.filter(entry => ratioVisible.get(entry.sourceId)).sort((left,right) => {
@@ -3912,11 +3933,18 @@ function renderErrorRanking() {
     const row = addText(rows,'tr','');
     row.dataset.sourceId = entry.sourceId;
     addText(row,'td',entry.name);
-    addText(row,'td',entry.value === null ? '資料不足' : entry.value.toFixed(2) + ' 百分點','numeric');
+    addText(row,'td',entry.value === null ? '—' : entry.value.toFixed(2) + ' 百分點','numeric');
   }
 }
 
+function hasReadableVotes(row) { return candidates.some(candidate => Number.isSafeInteger(row?.votes?.[candidate.id]) && row.votes[candidate.id] >= 0); }
 function rowAxisX(row) { return row?.x ?? null; }
+function preferredObservationIndex() {
+  const visible = row => row.x && row.x >= fullTimeRange[0] && row.x <= fullTimeRange[1];
+  const complete = observations.findLastIndex(row => row.complete && visible(row));
+  const readable = observations.findLastIndex(row => hasReadableVotes(row) && visible(row));
+  return complete >= 0 ? complete : readable >= 0 ? readable : observations.length - 1;
+}
 function escapePlotText(value) { return String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
 function addText(parent, tag, text, className) {
   const element = document.createElement(tag);
@@ -3937,7 +3965,7 @@ function initElectionState() {
   const previousViewport = retainViewport ? {timeRange,progressRange,growthYRange,ratioYRange} : null;
   viewportElection = currentYear;
   electionDate = data.electionDate || '2024-01-13';
-  electionLabel = data.electionYearTitle || data.electionId || electionDate;
+  electionLabel = electionTitle(data,currentYear);
   candidates = data.candidates.map(candidate => ({...candidate,color:candidateColors[candidate.id] || candidate.color}));
 
   const stationPayloads = Array.isArray(data.stations) ? data.stations : [{
@@ -4007,9 +4035,10 @@ function initElectionState() {
     metadata = {};
     current = -1;
     stationSelect.replaceChildren();
-    document.getElementById('growth-title').textContent = electionLabel + ' 開票曲線';
-    document.title = electionLabel + ' 開票曲線';
-    document.getElementById('eyebrow').textContent = electionLabel;
+    const heading = electionLabel + (data.activeCountyName ? ' / ' + data.activeCountyName : '');
+    document.getElementById('growth-title').textContent = heading + ' 開票曲線';
+    document.title = heading + ' 開票曲線';
+    document.getElementById('eyebrow').textContent = heading;
     document.getElementById('time-span').textContent = data.eligibilityEmptyReason || '目前沒有可顯示的來源資料。';
     document.getElementById('ratio-section').hidden = true;
     document.getElementById('ratio-nav').hidden = true;
@@ -4028,8 +4057,7 @@ function initElectionState() {
   currentStation = stationsById.get(data.defaultStationId) || stations[0];
   observations = currentStation.observations;
   metadata = currentStation.metadata;
-  current = observations.findLastIndex(row => row.complete && row.x >= fullTimeRange[0] && row.x <= fullTimeRange[1]);
-  if(current < 0) current = observations.length - 1;
+  current = preferredObservationIndex();
 
   // Render controls
   stationSelect.replaceChildren();
@@ -4064,7 +4092,7 @@ function renderYearTabs() {
     btn.className = 'year-tab' + (yr === currentYear ? ' active' : '');
     btn.dataset.year = yr;
     if (yr === currentYear) btn.setAttribute('aria-current', 'page');
-    btn.textContent = elData.electionYearTitle || yr;
+    btn.textContent = electionTitle(elData,yr);
     btn.addEventListener('click', () => { switchElection(yr); setElectionMenu(false); document.getElementById('growth-title').focus(); });
     electionNav.append(btn);
   }
@@ -4116,12 +4144,11 @@ function showActiveElection() {
 function renderStation() {
   if (!currentStation) return;
   const station = currentStation;
-  const located = observations.filter(row => row.x);
-  const heading = data.activeCountyName || currentYear;
+  const heading = electionLabel + (data.activeCountyName ? ' / ' + data.activeCountyName : '');
   document.title = station.name + '｜' + heading + ' 開票曲線';
   document.getElementById('growth-title').textContent = heading + ' 開票曲線';
   document.getElementById('eyebrow').textContent = electionLabel + (data.activeCountyName ? ' / ' + data.activeCountyName : '') + ' / ' + station.name;
-  document.getElementById('time-span').textContent = electionDate + '　' + fullTimeRange.map(value => value.slice(11,16)).join('–');
+  document.getElementById('time-span').textContent = timeRangeLabel(fullTimeRange);
   chart.setAttribute('aria-label',station.name + candidates.length + '位候選人的畫面得票曲線；方向鍵選取相鄰觀測');
   updateAxisNotice();
   stationSelect.value = station.id;
@@ -4172,8 +4199,7 @@ function switchStation(stationId,observationId) {
   currentStation = station; observations = station.observations; metadata = station.metadata;
   growthYRange = null;
   const remembered = station.byId.get(String(observationId ?? savedSelections.get(stationId)));
-  const lastComplete = observations.findLastIndex(row => row.complete && row.x >= fullTimeRange[0] && row.x <= fullTimeRange[1]);
-  current = remembered?.index ?? (lastComplete >= 0 ? lastComplete : observations.length - 1);
+  current = remembered?.index ?? preferredObservationIndex();
   renderStation();
   selectObservation(current);
   if(ready) refreshGrowth();
@@ -4187,17 +4213,18 @@ function baseShapes(station) {
   for(let index=0;index<=rows.length;index++) {
     if(index<rows.length && !rows[index].complete && start === null) start = index;
     if(start !== null && (index===rows.length || rows[index].complete)) {
-      const before = rows.slice(0,start).filter(row => row.x).at(-1);
-      const after = rows.slice(index).find(row => row.x);
-      const left = before?.x || rows.slice(start,index).find(row => row.x)?.x;
-      const right = after?.x || rows.slice(start,index).filter(row => row.x).at(-1)?.x;
-      if(left && right) shapes.push({type:'rect',xref:'x',yref:'paper',x0:left,x1:right,y0:.16,y1:1,fillcolor:'#9ba9b01a',line:{width:0},layer:'below'});
+      const located = row => rowAxisX(row) !== null;
+      const before = rows.slice(0,start).filter(located).at(-1);
+      const after = rows.slice(index).find(located);
+      const left = rowAxisX(before) ?? rowAxisX(rows.slice(start,index).find(located));
+      const right = rowAxisX(after) ?? rowAxisX(rows.slice(start,index).filter(located).at(-1));
+      if(left !== null && right !== null) shapes.push({type:'rect',xref:'x',yref:'paper',x0:left,x1:right,y0:.16,y1:1,fillcolor:'#9ba9b01a',line:{width:0},layer:'below'});
       start = null;
     }
   }
   rows.forEach((row,index) => {
-    const before = rows.slice(0,index).filter(item => item.x).at(-1);
-    if(row.gapBefore && row.x && before) shapes.push({type:'rect',xref:'x',yref:'paper',x0:before.x,x1:row.x,y0:.16,y1:1,fillcolor:'#edc46a18',line:{color:'#edc46a70',width:1,dash:'dot'},layer:'below'});
+    const before = rows.slice(0,index).filter(item => rowAxisX(item) !== null).at(-1);
+    if(row.gapBefore && rowAxisX(row) !== null && before) shapes.push({type:'rect',xref:'x',yref:'paper',x0:rowAxisX(before),x1:rowAxisX(row),y0:.16,y1:1,fillcolor:'#edc46a18',line:{color:'#edc46a70',width:1,dash:'dot'},layer:'below'});
   });
   return shapes;
 }
@@ -4316,7 +4343,7 @@ async function exportPNG(graph) {
     snapshot.width = 1440; snapshot.height = 720;
     snapshot.paper_bgcolor = '#121619';
     snapshot.margin = {...snapshot.margin,t:128,b:112};
-    snapshot.title = {text:escapePlotText(sourceLabel) + '｜' + currentYear + (isRatio ? ' 當選人得票率' : ' 開票曲線') + '<br><sup>' + electionDate + '　' + (isRatio ? '開票進度' : span) + '</sup>',x:.04,xanchor:'left',y:.94,yanchor:'top',font:{size:21,color:'#edf2f4'}};
+    snapshot.title = {text:escapePlotText(sourceLabel) + '｜' + escapePlotText(electionLabel + (data.activeCountyName ? ' / ' + data.activeCountyName : '')) + (isRatio ? ' 當選人得票率' : ' 開票曲線') + '<br><sup>' + electionDate + '　' + (isRatio ? '開票進度' : span) + '</sup>',x:.04,xanchor:'left',y:.94,yanchor:'top',font:{size:21,color:'#edf2f4'}};
     snapshot.legend = nativeLegend();
     const traces = JSON.parse(JSON.stringify(graph.data));
     for(const trace of traces) if(trace.visible === false && trace.showlegend !== false) trace.visible = 'legendonly';
@@ -4334,11 +4361,11 @@ function growthLayout(station) { return {
   hoverlabel:{bgcolor:'#24323a',bordercolor:'#758b98',font:{color:'#edf2f4',size:13},align:'left'},
   xaxis:{
     type:'date',range:[...timeRange],autorange:false,minallowed:fullTimeRange[0],maxallowed:fullTimeRange[1],
-    tickformat:'%H:%M',
+    tickformat:fullTimeRange[0].slice(0,10) === fullTimeRange[1].slice(0,10) ? '%H:%M' : '%m/%d<br>%H:%M',
       tick0:fullTimeRange[0],dtick:innerWidth<700?10800000:7200000,
     nticks:innerWidth<700?4:9,anchor:'y2',gridcolor:'#28353d',
     showspikes:true,spikemode:'across',spikethickness:1,spikecolor:'#a7b8c1',
-    title:{text:'觀測時間',standoff:12},fixedrange:false
+    title:{text:'觀測時間（實際時間）',standoff:12},fixedrange:false
   },
   yaxis:{domain:[.16,1],title:{text:'票數',standoff:16},automargin:true,rangemode:'tozero',gridcolor:'#303c44',zerolinecolor:'#53626a',tickformat:',d',fixedrange:false,
     ...(growthYRange ? {range:[...growthYRange],autorange:false} : {autorange:true}),minallowed:0},
@@ -4350,7 +4377,7 @@ function growthLayout(station) { return {
 
 function plotConfig() {
   const resetButton = {name:'重設視圖',icon:Plotly.Icons.home,click:resetView};
-  return {responsive:true,displaylogo:false,displayModeBar:'hover',scrollZoom:false,locale:'zh-tw',modeBarButtons:[['zoom2d','pan2d'],['zoomIn2d','zoomOut2d',resetButton],[{name:'下載 PNG',icon:Plotly.Icons.camera,click:exportPNG}]]};
+  return {responsive:true,displaylogo:false,displayModeBar:'hover',scrollZoom:false,doubleClick:false,locale:'zh-tw',modeBarButtons:[['zoom2d','pan2d'],['zoomIn2d','zoomOut2d',resetButton],[{name:'下載 PNG',icon:Plotly.Icons.camera,click:exportPNG}]]};
 }
 
 const graphs = [chart];
@@ -4372,6 +4399,7 @@ function mountPlots() {
     for (const graph of graphs) {
       if (typeof graph.removeAllListeners === 'function') {
         graph.removeAllListeners('plotly_click');
+        graph.removeAllListeners('plotly_doubleclick');
         graph.removeAllListeners('plotly_relayout');
         graph.removeAllListeners('plotly_restyle');
       }
@@ -4387,6 +4415,7 @@ function mountPlots() {
           if (sourceId && detail[voteSlots + 3] !== undefined) selectIdentity(sourceId, String(detail[voteSlots + 3]));
         }
       });
+      graph.on('plotly_doubleclick', () => resetView(graph).catch(reportChartError));
       graph.on('plotly_relayout', changes => syncRange(graph, changes));
       graph.on('plotly_restyle', changes => rememberLegend(graph,changes));
     }
@@ -4469,38 +4498,60 @@ function rememberLegend(graph,changes) {
 }
 
 let syncingRange = false;
+function ascendingAxisRange(range, isTime = false) {
+  if(!Array.isArray(range) || range.length !== 2) return null;
+  const values = range.map(value => isTime && typeof value === 'string' ? clockMillis(value) : value);
+  if(!values.every(Number.isFinite) || values[0] === values[1]) return null;
+  return values[0] < values[1] ? [...range] : [range[1],range[0]];
+}
+
 function syncRange(source,changes) {
   if(syncingRange) return;
+  const update = {};
   if(['yaxis.range','yaxis.range[0]','yaxis.range[1]','yaxis.autorange'].some(key => Object.hasOwn(changes,key))) {
     if(source === ratioChart) {
       const bounds = shareBounds();
-      const requested = changes['yaxis.autorange'] === true ? bounds : changes['yaxis.range'] ||
+      const automatic = Object.hasOwn(changes,'yaxis.autorange') && changes['yaxis.autorange'] !== false;
+      const requested = automatic ? bounds : changes['yaxis.range'] ||
         [changes['yaxis.range[0]'] ?? ratioYRange[0],changes['yaxis.range[1]'] ?? ratioYRange[1]];
-      ratioYRange = [Math.max(bounds[0],requested[0]),Math.min(bounds[1],requested[1])];
-      if(changes['yaxis.autorange'] === true || ratioYRange.some((value,index) => value !== requested[index])) {
-        syncingRange = true;
-        Promise.resolve(Plotly.relayout(source,{'yaxis.range':[...ratioYRange],'yaxis.autorange':false})).finally(() => {syncingRange=false;});
+      const ordered = ascendingAxisRange(requested);
+      ratioYRange = ordered ? ordered.map(value => Math.max(bounds[0],Math.min(bounds[1],value))) : [...bounds];
+      if(ratioYRange[0] === ratioYRange[1]) ratioYRange = [...bounds];
+      if(automatic || ratioYRange.some((value,index) => value !== requested[index])) {
+        update['yaxis.range'] = [...ratioYRange];
+        update['yaxis.autorange'] = false;
       }
     } else {
-      growthYRange = changes['yaxis.autorange'] === true ? null : changes['yaxis.range'] ||
+      const requested = changes['yaxis.range'] ||
         [changes['yaxis.range[0]'] ?? source.layout?.yaxis?.range?.[0] ?? 0,
           changes['yaxis.range[1]'] ?? source.layout?.yaxis?.range?.[1] ?? 1];
+      const automatic = Object.hasOwn(changes,'yaxis.autorange') && changes['yaxis.autorange'] !== false;
+      growthYRange = automatic ? null : ascendingAxisRange(requested);
+      if(!growthYRange && changes['yaxis.autorange'] !== true) update['yaxis.autorange'] = true;
+      else if(growthYRange?.some((value,index) => value !== requested[index])) {
+        update['yaxis.range'] = [...growthYRange];
+        update['yaxis.autorange'] = false;
+      }
     }
   }
-  if(!['xaxis.range','xaxis.range[0]','xaxis.range[1]','xaxis.autorange'].some(key => Object.hasOwn(changes,key))) return;
-  const reset = changes['xaxis.autorange'] === true;
-  const isRatio = source === ratioChart;
-  const previous = isRatio ? progressRange : timeRange;
-  const next = reset ? [...(isRatio ? fullProgressRange : fullTimeRange)] : changes['xaxis.range'] ||
-    [changes['xaxis.range[0]'] ?? previous[0],changes['xaxis.range[1]'] ?? previous[1]];
-  if(!next || next.length !== 2) return;
-  if(isRatio) progressRange = [...next];
-  else timeRange = [...next];
-  if(!reset) return;
-  const update = {'xaxis.range':[...next],'xaxis.autorange':false};
+  if(['xaxis.range','xaxis.range[0]','xaxis.range[1]','xaxis.autorange'].some(key => Object.hasOwn(changes,key))) {
+    const reset = Object.hasOwn(changes,'xaxis.autorange') && changes['xaxis.autorange'] !== false;
+    const isRatio = source === ratioChart;
+    const full = isRatio ? fullProgressRange : fullTimeRange;
+    const previous = isRatio ? progressRange : timeRange;
+    const requested = reset ? full : changes['xaxis.range'] ||
+      [changes['xaxis.range[0]'] ?? previous[0],changes['xaxis.range[1]'] ?? previous[1]];
+    const next = ascendingAxisRange(requested,!isRatio) || [...full];
+    if(isRatio) progressRange = [...next];
+    else timeRange = [...next];
+    if(reset || next.some((value,index) => value !== requested[index])) {
+      update['xaxis.range'] = [...next];
+      update['xaxis.autorange'] = false;
+    }
+  }
+  if(!Object.keys(update).length) return;
   syncingRange = true;
-  const pending = [Plotly.relayout(source,update)];
-  Promise.all(pending).finally(() => {syncingRange=false;});
+  return Promise.resolve(Plotly.relayout(source,update)).finally(() => {syncingRange=false;});
 }
 
 function resetView(graph) {
@@ -4526,10 +4577,14 @@ for(const graph of graphs) observer.observe(graph);
 
 function updateAxisNotice() {
   const note = document.getElementById('axis-empty-note');
-  note.hidden = observations.some(row => rowAxisX(row) !== null && candidates.some(candidate => Number.isFinite(row.votes[candidate.id])));
-  document.getElementById('axis-empty-text').textContent = observations.length
-    ? '此來源缺少可繪票數或時間座標；完整票組仍可顯示於下方進度圖。'
-    : '此來源目前沒有可採用的本市票數畫面。';
+  const readable = observations.filter(hasReadableVotes);
+  const missingClock = readable.filter(row => !row.x).length;
+  note.hidden = readable.length > 0 && missingClock === 0;
+  document.getElementById('axis-empty-text').textContent = !readable.length
+    ? '此來源的既有取樣畫面尚無可讀票數；可逐張查看截圖與影片。'
+    : missingClock === readable.length
+      ? '此來源有 ' + readable.length + ' 筆可讀票數，但缺少可確認的實際時間，上圖暫無可定位的觀測；完整票組仍保留於下方進度圖。'
+      : '另有 ' + missingClock + ' 筆可讀票數缺少可確認的實際時間，未畫入上圖；完整票組仍保留於下方進度圖。';
 }
 
 const sidebar = document.getElementById('election-sidebar');
