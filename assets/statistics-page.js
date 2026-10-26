@@ -599,6 +599,13 @@
     if (!window.ElectionArchive || !window.ElectionStatistics) throw new Error('缺少共用資料載入或統計計算元件。');
     statistics = window.ElectionStatistics;
     const [master, library] = await Promise.all([window.ElectionArchive.loadData(), window.ElectionArchive.loadPlotly()]);
+    const builtAt = typeof master.builtAt === 'string' ? new Date(master.builtAt) : null;
+    if (builtAt && Number.isFinite(builtAt.getTime())) {
+      const date = byId('data-updated-time');
+      date.dateTime = builtAt.toISOString();
+      date.textContent = new Intl.DateTimeFormat('zh-TW', {timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(builtAt);
+      byId('data-updated').hidden = false;
+    }
     populateNavigation(master);
     plotly = library?.react ? library : window.Plotly;
     if (!plotly?.react) throw new Error('Plotly 尚未載入。');

@@ -3,8 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>資料來源｜畫面得票成長曲線</title>
-<link rel="icon" href="data:,">
+<title>開票研究｜歷屆選舉開票曲線與統計</title>
+<meta name="description" content="整理臺灣歷屆選舉的公開開票資料與影音畫面，比較各來源的開票曲線、得票率走勢與領先穩定時間，並保留原始影格供研究查核。">
+<link rel="canonical" href="https://taiwan-election-counting.pages.dev/">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="開票研究">
+<meta property="og:title" content="開票研究｜歷屆選舉開票曲線與統計">
+<meta property="og:description" content="比較臺灣歷屆選舉的開票曲線、得票率走勢與領先穩定時間，透過原始影格回查公開資料。">
+<meta property="og:url" content="https://taiwan-election-counting.pages.dev/">
+<meta property="og:image" content="https://taiwan-election-counting.pages.dev/assets/social-preview.png">
+<meta property="og:image:alt" content="開票研究：歷屆選舉開票曲線與統計">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="開票研究｜歷屆選舉開票曲線與統計">
+<meta name="twitter:description" content="比較臺灣歷屆選舉的開票曲線、得票率走勢與領先穩定時間，透過原始影格回查公開資料。">
+<meta name="twitter:image" content="https://taiwan-election-counting.pages.dev/assets/social-preview.png">
+<meta name="twitter:image:alt" content="開票研究：歷屆選舉開票曲線與統計">
 <style>
 :root{color-scheme:dark;--bg:#121619;--surface:#1c2429;--text:#edf2f4;--muted:#a8b7be;--border:#3d4b52;--focus:#edc46a}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.6 "Microsoft JhengHei","PingFang TC",sans-serif;letter-spacing:0}a{color:#91d5f1;text-underline-offset:4px;overflow-wrap:anywhere}button,select,input{font:inherit}button,select{color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:4px;min-height:40px}button{cursor:pointer}button:hover{background:#29363d}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,#chart:focus-visible{outline:2px solid var(--focus);outline-offset:4px}button:disabled{opacity:.35;cursor:default}
@@ -42,6 +57,7 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 
 .growth-unavailable{margin:16px 0 20px;padding:18px;border:1px solid var(--border);border-radius:5px}.growth-unavailable h2{font-size:18px;line-height:1.6;margin:0 0 10px}.growth-unavailable p{margin:8px 0;color:var(--muted)}.unavailable-readings{max-width:100%;overflow-x:auto;margin:16px 0}.unavailable-readings table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}.unavailable-readings th,.unavailable-readings td{padding:8px 5px;border-bottom:1px solid var(--border);text-align:right}.unavailable-readings th:first-child,.unavailable-readings td:first-child{text-align:left}.unavailable-readings button{padding:4px 8px;min-height:36px}.unavailable-readings button[aria-pressed=true]{border-color:var(--focus);color:var(--focus)}#chart[hidden],.growth-unavailable[hidden],.unavailable-readings[hidden]{display:none!important}
 .site-notice{margin-top:32px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;line-height:1.8}.site-notice>p{margin:0 0 8px}.site-notice>details{margin:0;border:0;padding:0;min-width:0}.site-notice summary{min-height:44px;padding:10px 0;color:#91d5f1;font-size:14px;cursor:pointer}.site-notice summary:focus-visible{outline:2px solid var(--focus);outline-offset:4px}.site-notice>details>p{max-width:70em;margin:10px 0;font-size:13px;overflow-wrap:anywhere}
+.load-status{margin:12px 0;color:var(--muted);font-size:13px}
 </style>
 </head>
 <body>
@@ -55,6 +71,7 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 </aside>
 <main class="page">
 <header><div><p class="eyebrow" id="eyebrow">總統大選</p><h1 id="growth-title" tabindex="-1">開票曲線</h1><p id="time-span"></p></div><nav aria-label="圖表導覽"><a href="statistics.html">開票統計</a><a id="ratio-nav" href="#ratio-section" hidden>走勢偏差</a></nav></header>
+<p id="curve-load-status" class="load-status" role="status" aria-live="polite">正在載入開票資料與圖表…</p>
 <section class="source-matrix-section" aria-labelledby="source-matrix-title">
 <div class="source-matrix-heading"><h2 id="source-matrix-title">選擇縣市與資料來源</h2><p id="source-matrix-help">點選交叉格切換資料；✓ 為目前選取，— 表示無此來源。</p></div>
 <div class="source-matrix-wrap" tabindex="0" role="region" aria-label="縣市與資料來源選擇表" aria-describedby="source-matrix-help"><div id="source-matrix"></div></div>
@@ -91,6 +108,7 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 </div>
 <noscript><p>互動圖需要 JavaScript。</p></noscript>
 <footer class="site-notice">
+<p id="data-updated" hidden>資料整理日期：<time id="data-updated-time"></time>（臺北時間）</p>
 <p>本頁反映目前已收錄畫面；可透過原始影格與各場曲線核對。<a href="https://github.com/papple23g/taiwan-election-counting/issues" target="_blank" rel="noopener noreferrer" aria-label="問題回報與資料更正：GitHub Issues（另開分頁）">問題回報與資料更正（GitHub Issues）</a></p>
 <details id="research-notice">
 <summary>資料來源與研究限制</summary>
@@ -111,6 +129,13 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 const archive = globalThis.ElectionArchive;
 await archive.loadPlotly();
 const masterData = await archive.loadData();
+const builtAt = typeof masterData.builtAt === 'string' ? new Date(masterData.builtAt) : null;
+if (builtAt && Number.isFinite(builtAt.getTime())) {
+  const date = document.getElementById('data-updated-time');
+  date.dateTime = builtAt.toISOString();
+  date.textContent = new Intl.DateTimeFormat('zh-TW', {timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(builtAt);
+  document.getElementById('data-updated').hidden = false;
+}
 const hasMultiElection = Boolean(masterData.elections && Object.keys(masterData.elections).length > 0);
 const electionYears = (masterData.electionYears || (hasMultiElection ? Object.keys(masterData.elections) : []))
   .filter(year => Number.parseInt(year,10) >= 2012);
@@ -183,6 +208,7 @@ function bindElection(year) {
 bindElection(currentYear);
 
 const chart = document.getElementById('chart');
+const loadStatus = document.getElementById('curve-load-status');
 const ratioChart = document.getElementById('ratio-chart');
 const selectionState = document.getElementById('source-strip');
 const sourceMatrix = document.getElementById('source-matrix');
@@ -519,7 +545,7 @@ function initElectionState() {
     current = -1;
     const heading = electionLabel + (data.activeCountyName ? ' / ' + data.activeCountyName : '');
     document.getElementById('growth-title').textContent = heading + ' 開票曲線';
-    document.title = heading + ' 開票曲線';
+    document.title = heading + ' 開票曲線｜開票研究';
     document.getElementById('eyebrow').textContent = heading;
     document.getElementById('time-span').textContent = data.eligibilityEmptyReason || '目前沒有可顯示的來源資料。';
     document.getElementById('ratio-section').hidden = true;
@@ -599,6 +625,7 @@ function showActiveElection() {
     }
     ready = false;
     chart.setAttribute('aria-busy','false');
+    loadStatus.hidden = true;
     chart.textContent = data.eligibilityEmptyReason || '目前沒有可顯示的來源資料。';
     chart.classList.add('empty-chart');
     document.documentElement.dataset.chartReady = 'true';
@@ -620,7 +647,7 @@ function renderStation() {
   if (!currentStation) return;
   const station = currentStation;
   const heading = electionLabel + (data.activeCountyName ? ' / ' + data.activeCountyName : '');
-  document.title = station.name + '｜' + heading + ' 開票曲線';
+  document.title = station.name + '｜' + heading + ' 開票曲線｜開票研究';
   document.getElementById('growth-title').textContent = heading + ' 開票曲線';
   document.getElementById('eyebrow').textContent = electionLabel + (data.activeCountyName ? ' / ' + data.activeCountyName : '') + ' / ' + station.name;
   document.getElementById('time-span').textContent = timeRangeLabel(fullTimeRange);
@@ -779,6 +806,8 @@ function growthTraces(station) {
 }
 
 function reportChartError(error) {
+  loadStatus.hidden = true;
+  chart.setAttribute('aria-busy','false');
   const message = error?.message || String(error);
   document.documentElement.dataset.chartError = message;
   let alert = document.getElementById('chart-error');
@@ -890,6 +919,8 @@ function syncGraphs() {
 
 function mountPlots() {
   if (!currentStation) {
+    loadStatus.hidden = true;
+    chart.setAttribute('aria-busy','false');
     chart.textContent = data.eligibilityEmptyReason || '沒有符合顯示門檻的資料。';
     return;
   }
@@ -924,7 +955,8 @@ function mountPlots() {
     await refreshGrowth();
     selectObservation(current);
     document.documentElement.dataset.chartReady = 'true';
-  }).catch(error => {chart.textContent = '圖表載入失敗：' + error.message;chart.className='load-error';document.documentElement.dataset.chartError=error.message;});
+    loadStatus.hidden = true;
+  }).catch(error => {loadStatus.hidden=true;chart.setAttribute('aria-busy','false');chart.textContent = '圖表載入失敗：' + error.message;chart.className='load-error';document.documentElement.dataset.chartError=error.message;});
 }
 
 renderYearTabs();
@@ -1147,6 +1179,8 @@ frameDialog.addEventListener('click', event => {
 frameDialog.addEventListener('close', () => document.getElementById('frame-zoom').focus());
 
 })().catch(error => {
+  document.getElementById('curve-load-status').hidden = true;
+  document.getElementById('chart').setAttribute('aria-busy', 'false');
   document.documentElement.dataset.chartError = error.message || String(error);
   const alert = document.createElement('p');
   alert.className = 'load-error'; alert.setAttribute('role', 'alert');

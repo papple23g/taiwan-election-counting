@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>開票研究</title>
+  <rect width="64" height="64" rx="12" fill="#121619"/>
+  <path d="M13 13v38h39" fill="none" stroke="#a8b7be" stroke-width="3" stroke-linecap="round"/>
+  <path d="m19 43 10-8 9 3 13-20" fill="none" stroke="#edc46a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,4 +1,4 @@
-# 開票曲線
+# 開票研究
 
 專案的檔案總大小與實際磁碟占用在操作過程及交付時均不得超過 **1 GB（1,000,000,000 bytes）**，完整規則見 [專案容量鐵律](AGENTS.md)。
 
@@ -26,5 +26,13 @@
 截圖維持原解析度，使用 WebP、AVIF 或保留原始圖片格式；各圖片的格式、壓縮品質與尺寸記錄於 `frontend-assets.json`。壓縮版本須通過票數、候選人身分及時間依據比對；未通過時採用較高品質版本或保留原圖。清單另記錄原圖與交付圖片各自的 SHA-256，原圖 hash 作來源識別；其餘原始研究檔案未隨此前端包保留。
 
 此資料夾為可直接使用的靜態前端，不含研究管線或測試環境。Git 保存前端程式與圖片雜湊清單；截圖保留在 `assets/frames/`，不納入版本控制。
+
+## 回報與部署
+
+程式與圖片雜湊清單保存在 [GitHub](https://github.com/papple23g/taiwan-election-counting)。資料錯誤與操作問題請到 [GitHub Issues](https://github.com/papple23g/taiwan-election-counting/issues) 提供年份、選區、資料來源、問題與可公開查閱的佐證。回報會公開，請勿附上個人敏感資訊。
+
+正式站台使用 Cloudflare Pages Direct Upload。Git checkout 不包含截圖，不能單憑 GitHub 倉庫重建完整網站；發布時須另備本機的完整 `assets/frames/`，以 `frontend-assets.json` 核對圖片。不要將忽略的截圖強制加入 Git。
+
+先在專案外建立輸出目錄，放入 `index.html`、`statistics.html`、`404.html`、`robots.txt`、`sitemap.xml` 與完整 `assets/`，再從專案外使用 Wrangler 發布至 `taiwan-election-counting` 專案的 `main` 分支。輸出目錄、工具快取及暫存均須留在專案外；發布前後均應依容量鐵律量測整個專案。Pages 的 Git push 與 Direct Upload 為兩個獨立步驟，推送原始碼不會自動更新站台。
 
 品牌 logo 使用本機原始圖檔，不依賴外站載入。來源 ID 對照保存在 `assets/broadcaster-logos.js`，圖檔、來源網址及 SHA-256 保存在 `assets/logos/sources.json`。素材取自各品牌官網或官方頻道，民視取自 Wikimedia Commons 的標誌檔案；品牌商標與圖檔權利歸原權利人。Logo 僅用於識別播出來源，與括號中的計票單位分開處理。
