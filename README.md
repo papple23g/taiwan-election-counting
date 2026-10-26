@@ -1,5 +1,7 @@
 # 開票研究
 
+[開啟網站](https://papple23g.com/) · [開票統計](https://papple23g.com/statistics) · [問題回報與資料更正](https://github.com/papple23g/taiwan-election-counting/issues)
+
 專案的檔案總大小與實際磁碟占用在操作過程及交付時均不得超過 **1 GB（1,000,000,000 bytes）**，完整規則見 [專案容量鐵律](AGENTS.md)。
 
 使用支援 `DecompressionStream` 的現代瀏覽器開啟 `index.html` 即可離線使用。兩頁共用 `assets/election-runtime.js` 的無損 gzip 資料與圖表程式，載入時在瀏覽器解壓；離線使用時亦須保留此檔及其他前端 JavaScript。請完整保留 `assets/frames/`，截圖、放大檢視與選點同步均使用其中的圖片。影片連結需網路。

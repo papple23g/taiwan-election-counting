@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://papple23g.com/sitemap.xml
