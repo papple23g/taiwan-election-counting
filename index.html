@@ -40,6 +40,8 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 .source-matrix-section{min-width:0;max-width:100%;margin:16px 0 20px}.source-matrix-heading{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 20px;margin-bottom:8px}.source-matrix-heading h2{font-size:16px;margin:0}.source-matrix-heading p{font-size:12px;color:var(--muted);margin:0}.source-matrix-wrap{width:100%;max-width:100%;isolation:isolate}.source-matrix-wrap:focus-visible{outline:2px solid var(--focus);outline-offset:4px}.matrix-group+.matrix-group{margin-top:18px}.matrix-group-label{font-size:12px;color:var(--muted);margin:0 0 6px}.source-matrix{table-layout:fixed;border-collapse:separate;border-spacing:0;text-align:center;border:1px solid var(--border)}.source-matrix .matrix-county-column{width:64px}.source-matrix th,.source-matrix td{padding:3px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);font-size:12px;min-width:0}.source-matrix th{background:#1c2429;color:var(--text);font-weight:500}.source-matrix thead th{position:sticky;top:0;z-index:2;height:104px;overflow-wrap:anywhere}.source-matrix .matrix-county-heading{width:64px;text-align:center;background:#1c2429;line-height:1.6}.source-matrix thead .matrix-county-heading{z-index:3}.source-matrix tbody tr:last-child>*{border-bottom:0}.source-matrix tr>*:last-child{border-right:0}.matrix-source-label{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;line-height:1.35}.matrix-source-label span{min-width:0;max-width:100%;overflow-wrap:anywhere}.matrix-logo{display:block;flex:0 0 24px;width:24px;height:24px;object-fit:contain;background:#fff;border-radius:4px;padding:2px}.matrix-choice{min-width:0;width:100%;min-height:36px;padding:0;font-size:18px;line-height:1}.matrix-choice[aria-pressed=true]{background:#3d3523;border-color:var(--focus);color:var(--focus);font-weight:600}.matrix-unavailable{color:var(--muted)}.source-matrix .matrix-empty{padding:14px;color:var(--muted)}.sidebar-analysis{display:block;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}.sidebar-analysis a{display:block;min-height:44px;padding:10px 12px;border:1px solid var(--border);border-radius:5px;text-decoration:none;font-size:13px;background:var(--surface)}.sidebar-analysis a:hover{background:#25333a;color:#fff}
 @media(max-width:700px){.source-matrix-section{margin-top:12px}.matrix-choice{min-height:44px}.source-matrix th,.source-matrix td{font-size:12px;padding:3px}}
 
+.growth-unavailable{margin:16px 0 20px;padding:18px;border:1px solid var(--border);border-radius:5px}.growth-unavailable h2{font-size:18px;line-height:1.6;margin:0 0 10px}.growth-unavailable p{margin:8px 0;color:var(--muted)}.unavailable-readings{max-width:100%;overflow-x:auto;margin:16px 0}.unavailable-readings table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}.unavailable-readings th,.unavailable-readings td{padding:8px 5px;border-bottom:1px solid var(--border);text-align:right}.unavailable-readings th:first-child,.unavailable-readings td:first-child{text-align:left}.unavailable-readings button{padding:4px 8px;min-height:36px}.unavailable-readings button[aria-pressed=true]{border-color:var(--focus);color:var(--focus)}#chart[hidden],.growth-unavailable[hidden],.unavailable-readings[hidden]{display:none!important}
+.site-notice{margin-top:32px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;line-height:1.8}.site-notice>p{margin:0 0 8px}.site-notice>details{margin:0;border:0;padding:0;min-width:0}.site-notice summary{min-height:44px;padding:10px 0;color:#91d5f1;font-size:14px;cursor:pointer}.site-notice summary:focus-visible{outline:2px solid var(--focus);outline-offset:4px}.site-notice>details>p{max-width:70em;margin:10px 0;font-size:13px;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -59,11 +61,17 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 </section>
 <div class="chart-workspace">
 <div class="growth-panel">
-<div id="chart" tabindex="0" role="region" aria-label="候選人的得票曲線；方向鍵選取相鄰時間"></div>
+<section id="growth-unavailable" class="growth-unavailable" aria-labelledby="growth-unavailable-title" hidden>
+<h2 id="growth-unavailable-title"></h2><p id="growth-unavailable-reason"></p>
+<div id="unavailable-readings" class="unavailable-readings" tabindex="0" role="region" aria-label="已收錄票數與影格"></div>
+<p id="unavailable-reading-help">點選影格可切換截圖；影片位置僅供回查，不代表實際時間。</p>
+<a id="unavailable-progress-link" href="#ratio-section">查看開票進度與得票率</a>
+</section>
+<div id="chart" tabindex="0" role="region" aria-busy="true" aria-label="候選人的得票曲線；方向鍵選取相鄰時間"></div>
 <p id="axis-empty-note" class="axis-empty-note" hidden><span id="axis-empty-text"></span></p>
 </div>
 <figure class="frame source-strip" id="source-strip" aria-labelledby="source-title">
-<div class="chart-heading"><h2 id="source-title">直播截圖</h2></div>
+<div class="chart-heading"><h2 id="source-title">影片截圖</h2></div>
 <button type="button" id="frame-zoom" class="frame-zoom" aria-haspopup="dialog" aria-label="放大畫面截圖"><img id="frame-image" alt=""></button>
 <figcaption><a id="frame-link" target="_blank" rel="noopener"><svg class="youtube-icon" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0033"/><path d="M11 5.5v9l8-4.5z" fill="white"/></svg><span id="frame-caption"></span></a></figcaption>
 </figure>
@@ -82,6 +90,17 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 </section>
 </div>
 <noscript><p>互動圖需要 JavaScript。</p></noscript>
+<footer class="site-notice">
+<p>本頁反映目前已收錄畫面；可透過原始影格與各場曲線核對。<a href="https://github.com/papple23g/taiwan-election-counting/issues" target="_blank" rel="noopener noreferrer" aria-label="問題回報與資料更正：GitHub Issues（另開分頁）">問題回報與資料更正（GitHub Issues）</a></p>
+<details id="research-notice">
+<summary>資料來源與研究限制</summary>
+<p>本站整理歷屆選舉的公開開票資料與影音畫面，供研究及查核使用，並非即時開票服務或選舉預測。</p>
+<p>畫面票數可能包含原始播出錯誤、辨識誤差及時間估計；最終選舉結果以中央選舉委員會公告為準。缺漏與無法確認的資料依頁面標示保留。</p>
+<p>各來源的收錄場次、時段與資料完整度不同。走勢偏差及領先穩定時間僅反映已收錄資料，不能直接推論媒體的整體準確率、公正性或未來表現。</p>
+<p>影音截圖及品牌標誌的相關權利歸原權利人，本站用於來源識別及研究說明。</p>
+<p>如發現錯誤，請透過 GitHub Issues 提供選舉年份、選區、資料來源、疑似錯誤及可公開查閱的佐證，供查核與更正。回報內容會公開，請勿附上個人敏感資訊。</p>
+</details>
+</footer>
 </main>
 <dialog id="frame-dialog" class="frame-dialog" aria-label="畫面截圖大圖"><button type="button" id="close-frame-dialog" class="dialog-close" aria-label="關閉大圖">×</button><img id="frame-full-image" alt=""><p id="frame-full-caption"></p></dialog>
 <script src="assets/election-runtime.js"></script>
@@ -572,11 +591,14 @@ function switchElection(yr) {
 
 function showActiveElection() {
   if (!currentStation) {
+    chart.hidden = false;
+    document.getElementById('growth-unavailable').hidden = true;
     if (window.Plotly) {
       Plotly.purge(chart);
       Plotly.purge(ratioChart);
     }
     ready = false;
+    chart.setAttribute('aria-busy','false');
     chart.textContent = data.eligibilityEmptyReason || '目前沒有可顯示的來源資料。';
     chart.classList.add('empty-chart');
     document.documentElement.dataset.chartReady = 'true';
@@ -603,6 +625,7 @@ function renderStation() {
   document.getElementById('eyebrow').textContent = electionLabel + (data.activeCountyName ? ' / ' + data.activeCountyName : '') + ' / ' + station.name;
   document.getElementById('time-span').textContent = timeRangeLabel(fullTimeRange);
   chart.setAttribute('aria-label',station.name + candidates.length + '位候選人的畫面得票曲線；方向鍵選取相鄰觀測');
+  renderGrowthAvailability();
   updateAxisNotice();
   updateSourceMatrixSelection();
   syncSourceQuery();
@@ -632,6 +655,7 @@ function selectObservation(index) {
   document.getElementById('frame-caption').textContent = (row.videoTitle || currentStation.videoTitle || currentStation.name)
     + (hasOffset(row) ? ' · ' + videoTime(row.videoOffset) : '');
   selectionState.hidden = !row.frameHref && !timedHref;
+  for(const button of document.querySelectorAll('#unavailable-readings button')) button.setAttribute('aria-pressed',String(button.dataset.observationId === String(row.id)));
 }
 
 function selectIdentity(stationId,observationId) {
@@ -670,6 +694,54 @@ function growthRows(station) {
   }).sort((left,right) => clockMillis(left.x) - clockMillis(right.x) || left.index - right.index);
 }
 
+function growthAvailability(station) {
+  const readable = station.observations.filter(hasReadableVotes);
+  const located = readable.filter(row => rowAxisX(row) !== null);
+  const plotted = growthRows(station).filter(hasReadableVotes);
+  const kind = plotted.length ? 'available' : !readable.length ? 'no_votes' : !located.length ? 'no_time' : 'outside_window';
+  const missingCandidates = candidates.filter(candidate => !plotted.some(row => Number.isSafeInteger(row.votes?.[candidate.id]) && row.votes[candidate.id] >= 0));
+  const completeCount = station.observations.filter(row => Number.isFinite(rowProgress(row)) && Number.isFinite(voteRatio(row))).length;
+  return {kind,readable,located,plotted,missingCandidates,completeCount};
+}
+
+function renderGrowthAvailability() {
+  const status = growthAvailability(currentStation);
+  const panel = document.getElementById('growth-unavailable');
+  const missing = status.kind !== 'available';
+  chart.hidden = missing;
+  panel.hidden = !missing;
+  if(!missing) return;
+  const title = document.getElementById('growth-unavailable-title');
+  const reason = document.getElementById('growth-unavailable-reason');
+  title.textContent = status.kind === 'no_time' ? '已收錄 ' + status.readable.length + ' 筆票數，尚缺實際時間'
+    : status.kind === 'outside_window' ? '16:00–22:00 尚無可定位的票數' : '此來源尚無可讀票數';
+  reason.textContent = status.kind === 'no_time' ? '目前沒有足以定位實際時間的依據，無法繪製時間曲線。原始票數與影格保留如下。'
+    : status.kind === 'outside_window' ? '已收錄票數位於顯示時段之外，時間軸維持 16:00–22:00；仍可回查原始票數與影格。'
+    : '目前取樣畫面沒有可確認的候選人票數，可查看影片及已保存截圖。';
+  const readings = document.getElementById('unavailable-readings');
+  readings.replaceChildren();
+  readings.hidden = !status.readable.length;
+  document.getElementById('unavailable-reading-help').hidden = !status.readable.length;
+  document.getElementById('unavailable-progress-link').hidden = !hasRatio || !status.completeCount;
+  if(!status.readable.length) return;
+  const table = addText(readings,'table','');
+  addText(table,'caption','已收錄票數；影片位置僅供回查','sr-only');
+  const header = addText(addText(table,'thead',''),'tr','');
+  for(const label of ['影格／影片位置',...candidates.map(candidate => candidate.name)]) addText(header,'th',label).scope = 'col';
+  const body = addText(table,'tbody','');
+  for(const row of status.readable) {
+    const line = addText(body,'tr','');
+    const cell = addText(line,'td','');
+    const button = addText(cell,'button',hasOffset(row) ? videoTime(row.videoOffset) : '影格 ' + (row.index+1));
+    button.type = 'button';
+    button.dataset.observationId = String(row.id);
+    button.setAttribute('aria-label','查看第 ' + (row.index+1) + ' 筆影格' + (hasOffset(row) ? '，影片位置 ' + videoTime(row.videoOffset) : ''));
+    button.setAttribute('aria-pressed','false');
+    button.addEventListener('click',() => selectObservation(row.index));
+    for(const candidate of candidates) addText(line,'td',displayVote(row.votes[candidate.id]));
+  }
+}
+
 function growthTraces(station) {
   const rows = growthRows(station);
   const voteSlots = Math.max(candidates.length,3);
@@ -688,7 +760,7 @@ function growthTraces(station) {
   const hovertemplate = '<b>' + escapePlotText(station.name) + ' · %{customdata[1]}</b><br>'
     + candidates.map((candidate,index) => escapePlotText(candidate.name) + '　%{customdata[' + (index+2) + ']}').join('<br>')
     + '<br>%{customdata[' + (voteSlots+2) + ']}<br>%{customdata[' + (voteSlots+5) + ']}<extra></extra>';
-  const traces = ordered.map(({candidate},rank) => ({
+  const traces = ordered.filter(item => item.votes >= 0).map(({candidate},rank) => ({
     type:'scatter',mode:'lines+markers',name:candidate.name,legendgroup:candidate.id,legendrank:rank,
     x:rows.map(row => row.x),
     y:rows.map(row => Number.isSafeInteger(row.votes[candidate.id]) && row.votes[candidate.id] >= 0 ? row.votes[candidate.id] : null),
@@ -894,10 +966,12 @@ function makeRatioLayout() {
 
 function refreshGrowth() {
   const version = ++growthRenderVersion;
+  chart.setAttribute('aria-busy','true');
   growthQueue = growthQueue.then(async () => {
     if(version !== growthRenderVersion) return;
     await Plotly.react(chart,growthTraces(currentStation),growthLayout(currentStation),plotConfig());
-  }).catch(reportChartError);
+    if(!chart.hidden) await Plotly.Plots.resize(chart);
+  }).catch(reportChartError).finally(() => { if(version === growthRenderVersion) chart.setAttribute('aria-busy','false'); });
   return growthQueue;
 }
 
@@ -990,8 +1064,8 @@ function resetView(graph) {
 let smallScreen = innerWidth<700;
 const observer = new ResizeObserver(entries => {
   const small = innerWidth < 700;
-  if(ready && small !== smallScreen) {smallScreen=small;for(const graph of graphs) Plotly.relayout(graph,{'xaxis.nticks':small?4:9,'legend.maxheight':small?120:160});}
-  if(ready) for(const graph of graphs) Plotly.Plots.resize(graph);
+  if(ready && small !== smallScreen) {smallScreen=small;for(const graph of graphs.filter(item => !item.hidden)) Plotly.relayout(graph,{'xaxis.nticks':small?4:9,'legend.maxheight':small?120:160});}
+  if(ready) for(const graph of graphs.filter(item => !item.hidden)) Plotly.Plots.resize(graph);
 });
 for(const graph of graphs) observer.observe(graph);
 
@@ -1002,7 +1076,9 @@ function updateAxisNotice() {
   const missingClock = readable.filter(row => rowAxisX(row) === null).length;
   const fallbackClock = readable.filter(row => rowAxisX(row) !== null && isUnverifiedLiveStart(row)).length;
   const estimatedClock = readable.filter(row => rowAxisX(row) !== null && row.timeEstimate && !isUnverifiedLiveStart(row)).length;
-  note.hidden = readable.length > 0 && missingClock === 0 && !unconfirmed && !estimatedClock && !fallbackClock;
+  const availability = growthAvailability(currentStation);
+  const missingCandidates = availability.missingCandidates.map(candidate => candidate.name);
+  note.hidden = chart.hidden || (readable.length > 0 && missingClock === 0 && !unconfirmed && !estimatedClock && !fallbackClock && !missingCandidates.length && availability.completeCount > 0);
   const timeNotice = !readable.length
     ? '此來源的既有取樣畫面尚無可確認的即時票數；可逐張查看截圖與影片。'
     : missingClock === readable.length
@@ -1012,7 +1088,9 @@ function updateAxisNotice() {
         : '';
   const estimateNotice = estimatedClock ? '上圖有 ' + estimatedClock + ' 筆依同片多次語音報時校時的分鐘級估時，時間標示「約」；未經畫面時計確認，誤差可能超過1分鐘。' : '';
   const fallbackNotice = fallbackClock ? '上圖有 ' + fallbackClock + ' 筆依YouTube直播起始時間加影片位置估算，時間未核對；存檔剪輯或延遲可能造成偏差，誤差範圍未知。' : '';
-  document.getElementById('axis-empty-text').textContent = [timeNotice,estimateNotice,fallbackNotice,unconfirmed ? '另有 ' + unconfirmed + ' 張比較介紹版型未確認為即時計票，未列入有效觀測。' : ''].filter(Boolean).join(' ');
+  const candidateNotice = missingCandidates.length ? '此來源在 16:00–22:00 尚未讀到' + missingCandidates.join('、') + '的票數，因此沒有對應線條。' : '';
+  const completeNotice = readable.length && !availability.completeCount ? '尚無完整候選人票組，無法計算此來源的走勢偏差。' : '';
+  document.getElementById('axis-empty-text').textContent = [timeNotice,estimateNotice,fallbackNotice,candidateNotice,completeNotice,unconfirmed ? '另有 ' + unconfirmed + ' 張比較介紹版型未確認為即時計票，未列入有效觀測。' : ''].filter(Boolean).join(' ');
 }
 
 const sidebar = document.getElementById('election-sidebar');

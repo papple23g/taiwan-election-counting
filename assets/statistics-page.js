@@ -548,10 +548,58 @@
     getState: () => ({ loaded: state.loaded, year: state.year, county: state.county, view: state.view, verifiedOnly: state.verifiedOnly, recordCount: state.records.length, filteredRecordCount: state.filtered.length, raceCount: raceCount(state.filtered), thresholdCount: thresholdRecords(state.filtered).length, rankingRecordCount: state.filtered.filter(record => finite(record.error?.value)).length, selectedBin: state.selectedBin ? { ...state.selectedBin } : null, chartCount: 3, rendering })
   });
 
+  function setupNavigation() {
+    const sidebar = byId('election-sidebar');
+    const menu = byId('election-menu');
+    const close = byId('close-election-menu');
+    const backdrop = byId('nav-backdrop');
+    const desktop = window.matchMedia('(min-width:1024px)');
+    function setMenu(open, restoreFocus = false) {
+      const active = Boolean(open && !desktop.matches);
+      sidebar.classList.toggle('open', active);
+      sidebar.inert = !desktop.matches && !active;
+      sidebar.toggleAttribute('aria-modal', active);
+      if (active) sidebar.setAttribute('role', 'dialog');
+      else sidebar.removeAttribute('role');
+      menu.setAttribute('aria-expanded', String(active));
+      backdrop.hidden = !active;
+      document.body.classList.toggle('nav-open', active);
+      byId('statistics-main').inert = active;
+      if (active) close.focus();
+      else if (restoreFocus && !desktop.matches) menu.focus();
+    }
+    menu.addEventListener('click', () => setMenu(true));
+    close.addEventListener('click', () => setMenu(false, true));
+    backdrop.addEventListener('click', () => setMenu(false, true));
+    desktop.addEventListener('change', () => setMenu(false));
+    sidebar.addEventListener('keydown', event => {
+      if (event.key === 'Escape') { event.preventDefault(); setMenu(false, true); }
+      if (event.key !== 'Tab' || !sidebar.classList.contains('open')) return;
+      const items = [...sidebar.querySelectorAll('button:not([disabled]),a[href]')];
+      const first = items[0], last = items.at(-1);
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    });
+    setMenu(false);
+  }
+
+  function populateNavigation(master) {
+    const years = (master.electionYears || Object.keys(master.elections || {})).filter(year => Number.parseInt(year, 10) >= 2012);
+    const nav = byId('election-nav');
+    nav.replaceChildren();
+    for (const year of years) {
+      const label = Number.parseInt(year, 10) + (String(year).includes('mayors') ? ' 年縣市首長選舉' : ' 年總統選舉');
+      const link = element('a', label, 'year-tab');
+      link.href = 'index.html?year=' + encodeURIComponent(year);
+      nav.append(link);
+    }
+  }
+
   async function initialize() {
     if (!window.ElectionArchive || !window.ElectionStatistics) throw new Error('缺少共用資料載入或統計計算元件。');
     statistics = window.ElectionStatistics;
     const [master, library] = await Promise.all([window.ElectionArchive.loadData(), window.ElectionArchive.loadPlotly()]);
+    populateNavigation(master);
     plotly = library?.react ? library : window.Plotly;
     if (!plotly?.react) throw new Error('Plotly 尚未載入。');
     const result = await statistics.buildRecords(master);
@@ -566,5 +614,6 @@
     requestRender();
   }
 
+  setupNavigation();
   void initialize().catch(showError);
 })();
