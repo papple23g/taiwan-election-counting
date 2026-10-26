@@ -1,0 +1,208 @@
+[
+  {
+    "brand": "pts",
+    "sourceIds": [
+      "pts",
+      "pts_2016",
+      "pts_2020",
+      "pts_2018",
+      "pts2014"
+    ],
+    "file": "pts.png",
+    "url": "https://www.pts.org.tw/uploads/site/favicon/67a324283673761a67eaedf8/apple-touch-icon.png",
+    "bytes": 38218,
+    "sha256": "578b8243fb4ebe14fb6a13f6fd557e92a3d5754418d7a72007f801c7bb8834c9",
+    "mime": "image/png"
+  },
+  {
+    "brand": "cts",
+    "sourceIds": [
+      "cts",
+      "cts_2020",
+      "cts17_2018"
+    ],
+    "file": "cts.png",
+    "url": "https://news.cts.com.tw/assets/favicon-news.png",
+    "bytes": 93301,
+    "sha256": "a16490dc2e26ac905a7527769d5a67fcd306e5a45cce03e5a85a7916abdd7c5a",
+    "mime": "image/png"
+  },
+  {
+    "brand": "ttv",
+    "sourceIds": [
+      "ttv",
+      "ttv_2018"
+    ],
+    "file": "ttv.ico",
+    "url": "https://www.ttv.com.tw/favicon.ico",
+    "bytes": 15086,
+    "sha256": "45c05e08cb9bd74b3dee708c77f9f6d03a3f6c3d5bd8b71e0de92e0b47d07631",
+    "mime": "image/x-icon"
+  },
+  {
+    "brand": "sanli",
+    "sourceIds": [
+      "sanli",
+      "setn_2018",
+      "set2014"
+    ],
+    "file": "sanli.ico",
+    "url": "https://www.setn.com/favicon.ico",
+    "bytes": 2550,
+    "sha256": "55c3706bc494d53bf660149b344efbf5095130aaba7e5cd1e9e64443dc69f0c0",
+    "mime": "image/x-icon"
+  },
+  {
+    "brand": "nexttv",
+    "sourceIds": [
+      "nexttv",
+      "nexttv2014"
+    ],
+    "file": "nexttv.ico",
+    "url": "https://www.nexttv.com.tw/t/1/5/image/favicon-nexttv.ico?v=20251111150103",
+    "bytes": 16958,
+    "sha256": "179d8a0c97df6bebd7c791fdf432dc1a5f0fd5c3b88e5a30493d888995b6e0d6",
+    "mime": "image/x-icon"
+  },
+  {
+    "brand": "era",
+    "sourceIds": [
+      "era",
+      "era_2024",
+      "era_2018"
+    ],
+    "file": "era.ico",
+    "url": "https://www.eracom.com.tw/t/2/2/img/favicon-era.ico?v=20230911144047",
+    "bytes": 16958,
+    "sha256": "7210391ca68494e083c8af26988ab949aa63f1344036b0c5e5e00e785c23dccc",
+    "mime": "image/x-icon"
+  },
+  {
+    "brand": "ctv",
+    "sourceIds": [
+      "ctv",
+      "ctv_2018"
+    ],
+    "file": "ctv.svg",
+    "url": "https://www.ctv.com.tw/Cms_Data/Sites/CTV4/Files/images/logo.svg",
+    "bytes": 28153,
+    "sha256": "0aaed162742bb009c3fc01b39b6b08621f5e652a7c06f6665e1dafecd10d66b2",
+    "mime": "image/svg+xml"
+  },
+  {
+    "brand": "ftv",
+    "sourceIds": [
+      "ftv",
+      "ftv_2020",
+      "ftv_2018"
+    ],
+    "file": "ftv.svg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/FTV_Logo.svg",
+    "bytes": 4645,
+    "sha256": "1d859fdc4dea6d90d86006712fb9bc94a8fba9ec3f0b014b4496c103b861d294",
+    "mime": "image/svg+xml",
+    "page": "https://commons.wikimedia.org/wiki/File:FTV_Logo.svg"
+  },
+  {
+    "brand": "tvbs",
+    "sourceIds": [
+      "tvbs",
+      "tvbs_2018",
+      "tvbs-tv"
+    ],
+    "file": "tvbs.png",
+    "url": "https://news.tvbs.com.tw/assets/favicon_tvbs.JoWJDsyW.png",
+    "bytes": 1004,
+    "sha256": "5fa3340e979eadc6d9b6bc9c31b4d2a35195987e5c7bcb26453594b4f37268af",
+    "mime": "image/png"
+  },
+  {
+    "brand": "ebc",
+    "sourceIds": [
+      "ebc"
+    ],
+    "file": "ebc.png",
+    "url": "https://news.ebc.net.tw/img/favicon/favicon-128x128.png",
+    "bytes": 5097,
+    "sha256": "d252136c8cb22f255db4ca69f63491a4d019a7e4c26602326ed4f4f20b078a82",
+    "mime": "image/png"
+  },
+  {
+    "brand": "cti",
+    "sourceIds": [
+      "cti"
+    ],
+    "file": "cti.ico",
+    "url": "https://ctinews.com/favicon.ico",
+    "bytes": 15406,
+    "sha256": "7fde31d9073ef1063b634fa0a82a6b09f76a3613f04c7fa8efaa734f8b3c8bbd",
+    "mime": "image/vnd.microsoft.icon"
+  },
+  {
+    "brand": "hakka",
+    "sourceIds": [
+      "hakka2014"
+    ],
+    "file": "hakka.png",
+    "url": "https://www.hakkatv.org.tw/img/icons/favicon-32x32.png",
+    "bytes": 1446,
+    "sha256": "f1b595b60c107775df77d2a5224835abc993bba48c201ee5f75c224428a47122",
+    "mime": "image/png"
+  },
+  {
+    "brand": "udn",
+    "sourceIds": [
+      "udn",
+      "udn_2018"
+    ],
+    "file": "udn.png",
+    "url": "https://video.udn.com/icon/favicon-32x32.png",
+    "bytes": 679,
+    "sha256": "e095d561459012f1c6dd8dd28a92e245524f14d28f71a48e2a0c064104ff25bf",
+    "mime": "image/png"
+  },
+  {
+    "brand": "nextmag",
+    "sourceIds": [
+      "nextmag2014"
+    ],
+    "file": "nextmag.jpg",
+    "page": "https://www.youtube.com/channel/UCeQ2YKfzUm-DvNMpXiy5gxA",
+    "url": "https://yt3.googleusercontent.com/ytc/AIdro_kKIIv-xTh3KDOIqgF8P7a1JGV8qRe_-TVGibDDP-Z76M4=s900-c-k-c0x00ffffff-no-rj",
+    "bytes": 74684,
+    "sha256": "703a73f7fbd24bf3da5af747b39c1ddf2a6a546417b989c9ee594028f2f23e5b"
+  },
+  {
+    "brand": "ustv",
+    "sourceIds": [
+      "ustv2014"
+    ],
+    "file": "ustv.svg",
+    "url": "https://cdn.ustv.com.tw/img/favicon.svg",
+    "bytes": 2827,
+    "sha256": "55fbbd5a094171794c0391bb667643e462d24fcf69cd30883c2eb7dbc8efc806",
+    "mime": "application/octet-stream"
+  },
+  {
+    "brand": "ettoday",
+    "sourceIds": [
+      "ettoday"
+    ],
+    "file": "ettoday.svg",
+    "url": "https://cdn2.ettoday.net/style/ettoday2017/images/favicon.svg",
+    "bytes": 1700,
+    "sha256": "d67c6644c94841416544e2c7480ce93b1ba11b8016b09daf1188fd8df0bdd9d2",
+    "mime": "image/svg+xml"
+  },
+  {
+    "brand": "cec",
+    "sourceIds": [
+      "cec"
+    ],
+    "file": "cec.png",
+    "url": "https://web.cec.gov.tw/api/file/ba457117-d42a-4722-8bbb-7901a1f23e14.png",
+    "bytes": 2347,
+    "sha256": "9fdb9792a96cc403bb924a06d8336059a0760662f51b67eaca0032d21e3dd64c",
+    "mime": "image/png"
+  }
+]

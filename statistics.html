@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>開票之夜，第一名何時不再換人？｜開票研究</title>
+<link rel="icon" href="data:,">
+<style>
+:root{color-scheme:dark;--bg:#121619;--surface:#1c2429;--text:#edf2f4;--muted:#a8b7be;--border:#3d4b52;--focus:#91d5f1;--cyan:#82c9ff;--purple:#d09bfa;--mint:#8de1b8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.85 "Microsoft JhengHei","PingFang TC",sans-serif}a{color:var(--focus);text-underline-offset:4px;overflow-wrap:anywhere}button,select,input{font:inherit}button,select{color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:5px;min-height:42px}button{cursor:pointer;padding:6px 12px}button:hover{background:#29363d}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--focus);outline-offset:3px}button:disabled,select:disabled{opacity:.45;cursor:default}[hidden]{display:none!important}
+.page{width:min(100%,1000px);margin:auto;padding:30px 36px 54px}.masthead{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:38px;font-size:13px}.masthead p{margin:0;color:var(--focus)}nav{display:flex;gap:20px;flex-wrap:wrap}nav a[aria-current]{color:var(--text);text-decoration:none}h1{font-size:clamp(28px,4vw,40px);line-height:1.45;letter-spacing:.02em;margin:0 0 18px}h2{font-size:25px;line-height:1.6;letter-spacing:.01em;margin:0 0 16px}h3{font-size:17px;line-height:1.6;margin:0 0 6px}.lead{color:var(--muted);font-size:18px;margin:0;max-width:42em}.reading-range{display:flex;gap:12px 20px;flex-wrap:wrap;align-items:center;border:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:15px 0;margin:28px 0 10px;min-width:0}.range-label{font-size:13px;color:var(--muted)}.field{display:flex;gap:8px;align-items:center;min-width:0}.field label{font-size:12px;color:var(--muted)}select{padding:5px 30px 5px 9px;max-width:100%;font-size:13px}.scope,.load-status{font-size:12px;color:var(--muted);margin:6px 0}.load-status.error{color:#f3a19b}.story-section{margin:52px 0 0;min-width:0}.story-section>p{max-width:45em;margin:0 0 16px}.story-section strong{color:var(--mint);font-weight:600}.story-figure{margin:22px 0 20px;min-width:0}.plot{width:100%;height:370px;min-width:0}.ranking-plot{height:640px}.figure-note{font-size:12px;color:var(--muted);margin:9px 0 0;line-height:1.75}.chart-summary{font-size:13px;color:var(--mint);margin:0 0 4px;font-variant-numeric:tabular-nums}.chart-extra{font-size:12px;color:var(--muted);margin:0 0 10px}.time-option{display:flex;align-items:center;gap:8px;font-size:12px;margin:12px 0 0}.time-option input{width:17px;height:17px;accent-color:var(--focus);margin:0;flex:none}.time-note{font-size:12px;color:var(--muted);margin:5px 0 0}.legend{display:flex;flex-wrap:wrap;gap:7px 20px;font-size:12px;color:var(--muted);margin:12px 0}.legend span{display:inline-flex;align-items:center;gap:7px}.legend i{display:inline-block;width:15px;height:10px;border-radius:2px}.legend .left{background:var(--cyan)}.legend .changed{background:var(--purple)}.legend .median{height:0;width:20px;border-top:2px solid var(--mint)}
+.view-tabs{display:flex;gap:6px;overflow-x:auto;max-width:100%;padding:4px 4px 11px;scrollbar-width:thin;overscroll-behavior-x:contain;margin:18px -4px 10px}.view-tabs button{flex:none;white-space:nowrap;font-size:12px;background:transparent;min-height:40px;padding:6px 11px}.view-tabs [aria-selected=true]{color:var(--mint);border-color:var(--mint);background:#1b2b27}.source-toggle{background:none;border:0;min-height:30px;padding:0;color:var(--focus);text-align:left}.source-toggle:before{content:"＋ ";color:var(--muted)}.source-toggle[aria-expanded=true]:before{content:"− "}.source-toggle:hover{background:none;color:#fff}details{margin-top:20px;border-top:1px solid var(--border);padding-top:12px;min-width:0}summary{cursor:pointer;font-size:14px;color:var(--focus);padding:3px 0}details>p,.section-note{font-size:13px;color:var(--muted);margin:10px 0}.table-wrap{width:100%;overflow-x:auto;overscroll-behavior-x:contain;margin-top:14px;border:1px solid var(--border);border-radius:5px}table{width:100%;border-collapse:collapse;text-align:left;font-size:12px;line-height:1.65;font-variant-numeric:tabular-nums}th{color:var(--muted);font-weight:400;border-bottom:1px solid var(--border);padding:10px;vertical-align:bottom}td{padding:10px;border-bottom:1px solid #29343b;vertical-align:top;overflow-wrap:anywhere}tbody tr:last-child>td{border-bottom:0}th.numeric,td.numeric{text-align:right;white-space:nowrap}.ranking-table{min-width:900px}.record-table{min-width:1240px}.ranking-table th:nth-child(2){min-width:185px}.ranking-detail>td{padding:12px;background:#171e23}.ranking-detail table{min-width:740px}.ranking-detail p{color:var(--muted);margin:0 0 8px}.muted{color:var(--muted)}.evidence{display:flex;gap:4px 12px;flex-wrap:wrap;min-width:230px}.evidence a{white-space:nowrap}.reason{display:block;color:var(--muted);margin-top:3px;max-width:270px}.empty-message{text-align:center;color:var(--muted);padding:22px}.bin-meta{font-size:13px;color:var(--muted)}.bin-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.bin-actions button{font-size:12px}.appendix{margin-top:38px}footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)}.skip-link{position:fixed;top:-90px;left:16px;background:var(--surface);padding:10px 18px;z-index:100}.skip-link:focus{top:12px}.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(max-width:700px){.page{padding:20px 18px 36px}.masthead{margin-bottom:28px;align-items:flex-start}.masthead nav{gap:12px}.lead{font-size:16px}h2{font-size:21px}.story-section{margin-top:38px}.reading-range{gap:10px 14px}.range-label{flex-basis:100%}.field{flex:1 1 140px}.field select{min-width:0;flex:1}.plot{height:350px}.ranking-plot{height:650px}.figure-note{font-size:11px}.legend{gap:6px 12px;font-size:11px}.story-figure{margin:18px 0}th,td{padding:9px}.view-tabs{margin-left:-3px;margin-right:-3px}}
+</style>
+<script defer src="assets/election-runtime.js"></script>
+<script defer src="assets/election-statistics.js"></script>
+<script defer src="assets/statistics-page.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#statistics-main">跳到文章內容</a>
+<main class="page" id="statistics-main">
+  <div class="masthead"><p>開票研究</p><nav aria-label="頁面導覽"><a href="index.html">返回開票曲線</a><a href="statistics.html" aria-current="page">開票統計</a></nav></div>
+  <article id="article-charts" aria-busy="true">
+    <header><h1>開票之夜，第一名何時不再換人？</h1><p class="lead">把各台開票畫面和最後結果放在一起，看走勢差多少、第一名何時不再換人。</p></header>
+    <div class="reading-range" role="group" aria-label="閱讀範圍"><span class="range-label">閱讀範圍</span><div class="field"><label for="year-filter">年份</label><select id="year-filter" disabled><option value="all">全部年份</option></select></div><div class="field"><label for="county-filter">選區</label><select id="county-filter" disabled><option value="all">全部選區</option></select></div></div>
+    <p id="filter-scope" class="scope">正在載入收錄資料…</p><p id="load-status" class="load-status" role="status" aria-live="polite">正在載入統計…</p>
+
+    <section class="story-section" aria-labelledby="rankings-heading">
+      <h2 id="rankings-heading">哪家電視台的開票走勢最接近最後結果？</h2>
+      <p id="ranking-story">正在計算目前收錄畫面的偏差…</p>
+      <figure class="story-figure"><div class="plot ranking-plot" id="ranking-chart" tabindex="0" aria-label="電視臺開票走勢與最終得票率的平均偏差"></div><figcaption class="figure-note">偏差越小，表示勝選者在開票過程中的得票率越接近最後結果。各台涵蓋不同，請連同場數與進度覆蓋率閱讀；中選會不參與排名。</figcaption></figure>
+      <details id="rankings-details"><summary>查看完整偏差總表與逐場明細</summary><div class="table-wrap" tabindex="0" role="region" aria-label="完整偏差總表，可左右捲動"><table class="ranking-table"><caption class="sr-only">來源得票率偏差與各場明細</caption><thead><tr><th>名次</th><th>來源</th><th class="numeric">平均偏差<br>（百分點）</th><th class="numeric">偏差中位數<br>（百分點）</th><th class="numeric">有效場數</th><th>年份</th><th class="numeric">10–90% 有效<br>進度覆蓋率</th></tr></thead><tbody id="rankings-body"></tbody></table></div><p class="section-note" id="rankings-note"></p></details>
+    </section>
+
+    <section class="story-section" aria-labelledby="time-heading">
+      <h2 id="time-heading">16:00 開票，幾點之後第一名就不再換人？</h2>
+      <p id="time-story">正在計算畫面中的領先時間…</p>
+      <figure class="story-figure"><p class="chart-summary" id="time-hist-summary"></p><div class="legend" aria-label="直方圖圖例"><span><i class="left" aria-hidden="true"></i>首筆已領先（上限）</span><span><i class="changed" aria-hidden="true"></i>換手後穩定</span><span><i class="median" aria-hidden="true"></i>觀測門檻中位數</span></div><div class="plot" id="time-hist" tabindex="0"></div><figcaption class="figure-note">時間只反映已收錄畫面，不能保證缺錄期間未曾換手。點選柱狀可回查紀錄。</figcaption></figure>
+      <label class="time-option"><input type="checkbox" id="verified-time-only">僅使用已核對時間（只影響本圖）</label><p class="time-note" id="time-hist-extra"></p>
+    </section>
+
+    <section class="story-section" aria-labelledby="threshold-heading">
+      <h2 id="threshold-heading">開出多少票之後，第一名就不再換人？</h2>
+      <p id="threshold-story">正在計算畫面中的票數門檻…</p>
+      <div class="view-tabs" id="threshold-tabs" role="tablist" aria-label="觀測門檻比較方式"></div>
+      <div id="threshold-panel" role="tabpanel" tabindex="0"><figure class="story-figure"><h3 id="threshold-view-title"></h3><p class="chart-summary" id="threshold-hist-summary"></p><p class="chart-extra" id="threshold-hist-extra"></p><div class="plot" id="threshold-hist" tabindex="0"></div><figcaption class="figure-note">票數為同一畫面中已收錄候選人的票數合計；比例分母也採相同候選人組的最終票數，部分選區並非全體有效票。兩色與中位數線的意義同上。</figcaption></figure></div>
+    </section>
+
+    <section class="story-section" aria-labelledby="limits-heading">
+      <h2 id="limits-heading">為什麼這些數字不能當作勝負保證？</h2>
+      <p id="limits-story">正在整理收錄範圍…</p>
+      <p>每筆紀錄代表一個「來源 × 場次」，不是一場獨立選舉。各台收錄時段與可讀畫面不同，缺讀或沒有錄影的地方，仍可能發生換手。</p>
+    </section>
+
+    <div class="appendix">
+      <details id="bin-details-section"><summary id="bin-details-heading">查看圖表區間的原始紀錄</summary><div class="bin-actions"><p class="bin-meta" id="bin-description">點選直方圖的柱狀，即可查看該區間的紀錄與影格。</p><button id="clear-bin" type="button" hidden>清除區間選擇</button></div><div class="table-wrap" id="bin-table-wrap" tabindex="0" role="region" aria-label="區間原始紀錄，可左右捲動" hidden><table class="record-table"><caption class="sr-only">選取區間的原始來源紀錄</caption><thead><tr><th>選舉</th><th>選區</th><th>來源</th><th>判定／原因</th><th>當選人</th><th class="numeric">已收錄候選人<br>票數合計</th><th class="numeric">開票比例</th><th>穩定時間／品質</th><th>設限</th><th>查看證據</th></tr></thead><tbody id="bin-records-body"></tbody></table></div></details>
+      <details class="method"><summary>方法與資料限制</summary><p>觀測門檻取現有完整、非零票組中，最後一次其他人領先或並列之後，最終當選人持續獨自領先至最後收錄畫面的首筆觀測。若第一筆完整畫面便持續領先，門檻只能當作上限；圖中的觀測門檻中位數也包含這類上限，並非精確換手時間。</p><p>票數與比例均使用同一組已收錄候選人。缺讀不補值、不跨畫面湊票，比例超過 100% 仍保留。無法判定的來源保留原因與原始證據。</p><p>時間依各場選舉日比較，跨日標為翌日。預設包含已核對、估計及未核對的時間；缺少時間者不納入時間圖，仍可納入票數統計。分析採全部已收錄時段，不受曲線頁 22:00 的顯示終點限制。</p><p>每場偏差為勝選者得票率與最終得票率的進度加權平均絕對偏差，採 10%–90% 內的已知曲線；無重疊時採全部已知曲線。只在相同影片、票源與時計區段內計算，同台同場先平均，再對有效場次等權平均。</p><p>進度覆蓋率為可計算區段在 10%–90% 內的聯集長度除以 80 個百分點，反映資料涵蓋，不代表計票準確率。</p></details>
+      <details id="all-records-details"><summary id="all-records-summary">查看所有來源紀錄與影格證據</summary><p class="section-note">包含有結果及無法判定的來源；首個穩定影格、前一完整影格、最後完整影格依實際證據提供。</p><div class="table-wrap" tabindex="0" role="region" aria-label="所有來源紀錄，可左右捲動"><table class="record-table"><caption class="sr-only">目前篩選的所有來源紀錄與無法判定原因</caption><thead><tr><th>選舉</th><th>選區</th><th>來源</th><th>判定／原因</th><th>當選人</th><th class="numeric">已收錄候選人<br>票數合計</th><th class="numeric">開票比例</th><th>穩定時間／品質</th><th>設限</th><th>查看證據</th></tr></thead><tbody id="all-records-body"></tbody></table></div></details>
+    </div>
+  </article>
+  <footer>本頁反映目前已收錄畫面；可透過原始影格與各場曲線核對。</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,41 @@
+(function (global) {
+  'use strict';
+  const files = Object.freeze({
+  "pts": "assets/logos/pts.png",
+  "pts_2016": "assets/logos/pts.png",
+  "pts_2020": "assets/logos/pts.png",
+  "pts_2018": "assets/logos/pts.png",
+  "pts2014": "assets/logos/pts.png",
+  "cts": "assets/logos/cts.png",
+  "cts_2020": "assets/logos/cts.png",
+  "cts17_2018": "assets/logos/cts.png",
+  "ttv": "assets/logos/ttv.ico",
+  "ttv_2018": "assets/logos/ttv.ico",
+  "sanli": "assets/logos/sanli.ico",
+  "setn_2018": "assets/logos/sanli.ico",
+  "set2014": "assets/logos/sanli.ico",
+  "nexttv": "assets/logos/nexttv.ico",
+  "nexttv2014": "assets/logos/nexttv.ico",
+  "era": "assets/logos/era.ico",
+  "era_2024": "assets/logos/era.ico",
+  "era_2018": "assets/logos/era.ico",
+  "ctv": "assets/logos/ctv.svg",
+  "ctv_2018": "assets/logos/ctv.svg",
+  "ftv": "assets/logos/ftv.svg",
+  "ftv_2020": "assets/logos/ftv.svg",
+  "ftv_2018": "assets/logos/ftv.svg",
+  "tvbs": "assets/logos/tvbs.png",
+  "tvbs_2018": "assets/logos/tvbs.png",
+  "tvbs-tv": "assets/logos/tvbs.png",
+  "ebc": "assets/logos/ebc.png",
+  "cti": "assets/logos/cti.ico",
+  "hakka2014": "assets/logos/hakka.png",
+  "udn": "assets/logos/udn.png",
+  "udn_2018": "assets/logos/udn.png",
+  "nextmag2014": "assets/logos/nextmag.jpg",
+  "ustv2014": "assets/logos/ustv.svg",
+  "ettoday": "assets/logos/ettoday.svg",
+  "cec": "assets/logos/cec.png"
+});
+  global.BroadcasterLogos = Object.freeze({ get: sourceId => files[sourceId] || null });
+})(typeof window === 'undefined' ? globalThis : window);
