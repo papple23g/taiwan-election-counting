@@ -13,7 +13,7 @@
 				"type": "debugpy",
 				"request": "launch",
 				"module": "http.server",
-				"args": ["8000", "--bind", "127.0.0.1"],
+				"args": ["26299", "--bind", "127.0.0.1"],
 				"cwd": "${workspaceFolder:開票研究}",
 				"pythonArgs": ["-u", "-B"],
 				"console": "internalConsole",
