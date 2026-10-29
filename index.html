@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>開票研究｜歷屆選舉開票曲線與統計</title>
 <meta name="description" content="整理臺灣歷屆選舉的公開開票資料與影音畫面，比較各來源的開票曲線、得票率走勢與領先穩定時間，並保留原始影格供研究查核。">
-<link rel="canonical" href="https://papple23g.com/">
+<link rel="canonical" href="https://taiwan-votetrace.papple23g.com/">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:site_name" content="開票研究">
 <meta property="og:title" content="開票研究｜歷屆選舉開票曲線與統計">
 <meta property="og:description" content="比較臺灣歷屆選舉的開票曲線、得票率走勢與領先穩定時間，透過原始影格回查公開資料。">
-<meta property="og:url" content="https://papple23g.com/">
-<meta property="og:image" content="https://papple23g.com/assets/social-preview.png">
+<meta property="og:url" content="https://taiwan-votetrace.papple23g.com/">
+<meta property="og:image" content="https://taiwan-votetrace.papple23g.com/assets/social-preview.png">
 <meta property="og:image:alt" content="開票研究：歷屆選舉開票曲線與統計">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="開票研究｜歷屆選舉開票曲線與統計">
 <meta name="twitter:description" content="比較臺灣歷屆選舉的開票曲線、得票率走勢與領先穩定時間，透過原始影格回查公開資料。">
-<meta name="twitter:image" content="https://papple23g.com/assets/social-preview.png">
+<meta name="twitter:image" content="https://taiwan-votetrace.papple23g.com/assets/social-preview.png">
 <meta name="twitter:image:alt" content="開票研究：歷屆選舉開票曲線與統計">
 <style>
 :root{color-scheme:dark;--bg:#121619;--surface:#1c2429;--text:#edf2f4;--muted:#a8b7be;--border:#3d4b52;--focus:#edc46a}
@@ -35,6 +35,7 @@ header{display:flex;align-items:flex-start;justify-content:space-between;gap:16p
 .coverage{margin:14px 0 0;padding:8px 0 8px 12px;border-left:3px solid #edc46a;color:#d7dfe3;font-size:13px}.coverage p{margin:0}.coverage p+p{margin-top:4px;color:var(--muted)}.video-offset{display:block;color:var(--muted);font-size:11px;white-space:nowrap}.point-status{overflow-wrap:anywhere}.row-time{white-space:nowrap}
 .ratio-section{border-top:1px solid var(--border);padding-top:20px;margin-top:20px}.chart-heading{display:flex;align-items:baseline;justify-content:space-between;gap:8px 24px;flex-wrap:wrap}.chart-heading h2{font-size:20px;line-height:1.4;margin:0}.chart-heading p{margin:0;color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}.ratio-reference{margin:8px 0 12px;color:var(--muted);font-size:12px;overflow-wrap:anywhere}.ratio-reference strong{color:#edc46a;font-size:14px}.ratio-legend{display:flex;gap:10px 24px;flex-wrap:wrap;font-size:12px;color:var(--muted)}.ratio-legend span{display:flex;align-items:center;gap:8px}.ratio-legend i{display:inline-block;width:24px;height:0;border-top:2px solid #9cd9cb}.ratio-legend .final-line{border-top:2px solid #edc46a}#ratio-chart{height:400px;width:100%}#ratio-chart:focus-visible{outline:2px solid var(--focus);outline-offset:4px}.point-ratio{margin:8px 0 0;color:#9cd9cb;font-variant-numeric:tabular-nums;font-size:13px}
 @media(max-width:700px){#ratio-chart{height:360px}.chart-heading h2{font-size:18px}}
+#ratio-chart{position:relative}.zoom-out-box{position:absolute;z-index:5;pointer-events:none;border:1px dashed #7acfea;background:rgba(122,207,234,.12);color:#c8efff;font-size:12px;padding:2px;box-sizing:border-box}.ratio-zoom-help{margin:6px 0;color:var(--muted);font-size:12px}.touch-charts .ratio-zoom-help{display:none}
 header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.point-controls select{min-width:0;flex:1 1 220px;width:220px}.votes dd{overflow-wrap:anywhere}.table-heading{flex-wrap:wrap}table{table-layout:fixed}th:first-child{width:19%}th.numeric{width:16%}th.frame-column{width:12%}td.numeric{white-space:nowrap}.row-status{overflow-wrap:anywhere}.ratio-legend{border:0;padding:0;margin:0}.ratio-legend label{display:flex;align-items:center;gap:8px;min-height:36px;cursor:pointer;color:var(--text)}.ratio-legend input{width:17px;height:17px;margin:0;accent-color:var(--source-color);flex:none}.ratio-key{display:inline-flex;position:relative;width:26px;height:16px;align-items:center;justify-content:center;flex:none}.ratio-key:before{content:"";position:absolute;left:0;right:0;top:7px;border-top:2px solid var(--source-color)}.ratio-dot{position:relative;width:8px;height:8px;background:var(--source-color);flex:none}.ratio-dot.circle{border-radius:50%}.ratio-dot.diamond{transform:rotate(45deg)}.ratio-dot.triangle-up{width:10px;height:10px;clip-path:polygon(50% 0,100% 100%,0 100%)}.ratio-dot.triangle-down{width:10px;height:10px;clip-path:polygon(0 0,100% 0,50% 100%)}.ratio-dot.cross{width:10px;height:10px;clip-path:polygon(33% 0,67% 0,67% 33%,100% 33%,100% 67%,67% 67%,67% 100%,33% 100%,33% 67%,0 67%,0 33%,33% 33%)}.ratio-dot.hexagon{width:11px;height:10px;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}.frame a[hidden]{display:none}
 @media(max-width:700px){.table-wrap{overflow:auto}th:first-child{width:21%}th.numeric{width:18%}td.numeric{font-size:11px}.video-offset{white-space:normal}.votes dd{font-size:20px}.votes small{display:block;margin:2px 0 0}.point-controls select{width:0;flex-basis:160px}.ratio-legend{gap:4px 18px}.ratio-legend label{font-size:12px}}
 .votes{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
@@ -44,25 +45,36 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 .ratio-explanation{font-size:12px;color:var(--muted);margin:8px 0 0;line-height:1.7}
 .js-plotly-plot .modebar-btn{padding:5px;line-height:16px}.js-plotly-plot .modebar-btn svg.icon{width:16px;height:16px;font-size:16px}
 #chart:focus-within .modebar-group,#ratio-chart:focus-within .modebar-group{opacity:1!important}
-@media(hover:none),(pointer:coarse){.js-plotly-plot .modebar-group{opacity:1!important}.js-plotly-plot .modebar-btn{padding:6px}}
+.chart-tools{display:none;flex-wrap:wrap;gap:8px;margin:8px 0}.chart-tools button{min-width:60px;min-height:44px;padding:6px 12px;font-size:16px}.touch-charts .chart-tools{display:flex}.touch-charts .js-plotly-plot,.touch-charts .draglayer .nsewdrag{touch-action:pan-y pinch-zoom}.touch-charts .draglayer .drag:not(.nsewdrag){pointer-events:none!important}.touch-charts .draglayer .nsewdrag{cursor:default!important}.chart-tools[hidden]{display:none}
+.election-menu svg{width:20px;height:20px;flex:none}
 .election-sidebar{position:fixed;inset:0 auto 0 0;width:208px;padding:28px 16px;background:#171e23;border-right:1px solid var(--border);overflow-y:auto;z-index:40}.sidebar-heading{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:18px}.sidebar-heading button{display:none}.election-sidebar .election-nav{display:flex;flex-direction:column;gap:6px;border:0;margin:0;padding:0;overflow:visible}.election-sidebar .year-tab{width:100%;white-space:normal;text-align:left;border-radius:5px;padding:10px 12px;min-height:44px}.election-sidebar .year-tab.active{border-left:3px solid var(--focus)}.election-sidebar ~ .page{width:calc(100% - 208px);max-width:1360px;margin:0 auto 0 208px;min-width:0}.election-menu,.nav-backdrop{display:none}
 .chart-workspace{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);column-gap:30px;align-items:start}.growth-panel{min-width:0}.chart-workspace>.ratio-section{grid-column:1;grid-row:2;min-width:0}.source-strip{grid-column:2;grid-row:1;position:static;display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:16px 0 0;margin:0;max-width:none}.source-strip .frame-zoom{width:100%;padding:0;border:0;border-radius:2px;min-height:0;cursor:zoom-in;background:none}.source-strip .frame-zoom[hidden]{display:none}.source-strip img{width:100%;height:auto}.source-strip figcaption{margin:0;min-width:0}.source-strip #frame-link{display:flex;align-items:flex-start;gap:9px;font-size:12px}.youtube-icon{width:24px;height:18px;flex:none;margin-top:2px}.source-strip[hidden],.source-strip a[hidden]{display:none}.ratio-section{margin-top:8px;padding-top:16px}.ratio-legend{margin-top:10px}.axis-empty-note{margin:8px 0 16px;color:var(--muted)}.axis-empty-note button{padding:4px 12px;margin-left:8px}
 .error-section{grid-column:2;grid-row:2;min-width:0;margin-top:8px;padding-top:16px;border-top:1px solid var(--border)}.error-table th:first-child{width:60%}.error-table th.numeric{width:40%}.error-table td:first-child{overflow-wrap:anywhere}.error-sort{padding:0 4px;border:0;background:none;color:inherit;white-space:nowrap}.error-sort:hover{background:var(--surface);color:var(--text)}.error-note{margin:12px 0 0;color:var(--muted);font-size:12px;line-height:1.7}.error-empty{color:var(--muted);text-align:center}
 .frame-dialog{position:fixed;max-width:96vw;width:fit-content;max-height:96vh;padding:44px 14px 12px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);overflow:auto}.frame-dialog::backdrop{background:#000c}.frame-dialog img{display:block;max-width:calc(96vw - 30px);max-height:calc(96vh - 120px);object-fit:contain;margin:auto}.frame-dialog p{font-size:12px;margin:8px 0 0;max-width:1000px}.dialog-close{position:absolute;right:8px;top:4px;width:40px;font-size:25px}.nav-open{overflow:hidden}
-@media(max-width:1023px){.election-sidebar ~ .page{width:100%;margin:0 auto;padding-top:12px}.election-menu{display:block;margin:16px 0 0 30px;padding:6px 14px;min-height:44px}.election-sidebar{visibility:hidden;transform:translateX(-100%);width:min(280px,85vw)}.election-sidebar.open{visibility:visible;transform:translateX(0)}.sidebar-heading button{display:block;width:44px;font-size:24px}.nav-backdrop:not([hidden]){display:block;position:fixed;inset:0;background:#0009;z-index:39}}
+@media(max-width:1023px){.election-sidebar ~ .page{width:100%;margin:0 auto;padding-top:12px}.election-menu{display:flex;align-items:center;gap:8px;margin:16px 0 0 30px;padding:6px 14px;min-width:44px;min-height:44px}.election-sidebar{visibility:hidden;transform:translateX(-100%);width:min(280px,85vw)}.election-sidebar.open{visibility:visible;transform:translateX(0)}.sidebar-heading button{display:block;width:44px;font-size:24px}.nav-backdrop:not([hidden]){display:block;position:fixed;inset:0;background:#0009;z-index:39}}
 @media(max-width:700px){.election-menu{margin-left:16px}.chart-workspace{grid-template-columns:minmax(0,1fr)}.chart-workspace>.ratio-section,.source-strip,.error-section{grid-column:1;grid-row:auto}.source-strip{padding:12px 0}.source-strip .frame-zoom,.source-strip .frame-zoom img{width:100%}.source-strip #frame-link{display:flex}.source-strip figcaption{font-size:12px}}
 
-.source-matrix-section{min-width:0;max-width:100%;margin:16px 0 20px}.source-matrix-heading{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 20px;margin-bottom:8px}.source-matrix-heading h2{font-size:16px;margin:0}.source-matrix-heading p{font-size:12px;color:var(--muted);margin:0}.source-matrix-wrap{width:100%;max-width:100%;isolation:isolate}.source-matrix-wrap:focus-visible{outline:2px solid var(--focus);outline-offset:4px}.matrix-group+.matrix-group{margin-top:18px}.matrix-group-label{font-size:12px;color:var(--muted);margin:0 0 6px}.source-matrix{table-layout:fixed;border-collapse:separate;border-spacing:0;text-align:center;border:1px solid var(--border)}.source-matrix .matrix-county-column{width:64px}.source-matrix th,.source-matrix td{padding:3px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);font-size:12px;min-width:0}.source-matrix th{background:#1c2429;color:var(--text);font-weight:500}.source-matrix thead th{position:sticky;top:0;z-index:2;height:104px;overflow-wrap:anywhere}.source-matrix .matrix-county-heading{width:64px;text-align:center;background:#1c2429;line-height:1.6}.source-matrix thead .matrix-county-heading{z-index:3}.source-matrix tbody tr:last-child>*{border-bottom:0}.source-matrix tr>*:last-child{border-right:0}.matrix-source-label{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;line-height:1.35}.matrix-source-label span{min-width:0;max-width:100%;overflow-wrap:anywhere}.matrix-logo{display:block;flex:0 0 24px;width:24px;height:24px;object-fit:contain;background:#fff;border-radius:4px;padding:2px}.matrix-choice{min-width:0;width:100%;min-height:36px;padding:0;font-size:18px;line-height:1}.matrix-choice[aria-pressed=true]{background:#3d3523;border-color:var(--focus);color:var(--focus);font-weight:600}.matrix-unavailable{color:var(--muted)}.source-matrix .matrix-empty{padding:14px;color:var(--muted)}.sidebar-analysis{display:block;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}.sidebar-analysis a{display:block;min-height:44px;padding:10px 12px;border:1px solid var(--border);border-radius:5px;text-decoration:none;font-size:13px;background:var(--surface)}.sidebar-analysis a:hover{background:#25333a;color:#fff}
-@media(max-width:700px){.source-matrix-section{margin-top:12px}.matrix-choice{min-height:44px}.source-matrix th,.source-matrix td{font-size:12px;padding:3px}}
+.source-controls{margin:16px 0 20px;min-width:0}.source-controls h2{font-size:16px;margin:0 0 10px}.source-fields{display:flex;align-items:end;gap:12px;flex-wrap:wrap}.source-field{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1 1 180px}.source-field label{color:var(--muted);font-size:13px}.source-field select{width:100%;min-height:44px;min-width:0;padding:6px 10px;font-size:16px}.source-field select:disabled{opacity:.65}.channel-controls{display:flex;gap:8px}.channel-controls button{min-height:44px;padding:6px 14px;font-size:16px}.source-help{font-size:12px;color:var(--muted);margin:8px 0 0}.sidebar-analysis{display:block;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}.sidebar-analysis a{display:block;min-height:44px;padding:10px 12px;border:1px solid var(--border);border-radius:5px;text-decoration:none;font-size:13px;background:var(--surface)}.sidebar-analysis a:hover{background:#25333a;color:#fff}
+.frame-times{margin:0;font-size:13px;font-variant-numeric:tabular-nums}.frame-times>div{display:flex;gap:8px;flex-wrap:wrap}.frame-times dt{color:var(--muted);min-width:4em}.frame-times dd{margin:0;overflow-wrap:anywhere}.channel-screen{position:relative;aspect-ratio:16/9;width:100%;overflow:hidden;background:#090c0e;border:1px solid var(--border);border-radius:3px}.channel-screen .frame-zoom{height:100%}.channel-screen .frame-zoom img{height:100%;aspect-ratio:auto;border:0;object-fit:contain}.frame-status{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;text-align:center;color:var(--muted)}.frame-status button{min-height:44px;padding:6px 14px}.frame-status[hidden],.frame-status button[hidden]{display:none}.channel-label{display:none;position:absolute;inset:12px 12px auto auto;padding:3px 8px;max-width:calc(100% - 24px);background:#121619e6;color:var(--text);font-size:13px;pointer-events:none}.changing-channel .channel-label{display:block}
+@media(max-width:700px){.source-field{flex-basis:100%}.channel-controls{width:100%}.channel-controls button{flex:1}.source-controls{margin-top:12px}}
 
 .growth-unavailable{margin:16px 0 20px;padding:18px;border:1px solid var(--border);border-radius:5px}.growth-unavailable h2{font-size:18px;line-height:1.6;margin:0 0 10px}.growth-unavailable p{margin:8px 0;color:var(--muted)}.unavailable-readings{max-width:100%;overflow-x:auto;margin:16px 0}.unavailable-readings table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}.unavailable-readings th,.unavailable-readings td{padding:8px 5px;border-bottom:1px solid var(--border);text-align:right}.unavailable-readings th:first-child,.unavailable-readings td:first-child{text-align:left}.unavailable-readings button{padding:4px 8px;min-height:36px}.unavailable-readings button[aria-pressed=true]{border-color:var(--focus);color:var(--focus)}#chart[hidden],.growth-unavailable[hidden],.unavailable-readings[hidden]{display:none!important}
 .site-notice{margin-top:32px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;line-height:1.8}.site-notice>p{margin:0 0 8px}.site-notice>details{margin:0;border:0;padding:0;min-width:0}.site-notice summary{min-height:44px;padding:10px 0;color:#91d5f1;font-size:14px;cursor:pointer}.site-notice summary:focus-visible{outline:2px solid var(--focus);outline-offset:4px}.site-notice>details>p{max-width:70em;margin:10px 0;font-size:13px;overflow-wrap:anywhere}
 .load-status{margin:12px 0;color:var(--muted);font-size:13px}
+.tv-set{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 64px;gap:12px;padding:14px;background-color:#704b2e;background-image:linear-gradient(170deg,#e8bd8240,transparent 24%,#170c0780 100%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='160'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .42' numOctaves='3' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Cpath fill='%23888888' filter='url(%23grain)' d='M0 0h360v160H0z'/%3E%3C/svg%3E"),repeating-linear-gradient(0deg,#a6733b14 0 1px,#1a0c0714 1px 2px,transparent 2px 7px),linear-gradient(95deg,#58361e,#8e6039 42%,#674125 85%,#4b2e1b);background-blend-mode:normal,soft-light,multiply,normal;border:3px solid #3d2719;border-top-color:#a0794e;border-left-color:#8c633c;border-radius:12px;box-shadow:inset 0 1px 1px #f7d5a577,inset 0 0 0 3px #b27c443b,inset 0 -4px 6px #1c100b99,0 8px 14px #0007;min-width:0}
+.tv-set .channel-screen{align-self:center;border:6px solid #1a1c19;border-radius:18px / 15px;box-shadow:0 0 0 1px #b2926066,0 2px 3px #140b0799,inset 0 0 12px #000c}
+.tv-controls{display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:10px;min-width:0;padding:9px 8px;background:repeating-linear-gradient(90deg,#ffffff04 0 1px,transparent 1px 3px),linear-gradient(120deg,#393b32,#1d211e);border:1px solid #a58b5a;border-radius:5px;box-shadow:inset 0 1px #d7c49044,inset 0 -2px 4px #0009,0 1px 2px #24140bb3}
+.tv-controls .channel-controls{display:flex;flex-direction:column;gap:9px;width:100%}.tv-controls button{display:flex;align-items:center;justify-content:center;width:100%;min-width:44px;min-height:46px;padding:0;color:#e3d5b7;border:1px solid #b09a6b;border-bottom-color:#302819;border-radius:6px;background:linear-gradient(145deg,#535348,#262a25 72%);box-shadow:inset 1px 1px #ede0b244,inset -1px -2px #10140ecc,0 2px 2px #0009}.tv-controls button svg{width:17px;height:17px;filter:drop-shadow(0 1px 1px #000)}.tv-controls button:hover{background:linear-gradient(145deg,#6d6d5d,#393f32);color:#fff2cf}.tv-controls button:active{box-shadow:inset 1px 2px 4px #080c08cc;transform:translateY(1px)}.tv-control-label{text-align:center;font-size:10px;letter-spacing:2px;color:#d3c49f;text-shadow:0 1px #000}
+.tv-speaker{height:34px;background:radial-gradient(#080c09 1px,transparent 1.5px) 0 0/4px 4px,#565347;border:1px solid #151b16;border-radius:3px;box-shadow:inset 0 2px 3px #0009;margin:2px 0}.tv-led{width:7px;height:7px;border:1px solid #152319;border-radius:50%;background:#a2c59c;box-shadow:0 0 4px #79c99b66,inset 0 1px #d6edcb;align-self:center}
+.changing-channel::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:#777 var(--channel-noise);background-size:96px 64px;animation:tv-static .12s steps(4,end) infinite;opacity:1}.changing-channel .channel-label{z-index:3}
+.show-channel-label .channel-label{display:block;z-index:3}
+.frame-selection-note{margin:0;padding:8px 10px;border-left:3px solid var(--focus);font-size:12px;color:#edc46a}.frame-selection-note[hidden]{display:none}.other-observations{grid-column:1/-1;margin-top:20px;border-top:1px solid var(--border);padding-top:10px;min-width:0}.other-observations[hidden]{display:none}.other-observations summary{cursor:pointer;min-height:44px;padding:10px 0;color:#91d5f1}.other-observations p{font-size:12px;color:var(--muted)}.other-observations .table-wrap{max-height:440px;overflow:auto}.other-observations table{table-layout:auto;min-width:560px}.other-observations th:first-child{width:auto}.other-observations th,.other-observations td{font-size:12px;padding:8px}.other-observations button{min-height:44px;padding:4px 8px;white-space:nowrap}.other-observations tr[aria-current=true]{background:#25343d}@keyframes tv-static{0%{background-position:0 0}25%{background-position:31px -19px}50%{background-position:-23px 37px}75%{background-position:47px 13px}100%{background-position:-11px -41px}}
+@media(max-width:700px){.tv-set{grid-template-columns:minmax(0,1fr);padding:10px;gap:10px}.tv-controls{flex-direction:row;align-items:center;gap:9px;padding:8px}.tv-controls .channel-controls{flex-direction:row;width:auto;flex:1}.tv-controls button{flex:1;min-width:44px}.tv-speaker{width:28px;height:26px;flex:none;margin:0}.tv-led{flex:none}.other-observations .table-wrap{max-width:100%}}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#growth-title">跳到圖表</a>
-<button type="button" id="election-menu" class="election-menu" aria-controls="election-sidebar" aria-expanded="false">選擇選舉</button>
+<button type="button" id="election-menu" class="election-menu" aria-controls="election-sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>選單</span></button>
 <div id="nav-backdrop" class="nav-backdrop" hidden></div>
 <aside id="election-sidebar" class="election-sidebar" aria-label="選舉與統計導覽">
 <div class="sidebar-heading"><span>選擇選舉</span><button type="button" id="close-election-menu" aria-label="關閉導覽選單">×</button></div>
@@ -72,9 +84,10 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 <main class="page">
 <header><div><p class="eyebrow" id="eyebrow">總統大選</p><h1 id="growth-title" tabindex="-1">開票曲線</h1><p id="time-span"></p></div><nav aria-label="圖表導覽"><a href="statistics.html">開票統計</a><a id="ratio-nav" href="#ratio-section" hidden>走勢偏差</a></nav></header>
 <p id="curve-load-status" class="load-status" role="status" aria-live="polite">正在載入開票資料與圖表…</p>
-<section class="source-matrix-section" aria-labelledby="source-matrix-title">
-<div class="source-matrix-heading"><h2 id="source-matrix-title">選擇縣市與資料來源</h2><p id="source-matrix-help">點選交叉格切換資料；✓ 為目前選取，— 表示無此來源。</p></div>
-<div class="source-matrix-wrap" tabindex="0" role="region" aria-label="縣市與資料來源選擇表" aria-describedby="source-matrix-help"><div id="source-matrix"></div></div>
+<section class="source-controls" aria-labelledby="source-controls-title">
+<h2 id="source-controls-title">選擇開票資料</h2>
+<div class="source-fields"><div class="source-field"><label for="county-select">選區</label><select id="county-select" disabled><option>正在載入…</option></select></div><div class="source-field"><label for="source-select">電視台／資料來源</label><select id="source-select" disabled><option>正在載入…</option></select></div></div>
+<p class="source-help">轉台時保留比較時間，顯示該來源時間最接近的主要觀測截圖；時間差不設上限，請連同影格時間閱讀。點選觀測可設定新的比較時間。</p>
 </section>
 <div class="chart-workspace">
 <div class="growth-panel">
@@ -85,17 +98,23 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 <a id="unavailable-progress-link" href="#ratio-section">查看開票進度與得票率</a>
 </section>
 <div id="chart" tabindex="0" role="region" aria-busy="true" aria-label="候選人的得票曲線；方向鍵選取相鄰時間"></div>
+<div class="chart-tools" id="growth-tools" role="group" aria-label="票數圖操作"><button type="button" data-graph="chart" data-action="in">放大</button><button type="button" data-graph="chart" data-action="out">縮小</button><button type="button" data-graph="chart" data-action="reset">重設</button><button type="button" data-graph="chart" data-action="png">下載 PNG</button></div>
 <p id="axis-empty-note" class="axis-empty-note" hidden><span id="axis-empty-text"></span></p>
 </div>
 <figure class="frame source-strip" id="source-strip" aria-labelledby="source-title">
 <div class="chart-heading"><h2 id="source-title">影片截圖</h2></div>
-<button type="button" id="frame-zoom" class="frame-zoom" aria-haspopup="dialog" aria-label="放大畫面截圖"><img id="frame-image" alt=""></button>
+<dl class="frame-times" aria-live="polite"><div><dt>比較時間</dt><dd id="comparison-time">尚未選取</dd></div><div><dt>影格時間</dt><dd id="frame-time">尚未選取</dd></div><div><dt>時間差</dt><dd id="frame-time-difference">—</dd></div></dl>
+<p class="source-help">時間差依記錄值計算；各來源的時計精度與校時品質不同。</p>
+<p id="frame-selection-note" class="frame-selection-note" hidden></p>
+<div class="tv-set"><div id="channel-screen" class="channel-screen" aria-busy="true"><button type="button" id="frame-zoom" class="frame-zoom" aria-haspopup="dialog" aria-label="放大畫面截圖" hidden><img id="frame-image" alt=""></button><div id="frame-status" class="frame-status" role="status"><span id="frame-status-text">正在載入截圖…</span><button type="button" id="retry-frame" hidden>重新載入截圖</button></div><span id="channel-label" class="channel-label" aria-hidden="true"></span></div><div class="tv-controls"><span class="tv-control-label" aria-hidden="true">選台</span><div class="channel-controls" role="group" aria-label="切換資料來源"><button type="button" id="previous-source" aria-label="上一台" title="上一台" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 4 18 16H2z"/></svg></button><button type="button" id="next-source" aria-label="下一台" title="下一台" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M2 4h16l-8 12z"/></svg></button></div><span class="tv-speaker" aria-hidden="true"></span><span class="tv-led" aria-hidden="true"></span></div></div>
 <figcaption><a id="frame-link" target="_blank" rel="noopener"><svg class="youtube-icon" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0033"/><path d="M11 5.5v9l8-4.5z" fill="white"/></svg><span id="frame-caption"></span></a></figcaption>
 </figure>
 <section class="ratio-section" id="ratio-section" aria-labelledby="ratio-title" hidden>
 <div class="chart-heading"><h2 id="ratio-title">走勢偏差</h2></div>
 <p class="ratio-explanation">觀察當選人得票率隨著開票進度的偏差情況，以及最後如何收斂。</p>
-<div id="ratio-chart" tabindex="0" role="region" aria-label="當選人得票率與開票進度曲線"></div>
+<div id="ratio-chart" tabindex="0" role="region" aria-label="當選人得票率與開票進度曲線" aria-describedby="ratio-zoom-help"></div>
+<p id="ratio-zoom-help" class="ratio-zoom-help">左鍵框選放大，右鍵框選縮小；放大／縮小按鈕同時調整兩軸，重設可回到預設範圍。</p>
+<div class="chart-tools" role="group" aria-label="得票率圖操作"><button type="button" data-graph="ratio-chart" data-action="in">放大</button><button type="button" data-graph="ratio-chart" data-action="out">縮小</button><button type="button" data-graph="ratio-chart" data-action="reset">重設</button><button type="button" data-graph="ratio-chart" data-action="png">下載 PNG</button></div>
 </section>
 <section class="error-section" id="error-section" aria-label="各來源走勢誤差" hidden>
 <table class="error-table" aria-describedby="error-explanation">
@@ -105,6 +124,7 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 </table>
 <p class="error-note" id="error-explanation" title="採 10%～90% 開票進度內的已知曲線；無重疊時採全部已知曲線。">走勢誤差＝曲線與最終得票率的進度加權平均絕對偏差（百分點）。</p>
 </section>
+<details id="other-observations" class="other-observations" hidden><summary id="other-observations-title">補充與待確認觀測</summary><p>以下觀測保留原始票數與截圖，未納入曲線、走勢偏差與持續領先統計。票源未知不代表辨識錯誤；原始播出異常也不會自動改值。</p><div id="other-observation-rows" class="table-wrap" tabindex="0" role="region" aria-label="補充與待確認票數"></div></details>
 </div>
 <noscript><p>互動圖需要 JavaScript。</p></noscript>
 <footer class="site-notice">
@@ -121,8 +141,7 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 </footer>
 </main>
 <dialog id="frame-dialog" class="frame-dialog" aria-label="畫面截圖大圖"><button type="button" id="close-frame-dialog" class="dialog-close" aria-label="關閉大圖">×</button><img id="frame-full-image" alt=""><p id="frame-full-caption"></p></dialog>
-<script src="assets/election-runtime.js"></script>
-<script src="assets/broadcaster-logos.js"></script>
+<script src="assets/election-runtime.js?v=3000ecc420d7"></script>
 <script>
 'use strict';
 (async () => {
@@ -211,7 +230,10 @@ const chart = document.getElementById('chart');
 const loadStatus = document.getElementById('curve-load-status');
 const ratioChart = document.getElementById('ratio-chart');
 const selectionState = document.getElementById('source-strip');
-const sourceMatrix = document.getElementById('source-matrix');
+const countySelect = document.getElementById('county-select');
+const sourceSelect = document.getElementById('source-select');
+const touchInput = window.matchMedia('(hover: none), (pointer: coarse)');
+document.documentElement.classList.toggle('touch-charts',touchInput.matches);
 const electionNav = document.getElementById('election-nav');
 const number = new Intl.NumberFormat('zh-TW');
 
@@ -228,11 +250,13 @@ const defaults = {
   nexttv:{name:'壹電視',color:'#E785BE',symbol:'square'}
 };
 
-let electionDate, electionLabel, candidates, stations, stationsById, hasRatio, referenceId, candidateVisible, ratioVisible, savedSelections;
+let electionDate, electionLabel, candidates, stations, stationsById, hasRatio, referenceId, candidateVisible, ratioVisible;
 let allLocated, allTimes, firstTime, lastTime, fullTimeRange, timeRange, officialVoteTotal, progressSupported, observedProgressMax, fullProgressRange, progressRange, globalRevision;
 let currentStation, observations, metadata, current, ready = false, growthRenderVersion = 0, growthQueue = Promise.resolve();
 let viewportContext, growthYRange = null, ratioYRange = null;
 let errorEntries = [], errorAscending = true;
+let comparisonTime = null, comparisonTimeLabel = '';
+let frameRequestVersion = 0, frameEffectTimer = 0, frameLabelTimer = 0, frameEffectFrame = 0;
 
 function shareBounds() {
   const final = data.ratioPlot?.finalRatio;
@@ -315,17 +339,39 @@ function renderErrorRanking() {
 }
 
 function isAnalysisEligible(row) { return archive.isAnalysisEligible(row); }
+function isPrimaryPresentation(row) { return archive.isPrimaryPresentation(row); }
 function hasReadableVotes(row) { return isAnalysisEligible(row) && candidates.some(candidate => Number.isSafeInteger(row?.votes?.[candidate.id]) && row.votes[candidate.id] >= 0); }
 function isUnverifiedLiveStart(row) { return row?.timeBasis === 'youtube_live_start_unverified'; }
 function rowAxisX(row) { return archive.rowAxisX(row); }
 function preferredObservationIndex() {
   const visible = row => rowAxisX(row) !== null && rowAxisX(row) >= fullTimeRange[0] && rowAxisX(row) <= fullTimeRange[1];
-  const complete = observations.findLastIndex(row => row.complete && visible(row));
-  const readable = observations.findLastIndex(row => hasReadableVotes(row) && visible(row));
-  const completeWithoutClock = observations.findLastIndex(row => row.complete);
-  const readableWithoutClock = observations.findLastIndex(hasReadableVotes);
+  const complete = observations.findLastIndex(row => isPrimaryPresentation(row) && row.complete && visible(row));
+  const readable = observations.findLastIndex(row => isPrimaryPresentation(row) && hasReadableVotes(row) && visible(row));
+  const completeWithoutClock = observations.findLastIndex(row => isPrimaryPresentation(row) && row.complete);
+  const readableWithoutClock = observations.findLastIndex(row => isPrimaryPresentation(row) && hasReadableVotes(row));
   return complete >= 0 ? complete : readable >= 0 ? readable
-    : completeWithoutClock >= 0 ? completeWithoutClock : readableWithoutClock >= 0 ? readableWithoutClock : observations.length - 1;
+    : completeWithoutClock >= 0 ? completeWithoutClock : readableWithoutClock;
+}
+function observationTime(row) {
+  const value = row && rowAxisX(row);
+  if(!value) return null;
+  const milliseconds = clockMillis(value);
+  return Number.isFinite(milliseconds) ? milliseconds : null;
+}
+function nearestTimedFrameIndex(rows,targetTime) {
+  let nearest = -1, distance = Infinity, nearestTime = Infinity;
+  for(let index=0;index<rows.length;index++) {
+    const row = rows[index], time = observationTime(row);
+    if(!isPrimaryPresentation(row) || !row.frameHref || time === null) continue;
+    const delta = Math.abs(time-targetTime);
+    if(delta < distance || (delta === distance && time < nearestTime)) {
+      nearest = index; distance = delta; nearestTime = time;
+    }
+  }
+  return nearest;
+}
+function alignedObservationIndex() {
+  return comparisonTime === null ? preferredObservationIndex() : nearestTimedFrameIndex(observations,comparisonTime);
 }
 function escapePlotText(value) { return String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
 function addText(parent, tag, text, className) {
@@ -346,110 +392,41 @@ function sourceOptionLabel(station) {
   return station.tallyOrigin ? station.name + '(' + station.tallyOrigin + ')' : station.name;
 }
 
-function matrixCounties() {
+function electionCounties() {
   const election = hasMultiElection ? masterData.elections[currentYear] : masterData;
   return Array.isArray(election.counties) && election.counties.length
-    ? election.counties : [{id:'',name:'全國',stations:stations}];
+    ? election.counties : [{id:'',name:'全國'}];
 }
 
-let matrixContainerWidth = 0;
-let matrixResizeFrame = 0;
-
-function renderSourceMatrix() {
-  const focused = sourceMatrix.contains(document.activeElement) ? document.activeElement : null;
-  const focusCell = focused?.matches('.matrix-choice') ? {county:focused.dataset.countyId,station:focused.dataset.stationId} : null;
-  const availableWidth = Math.max(1, Math.floor(sourceMatrix.parentElement.getBoundingClientRect().width));
-  matrixContainerWidth = availableWidth;
-  const counties = matrixCounties();
-  const sourceColumns = new Map();
+function renderSourceControls() {
+  const counties = electionCounties();
+  countySelect.replaceChildren();
   for(const county of counties) {
-    for(const payload of county.stations || []) {
-      const station = {...(defaults[payload.id] || {name:payload.id}),...payload};
-      const label = sourceOptionLabel(station);
-      const key = JSON.stringify([station.id,label]);
-      if(!sourceColumns.has(key)) sourceColumns.set(key,{id:station.id,label,cells:new Map()});
-      sourceColumns.get(key).cells.set(county.id,station.id);
-    }
+    const option = addText(countySelect,'option',county.name);
+    option.value = county.id;
   }
-  const columns = [...sourceColumns.values()];
-  const capacity = Math.max(1, Math.floor((availableWidth - 66) / 56));
-  const groupCount = Math.ceil(columns.length / capacity);
-  const fragment = document.createDocumentFragment();
-  for(let start=0;start<columns.length;start+=capacity) {
-    const groupColumns = columns.slice(start,start+capacity);
-    const group = addText(fragment,'div','','matrix-group');
-    if(groupCount>1) addText(group,'p','資料來源 ' + (start+1) + '–' + (start+groupColumns.length) + '／共 ' + columns.length + ' 個','matrix-group-label');
-    const table = addText(group,'table','','source-matrix');
-    table.style.width = Math.min(availableWidth,66+groupColumns.length*80) + 'px';
-    addText(table,'caption','選擇縣市與資料來源，第 ' + (Math.floor(start/capacity)+1) + ' 組，共 ' + groupCount + ' 組','sr-only');
-    const colgroup = addText(table,'colgroup','');
-    addText(colgroup,'col','','matrix-county-column');
-    for(const source of groupColumns) addText(colgroup,'col','','matrix-source-column');
-    const header = addText(addText(table,'thead',''),'tr','');
-    const corner = addText(header,'th','縣市／','matrix-county-heading');
-    addText(corner,'span','資料來源').style.display = 'block';
-    corner.scope = 'col';
-    for(const source of groupColumns) {
-      const heading = addText(header,'th','','matrix-source-heading');
-      heading.scope = 'col';
-      const label = addText(heading,'div','','matrix-source-label');
-      const logoHref = window.BroadcasterLogos?.get(source.id);
-      if(logoHref) {
-        const logo = document.createElement('img');
-        logo.className = 'matrix-logo';
-        logo.src = logoHref;
-        logo.alt = '';
-        logo.width = 24;
-        logo.height = 24;
-        logo.addEventListener('error',() => { logo.hidden = true; },{once:true});
-        label.append(logo);
-      }
-      addText(label,'span',source.label);
-    }
-    const body = addText(table,'tbody','');
-    for(const county of counties) {
-      const row = addText(body,'tr','');
-      addText(row,'th',county.name,'matrix-county-heading').scope = 'row';
-      for(const source of groupColumns) {
-        const cell = addText(row,'td','');
-        const stationId = source.cells.get(county.id);
-        if(stationId === undefined) {
-          addText(cell,'span','—','matrix-unavailable').setAttribute('aria-label','無此來源');
-          continue;
-        }
-        const button = addText(cell,'button','○','matrix-choice');
-        button.type = 'button';
-        button.dataset.countyId = county.id;
-        button.dataset.stationId = stationId;
-        button.setAttribute('aria-label',county.name + '，' + source.label);
-        button.setAttribute('aria-pressed','false');
-        button.addEventListener('click',() => switchSourceCell(county.id,stationId));
-      }
-    }
+  countySelect.value = data.activeCountyId || '';
+  countySelect.disabled = counties.length < 2;
+  sourceSelect.replaceChildren();
+  for(const station of stations) {
+    const option = addText(sourceSelect,'option',sourceOptionLabel(station));
+    option.value = station.id;
   }
-  if(!columns.length) addText(fragment,'p','目前沒有可顯示的來源資料。','matrix-empty');
-  sourceMatrix.replaceChildren(fragment);
-  updateSourceMatrixSelection();
-  if(focusCell) [...sourceMatrix.querySelectorAll('.matrix-choice')].find(button =>
-    button.dataset.countyId === focusCell.county && button.dataset.stationId === focusCell.station)?.focus({preventScroll:true});
+  if(!stations.length) addText(sourceSelect,'option','目前沒有來源資料');
+  updateSourceControls();
 }
 
-function updateSourceMatrixSelection() {
-  for(const button of sourceMatrix.querySelectorAll('.matrix-choice')) {
-    const selected = Boolean(currentStation) && button.dataset.countyId === (data.activeCountyId || '')
-      && button.dataset.stationId === currentStation.id;
-    button.setAttribute('aria-pressed',String(selected));
-    button.textContent = selected ? '✓' : '○';
-  }
+function updateSourceControls() {
+  sourceSelect.value = currentStation?.id || '';
+  sourceSelect.disabled = stations.length < 2;
+  for(const id of ['previous-source','next-source']) document.getElementById(id).disabled = stations.length < 2;
 }
 
-const matrixResizeObserver = new ResizeObserver(() => {
-  cancelAnimationFrame(matrixResizeFrame);
-  matrixResizeFrame = requestAnimationFrame(() => {
-    if(Math.floor(sourceMatrix.parentElement.getBoundingClientRect().width) !== matrixContainerWidth) renderSourceMatrix();
-  });
-});
-matrixResizeObserver.observe(sourceMatrix.parentElement);
+function nextSourceId(sources,sourceId,direction) {
+  if(!sources.length) return null;
+  const index = Math.max(0,sources.findIndex(source => source.id === sourceId));
+  return sources[(index + direction % sources.length + sources.length) % sources.length].id;
+}
 
 function syncSourceQuery() {
   const url = new URL(window.location);
@@ -459,24 +436,29 @@ function syncSourceQuery() {
   window.history.replaceState({},'',url);
 }
 
-function switchSourceCell(countyId,stationId) {
-  if(countyId === (data.activeCountyId || '')) {
-    switchStation(stationId);
-    return;
-  }
+function switchCounty(countyId) {
+  if(countyId === (data.activeCountyId || '')) return;
   const election = hasMultiElection ? masterData.elections[currentYear] : masterData;
   const county = election.counties?.find(item => item.id === countyId);
-  if(!county || !county.stations?.some(station => station.id === stationId)) return;
+  if(!county) return;
+  const sourceId = county.stations?.some(station => station.id === currentStation?.id)
+    ? currentStation.id : county.defaultStationId || county.stations?.[0]?.id;
   const url = new URL(window.location);
   applyYearQuery(url,currentYear,election,countyId);
-  url.searchParams.set('source',stationId);
+  if(sourceId) url.searchParams.set('source',sourceId);
+  else url.searchParams.delete('source');
   window.history.replaceState({},'',url);
   bindElection(currentYear);
   initElectionState();
-  showActiveElection();
-  const selected = [...sourceMatrix.querySelectorAll('.matrix-choice')].find(button =>
-    button.dataset.countyId === countyId && button.dataset.stationId === stationId);
-  selected?.focus({preventScroll:true});
+  showActiveElection({transition:true});
+}
+
+countySelect.addEventListener('change',() => switchCounty(countySelect.value));
+sourceSelect.addEventListener('change',() => switchStation(sourceSelect.value));
+for(const [id,direction] of [['previous-source',-1],['next-source',1]]) {
+  document.getElementById(id).addEventListener('click',() => {
+    if(stations.length > 1) switchStation(nextSourceId(stations,currentStation.id,direction));
+  });
 }
 
 function initElectionState() {
@@ -504,7 +486,7 @@ function initElectionState() {
       if(row.sourceId && row.sourceId !== (station.carrierSourceId || station.id)) throw new Error(station.id + '：觀測 ' + row.id + ' 來源不符');
     }
     normalized.excludedObservationIds = new Set((station.observations || []).filter(row => !isAnalysisEligible(row)).map(row => String(row.id)));
-    normalized.observations = (station.observations || []).filter(isAnalysisEligible).map((row,index) => ({...row,index,lineId:station.id}));
+    normalized.observations = (station.observations || []).map((row,index) => ({...row,index,lineId:station.id}));
     normalized.byId = new Map(normalized.observations.map(row => [String(row.id),row]));
     if(normalized.byId.size !== normalized.observations.length) throw new Error(station.id + '：觀測 ID 重複');
     return normalized;
@@ -516,9 +498,8 @@ function initElectionState() {
   candidateVisible = new Map(candidates.map(candidate => [candidate.id,true]));
   ratioVisible = new Map(stations.map(station => [station.id,true]));
   ratioVisible.set(referenceId,true);
-  savedSelections = new Map();
 
-  allLocated = stations.flatMap(station => station.observations).filter(row => rowAxisX(row) !== null);
+  allLocated = stations.flatMap(station => station.observations).filter(row => isPrimaryPresentation(row) && rowAxisX(row) !== null);
   allTimes = allLocated.map(row => clockMillis(row.x)).filter(Number.isFinite);
   firstTime = allTimes.length ? Math.min(...allTimes) : Date.parse(electionDate + 'T16:00:00Z');
   lastTime = allTimes.length ? Math.max(...allTimes) : firstTime;
@@ -532,13 +513,14 @@ function initElectionState() {
     ? explicitTotal
     : (data.ratioPlot?.finalVotes ? Object.values(data.ratioPlot.finalVotes).reduce((sum,value) => sum + value,0) : 0);
   progressSupported = Number.isFinite(officialVoteTotal) && officialVoteTotal > 0;
-  observedProgressMax = Math.max(100,...stations.flatMap(station => station.observations.map(rowProgress)).filter(Number.isFinite));
+  observedProgressMax = Math.max(100,...stations.flatMap(station => station.observations.filter(isPrimaryPresentation).map(rowProgress)).filter(Number.isFinite));
   fullProgressRange = [-1,Math.ceil(observedProgressMax)+2];
   progressRange = [...(previousViewport?.progressRange || fullProgressRange)];
   globalRevision = stations.map(station => station.sourceSha256 || station.id).join(':') + ':' + currentYear + ':' + (data.activeCountyId || '');
   resetErrorRanking();
 
   if (!stations.length) {
+    frameRequestVersion++;
     currentStation = null;
     observations = [];
     metadata = {};
@@ -550,9 +532,13 @@ function initElectionState() {
     document.getElementById('time-span').textContent = data.eligibilityEmptyReason || '目前沒有可顯示的來源資料。';
     document.getElementById('ratio-section').hidden = true;
     document.getElementById('ratio-nav').hidden = true;
-    renderSourceMatrix();
+    renderSourceControls();
     syncSourceQuery();
     selectionState.hidden = true;
+    selectionState.dataset.frameState = 'empty';
+    document.getElementById('frame-image').removeAttribute('src');
+    document.getElementById('frame-zoom').hidden = true;
+    document.getElementById('growth-tools').hidden = true;
     delete document.documentElement.dataset.stationId;
     document.getElementById('axis-empty-note').hidden = true;
     return;
@@ -561,9 +547,9 @@ function initElectionState() {
   currentStation = stationsById.get(requestedSource) || stationsById.get(data.defaultStationId) || stations[0];
   observations = currentStation.observations;
   metadata = currentStation.metadata;
-  current = preferredObservationIndex();
+  current = alignedObservationIndex();
 
-  renderSourceMatrix();
+  renderSourceControls();
 
   // Update ratio section
   const ratioSec = document.getElementById('ratio-section');
@@ -599,6 +585,8 @@ function renderYearTabs() {
 function switchElection(yr) {
   if (!hasMultiElection || !electionYears.includes(yr) || currentYear === yr) return;
   currentYear = yr;
+  comparisonTime = null;
+  comparisonTimeLabel = '';
   const url = new URL(window.location);
   applyYearQuery(url, yr, masterData.elections[yr], url.searchParams.get('county'));
   window.history.replaceState({}, '', url);
@@ -615,7 +603,7 @@ function switchElection(yr) {
   showActiveElection();
 }
 
-function showActiveElection() {
+function showActiveElection({transition = false} = {}) {
   if (!currentStation) {
     chart.hidden = false;
     document.getElementById('growth-unavailable').hidden = true;
@@ -634,8 +622,9 @@ function showActiveElection() {
   if(chart.classList.contains('empty-chart')) chart.replaceChildren();
   chart.classList.remove('empty-chart');
   renderStation();
-  selectObservation(current);
+  renderCurrentObservation({preserveComparisonTime:comparisonTime !== null,transition});
   if (ready) {
+    syncGraphs();
     refreshGrowth();
     if (hasRatio) Plotly.react(ratioChart, ratioTraces(), makeRatioLayout(), plotConfig());
     return;
@@ -653,19 +642,122 @@ function renderStation() {
   document.getElementById('time-span').textContent = timeRangeLabel(fullTimeRange);
   chart.setAttribute('aria-label',station.name + candidates.length + '位候選人的畫面得票曲線；方向鍵選取相鄰觀測');
   renderGrowthAvailability();
+  renderOtherObservations();
   updateAxisNotice();
-  updateSourceMatrixSelection();
+  updateSourceControls();
   syncSourceQuery();
   document.documentElement.dataset.stationId = station.id;
 }
 
-function selectObservation(index) {
-  if(!observations.length) {selectionState.hidden = true;delete selectionState.dataset.observationId;return;}
-  current = Math.max(0,Math.min(observations.length - 1,index));
-  const row = observations[current];
-  savedSelections.set(currentStation.id,String(row.id));
+function timeDifferenceLabel(milliseconds) {
+  if(milliseconds === 0) return '與比較時間相同';
+  const seconds = Math.round(Math.abs(milliseconds)/1000);
+  const parts = [];
+  if(seconds >= 3600) parts.push(Math.floor(seconds/3600) + ' 小時');
+  if(seconds % 3600 >= 60) parts.push(Math.floor(seconds%3600/60) + ' 分');
+  if(seconds % 60 || !parts.length) parts.push(seconds%60 + ' 秒');
+  return (milliseconds < 0 ? '早 ' : '晚 ') + parts.join(' ');
+}
+
+function renderFrameTime(row) {
+  const time = observationTime(row);
+  document.getElementById('comparison-time').textContent = comparisonTime === null ? '尚無可用比較時間' : comparisonTimeLabel;
+  document.getElementById('frame-time').textContent = row ? timeLabel(row) : '沒有可用時間';
+  document.getElementById('frame-time-difference').textContent = comparisonTime === null ? '—'
+    : time === null ? '無法對齊：影格沒有可用時間' : timeDifferenceLabel(time-comparisonTime);
+}
+
+function comparisonShapes() {
+  if(comparisonTime === null) return [];
+  const x = new Date(comparisonTime).toISOString().replace(/Z$/,'');
+  return [{name:'comparison-time',type:'line',xref:'x',yref:'paper',x0:x,x1:x,y0:0,y1:1,
+    line:{color:'#edc46a',width:1.5},layer:'above'}];
+}
+
+function updateComparisonLine() {
+  if(ready && chart.layout) Plotly.relayout(chart,{shapes:comparisonShapes()}).catch(reportChartError);
+}
+
+function televisionNoise() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 96; canvas.height = 64;
+  const context = canvas.getContext('2d');
+  const pixels = context.createImageData(canvas.width,canvas.height);
+  for(let index=0;index<pixels.data.length;index+=4) {
+    const shade = Math.floor(Math.random()*256);
+    pixels.data[index] = pixels.data[index+1] = pixels.data[index+2] = shade;
+    pixels.data[index+3] = 255;
+  }
+  context.putImageData(pixels,0,0);
+  return 'url(' + canvas.toDataURL() + ')';
+}
+
+function stopChannelEffect() {
+  clearTimeout(frameEffectTimer);
+  clearTimeout(frameLabelTimer);
+  cancelAnimationFrame(frameEffectFrame);
+  document.getElementById('channel-screen').classList.remove('changing-channel','show-channel-label');
+}
+
+function startChannelEffect(version) {
+  const screen = document.getElementById('channel-screen');
+  screen.style.setProperty('--channel-noise',televisionNoise());
+  frameEffectFrame = requestAnimationFrame(() => {
+    if(version !== frameRequestVersion) return;
+    screen.classList.add('changing-channel','show-channel-label');
+    // 先讓雪花呈現一個影格，再計算顯示時間，避免圖表重繪用掉動畫時間。
+    frameEffectFrame = requestAnimationFrame(() => {
+      if(version !== frameRequestVersion) return;
+      frameEffectTimer = setTimeout(() => screen.classList.remove('changing-channel'),125);
+      frameLabelTimer = setTimeout(() => screen.classList.remove('show-channel-label'),600);
+    });
+  });
+}
+
+function presentFrame(row,{transition = false} = {}) {
+  const version = ++frameRequestVersion;
+  const stationLabel = sourceOptionLabel(currentStation);
+  const screen = document.getElementById('channel-screen');
+  const image = document.getElementById('frame-image');
+  const zoom = document.getElementById('frame-zoom');
+  const status = document.getElementById('frame-status');
+  const statusText = document.getElementById('frame-status-text');
+  const retry = document.getElementById('retry-frame');
+  selectionState.hidden = false;
   selectionState.dataset.stationId = currentStation.id;
-  selectionState.dataset.observationId = String(row.id);
+  if(row) selectionState.dataset.observationId = String(row.id);
+  else delete selectionState.dataset.observationId;
+  zoom.hidden = true;
+  image.removeAttribute('src');
+  image.alt = '';
+  status.hidden = false;
+  retry.hidden = true;
+  screen.setAttribute('aria-busy','false');
+  stopChannelEffect();
+  document.getElementById('channel-label').textContent = stationLabel;
+  if(transition) startChannelEffect(version);
+  renderFrameTime(row);
+  const selectionNote = document.getElementById('frame-selection-note');
+  selectionNote.hidden = !row || isPrimaryPresentation(row);
+  selectionNote.textContent = row && !isPrimaryPresentation(row)
+    ? (row.presentationRole === 'supplementary' ? '補充觀測' : '待確認觀測') + '，未納入曲線與統計。' + (row.presentationReason || '')
+      + ' 計票來源：' + (row.tallySource || row.tallyOrigin || '未知') : '';
+  selectionState.dataset.presentationRole = row?.presentationRole || '';
+  for(const line of document.querySelectorAll('#other-observation-rows tr[data-observation-id]')) {
+    line.setAttribute('aria-current',String(Boolean(row) && line.dataset.observationId === String(row.id)));
+  }
+  for(const button of document.querySelectorAll('#unavailable-readings button')) {
+    button.setAttribute('aria-pressed',String(Boolean(row) && button.dataset.observationId === String(row.id)));
+  }
+  if(!row) {
+    setLink('frame-link','');
+    document.getElementById('frame-caption').textContent = '';
+    selectionState.dataset.frameState = 'unaligned';
+    statusText.textContent = stationLabel + (comparisonTime === null
+      ? '：目前沒有可查看的主要觀測影格。補充與待確認觀測可從下方清單查看。'
+      : '：無法對齊，沒有附可用時間的主要觀測截圖。可從原始票數表或補充觀測清單查看影格。');
+    return;
+  }
   const videoHref = row.videoHref || currentStation.videoHref;
   let timedHref = '';
   if(videoHref) {
@@ -674,16 +766,66 @@ function selectObservation(index) {
     timedHref = url.href;
   }
   setLink('frame-link',timedHref);
-  const image = document.getElementById('frame-image');
-  document.getElementById('frame-zoom').hidden = !row.frameHref;
-  if(row.frameHref) image.src = row.frameHref;
-  else image.removeAttribute('src');
-  image.alt = currentStation.name + '第 ' + (current+1) + ' 筆 ' + timeLabel(row) + ' 畫面截圖';
-  document.getElementById('frame-caption').textContent = (row.videoTitle || currentStation.videoTitle || currentStation.name)
-    + (hasOffset(row) ? ' · ' + videoTime(row.videoOffset) : '');
-  selectionState.hidden = !row.frameHref && !timedHref;
-  for(const button of document.querySelectorAll('#unavailable-readings button')) button.setAttribute('aria-pressed',String(button.dataset.observationId === String(row.id)));
+  document.getElementById('frame-caption').textContent = (row.videoTitle || currentStation.videoTitle || stationLabel)
+    + (hasOffset(row) ? ' · 影片位置 ' + videoTime(row.videoOffset) : '');
+  if(!row.frameHref) {
+    selectionState.dataset.frameState = 'no-image';
+    statusText.textContent = stationLabel + '：此筆觀測沒有已存截圖，可透過影片連結回查。';
+    return;
+  }
+  selectionState.dataset.frameState = 'loading';
+  screen.setAttribute('aria-busy','true');
+  statusText.textContent = '正在載入 ' + stationLabel + ' 的截圖…';
+  const loadingImage = new Image();
+  let settled = false;
+  const fail = () => {
+    if(version !== frameRequestVersion || settled) return;
+    settled = true;
+    selectionState.dataset.frameState = 'error';
+    screen.setAttribute('aria-busy','false');
+    statusText.textContent = stationLabel + '：截圖載入失敗。';
+    retry.hidden = false;
+  };
+  loadingImage.onerror = fail;
+  loadingImage.onload = async () => {
+    try { await loadingImage.decode(); } catch { fail(); return; }
+    if(version !== frameRequestVersion || settled) return;
+    settled = true;
+    image.alt = stationLabel + '第 ' + (row.index+1) + ' 筆 ' + timeLabel(row) + ' 畫面截圖';
+    image.src = loadingImage.src;
+    zoom.hidden = false;
+    status.hidden = true;
+    screen.setAttribute('aria-busy','false');
+    selectionState.dataset.frameState = 'ready';
+  };
+  loadingImage.src = row.frameHref;
 }
+
+function selectObservation(index,{preserveComparisonTime = false,transition = false} = {}) {
+  if(!observations.length) {
+    current = -1;
+    presentFrame(null,{transition});
+    return;
+  }
+  current = Math.max(0,Math.min(observations.length-1,index));
+  const row = observations[current];
+  const time = observationTime(row);
+  if(!preserveComparisonTime) {
+    comparisonTime = time;
+    comparisonTimeLabel = time === null ? '' : timeLabel(row);
+  }
+  presentFrame(row,{transition});
+  updateComparisonLine();
+}
+
+function renderCurrentObservation(options = {}) {
+  if(current < 0) presentFrame(null,options);
+  else selectObservation(current,options);
+}
+
+document.getElementById('retry-frame').addEventListener('click',() => {
+  if(current >= 0 && observations[current]) presentFrame(observations[current]);
+});
 
 function selectIdentity(stationId,observationId) {
   const station = stationsById.get(stationId);
@@ -697,38 +839,70 @@ function selectIdentity(stationId,observationId) {
 function switchStation(stationId,observationId) {
   const station = stationsById.get(stationId);
   if(!station || (observationId !== undefined && !station.byId.has(String(observationId)))) return;
+  if(station === currentStation && observationId === undefined) return;
   currentStation = station; observations = station.observations; metadata = station.metadata;
-  timeRange = [...fullTimeRange];
   growthYRange = null;
-  const remembered = station.byId.get(String(observationId ?? savedSelections.get(stationId)));
-  current = remembered?.index ?? preferredObservationIndex();
+  const explicit = observationId !== undefined ? station.byId.get(String(observationId)) : null;
+  current = explicit ? explicit.index : alignedObservationIndex();
   renderStation();
-  selectObservation(current);
+  renderCurrentObservation({preserveComparisonTime:!explicit && comparisonTime !== null,transition:true});
   if(ready) refreshGrowth();
 }
 
 for(const graph of [chart,ratioChart]) graph.addEventListener('keydown',event => {
     if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) {
       event.preventDefault();
-      selectObservation(event.key === 'Home' ? 0 : event.key === 'End' ? observations.length - 1 : current + (event.key === 'ArrowLeft' ? -1 : 1));
+      const primary = observations.filter(isPrimaryPresentation);
+      if(!primary.length) return;
+      const position = primary.findIndex(row => row.index === current);
+      const adjacent = event.key === 'ArrowLeft' ? primary.findLastIndex(row => row.index < current) : primary.findIndex(row => row.index > current);
+      const nearest = adjacent >= 0 ? adjacent : event.key === 'ArrowLeft' ? 0 : current < 0 ? 0 : primary.length-1;
+      const index = event.key === 'Home' ? 0 : event.key === 'End' ? primary.length-1
+        : position < 0 ? nearest : Math.max(0,Math.min(primary.length-1,position + (event.key === 'ArrowLeft' ? -1 : 1)));
+      selectObservation(primary[index].index);
     }
   });
 
 function growthRows(station) {
   return station.observations.filter(row => {
     const x = rowAxisX(row);
-    return x !== null && x >= fullTimeRange[0] && x <= fullTimeRange[1];
+    return isPrimaryPresentation(row) && x !== null && x >= fullTimeRange[0] && x <= fullTimeRange[1];
   }).sort((left,right) => clockMillis(left.x) - clockMillis(right.x) || left.index - right.index);
 }
 
 function growthAvailability(station) {
-  const readable = station.observations.filter(hasReadableVotes);
+  const readable = station.observations.filter(row => isPrimaryPresentation(row) && hasReadableVotes(row));
   const located = readable.filter(row => rowAxisX(row) !== null);
   const plotted = growthRows(station).filter(hasReadableVotes);
-  const kind = plotted.length ? 'available' : !readable.length ? 'no_votes' : !located.length ? 'no_time' : 'outside_window';
+  const kind = plotted.length ? 'available' : !readable.length ? station.observations.some(hasReadableVotes) ? 'no_primary' : 'no_votes' : !located.length ? 'no_time' : 'outside_window';
   const missingCandidates = candidates.filter(candidate => !plotted.some(row => Number.isSafeInteger(row.votes?.[candidate.id]) && row.votes[candidate.id] >= 0));
-  const completeCount = station.observations.filter(row => Number.isFinite(rowProgress(row)) && Number.isFinite(voteRatio(row))).length;
+  const completeCount = station.observations.filter(row => isPrimaryPresentation(row) && Number.isFinite(rowProgress(row)) && Number.isFinite(voteRatio(row))).length;
   return {kind,readable,located,plotted,missingCandidates,completeCount};
+}
+
+function renderOtherObservations() {
+  const rows = currentStation.observations.filter(row => !isPrimaryPresentation(row));
+  const details = document.getElementById('other-observations');
+  details.hidden = !rows.length;
+  document.getElementById('other-observations-title').textContent = '補充與待確認觀測（' + rows.length + ' 筆）';
+  const target = document.getElementById('other-observation-rows');
+  target.replaceChildren();
+  if(!rows.length) return;
+  const table = addText(target,'table','');
+  const header = addText(addText(table,'thead',''),'tr','');
+  for(const label of ['影格／時間',...candidates.map(candidate => candidate.name),'計票來源','分類與原因']) addText(header,'th',label).scope = 'col';
+  const body = addText(table,'tbody','');
+  for(const row of rows) {
+    const line = addText(body,'tr','');
+    line.dataset.observationId = String(row.id);
+    const cell = addText(line,'td','');
+    const button = addText(cell,'button',rowAxisX(row) !== null ? timeLabel(row) : hasOffset(row) ? '影片 ' + videoTime(row.videoOffset) : '影格 ' + (row.index+1));
+    button.type = 'button';
+    button.addEventListener('click',() => selectIdentity(currentStation.id,String(row.id)));
+    for(const candidate of candidates) addText(line,'td',displayVote(row.votes[candidate.id]),'numeric');
+    addText(line,'td',row.tallySource || row.tallyOrigin || '未知');
+    addText(line,'td',(row.presentationRole === 'supplementary' ? '補充：' : '待確認：') + (row.presentationReason || '主次尚未確認。'));
+  }
 }
 
 function renderGrowthAvailability() {
@@ -736,15 +910,17 @@ function renderGrowthAvailability() {
   const panel = document.getElementById('growth-unavailable');
   const missing = status.kind !== 'available';
   chart.hidden = missing;
+  document.getElementById('growth-tools').hidden = missing;
   panel.hidden = !missing;
   if(!missing) return;
   const title = document.getElementById('growth-unavailable-title');
   const reason = document.getElementById('growth-unavailable-reason');
   title.textContent = status.kind === 'no_time' ? '已收錄 ' + status.readable.length + ' 筆票數，尚缺實際時間'
-    : status.kind === 'outside_window' ? '16:00–22:00 尚無可定位的票數' : '此來源尚無可讀票數';
+    : status.kind === 'outside_window' ? '16:00–22:00 尚無可定位的票數' : status.kind === 'no_primary' ? '此來源尚無已確認的主要票數' : '此來源尚無可讀票數';
   reason.textContent = status.kind === 'no_time' ? '目前沒有足以定位實際時間的依據，無法繪製時間曲線。原始票數與影格保留如下。'
     : status.kind === 'outside_window' ? '已收錄票數位於顯示時段之外，時間軸維持 16:00–22:00；仍可回查原始票數與影格。'
-    : '目前取樣畫面沒有可確認的候選人票數，可查看影片及已保存截圖。';
+    : status.kind === 'no_primary' ? '已收錄的可讀票數屬補充或待確認觀測，未納入曲線與統計；可從下方清單查看票數、原因與截圖。'
+    : '目前取樣畫面沒有可確認的候選人票數，可從下方補充與待確認清單查看影片及已保存截圖。';
   const readings = document.getElementById('unavailable-readings');
   readings.replaceChildren();
   readings.hidden = !status.readable.length;
@@ -826,7 +1002,7 @@ function observationSegments(station) { return archive.observationSegments(stati
 function ratioTraces() {
   if(!hasRatio) return [];
   const traces = stations.flatMap(station => {
-    const rows = station.observations.filter(row => Number.isFinite(rowProgress(row)) && Number.isFinite(voteRatio(row)));
+    const rows = station.observations.filter(row => isPrimaryPresentation(row) && Number.isFinite(rowProgress(row)) && Number.isFinite(voteRatio(row)));
     if(!rows.length) return [];
     return [{
       type:'scatter',mode:'lines+markers',name:station.name,legendgroup:station.id,
@@ -841,12 +1017,27 @@ function ratioTraces() {
   const reference = data.ratioPlot;
   const baselineX = [...fullProgressRange];
   traces.push({
-    type:'scatter',mode:'lines',name:'最終得票率 ' + formatRatio(reference.finalRatio),legendgroup:referenceId,
+    type:'scatter',mode:'lines',name:'最終得票率 ' + formatRatio(reference.finalRatio),legendgroup:referenceId,legendrank:0,
     x:baselineX,y:baselineX.map(() => reference.finalRatio),
     line:{color:'#edc46a',width:2},meta:{sourceId:referenceId,role:'reference'},visible:ratioVisible.get(referenceId) ? true : 'legendonly',
     hovertemplate:'最終得票率　' + formatRatio(reference.finalRatio) + '<br>' + reference.label + '<extra></extra>'
   });
   return traces;
+}
+
+function exportTextLines(text, width, fontSize) {
+  const context = document.createElement('canvas').getContext('2d');
+  context.font = fontSize + 'px "Microsoft JhengHei", sans-serif';
+  const lines = [];
+  let line = '';
+  for(const character of text) {
+    if(line && context.measureText(line + character).width > width) {
+      lines.push(escapePlotText(line));
+      line = character;
+    } else line += character;
+  }
+  if(line) lines.push(escapePlotText(line));
+  return lines;
 }
 
 let exporting = false;
@@ -861,7 +1052,7 @@ async function exportPNG(graph) {
     if(!isRatio) await growthQueue;
     const station = stationsById.get(graph.data[0]?.meta?.sourceId) || currentStation;
     const sourceStations = isRatio ? stations : [station];
-    const sourceRows = sourceStations.flatMap(source => source.observations).filter(row => rowAxisX(row) !== null).sort((left,right) => clockMillis(left.x)-clockMillis(right.x));
+    const sourceRows = sourceStations.flatMap(source => source.observations).filter(row => isPrimaryPresentation(row) && rowAxisX(row) !== null).sort((left,right) => clockMillis(left.x)-clockMillis(right.x));
     const sourceLabel = sourceStations.map(source => source.name).join('、');
     const fallbackCount = sourceRows.filter(isUnverifiedLiveStart).length;
     const estimated = sourceRows.some(row => row.timeEstimate && !isUnverifiedLiveStart(row));
@@ -869,17 +1060,25 @@ async function exportPNG(graph) {
       + (!isRatio && estimated ? '　語音報時校時（分鐘級估時）' : '')
       + (!isRatio && fallbackCount ? '　直播起點換算：' + fallbackCount + '筆時間未核對' : '');
     const snapshot = JSON.parse(JSON.stringify(graph.layout));
+    snapshot.shapes = (snapshot.shapes || []).filter(shape => shape.name !== 'comparison-time');
     if(!isRatio) snapshot.xaxis = {...snapshot.xaxis,range:[...fullTimeRange],autorange:false,fixedrange:true};
-    snapshot.showlegend = true;
-    snapshot.width = 1440; snapshot.height = 720;
-    snapshot.paper_bgcolor = '#121619';
-    snapshot.margin = {...snapshot.margin,t:128,b:112};
-    snapshot.title = {text:escapePlotText(sourceLabel) + '｜' + escapePlotText(electionLabel + (data.activeCountyName ? ' / ' + data.activeCountyName : '')) + (isRatio ? ' 當選人得票率' : ' 開票曲線') + '<br><sup>' + escapePlotText(subtitle) + '</sup>',x:.04,xanchor:'left',y:.94,yanchor:'top',font:{size:21,color:'#edf2f4'}};
-    snapshot.legend = nativeLegend();
+    const titleLines = exportTextLines(sourceLabel + '｜' + electionLabel + (data.activeCountyName ? ' / ' + data.activeCountyName : '') + (isRatio ? ' 當選人得票率' : ' 開票曲線'),1320,21);
+    const subtitleLines = exportTextLines(subtitle,1320,15);
     const traces = JSON.parse(JSON.stringify(graph.data));
     for(const trace of traces) if(trace.visible === false && trace.showlegend !== false) trace.visible = 'legendonly';
+    const legendCount = traces.filter(trace => trace.showlegend !== false && trace.visible !== false).length;
+    const topMargin = Math.max(128,48 + titleLines.length*30 + subtitleLines.length*22);
+    // PNG 無法捲動圖例；保留完整標題與每個圖例項目所需的高度。
+    const exportHeight = Math.max(720,topMargin + 112 + legendCount*24 + 24);
+    snapshot.showlegend = true;
+    snapshot.width = 1440; snapshot.height = exportHeight;
+    snapshot.paper_bgcolor = '#121619';
+    snapshot.margin = {...snapshot.margin,t:topMargin,b:112};
+    snapshot.title = {text:titleLines.join('<br>') + '<br><sup>' + subtitleLines.join('<br>') + '</sup>',x:.04,xanchor:'left',y:1-24/exportHeight,yref:'container',yanchor:'top',font:{family:'Microsoft JhengHei, sans-serif',size:21,color:'#edf2f4'}};
+    snapshot.legend = {...nativeLegend(),maxheight:1};
+    target.style.height = exportHeight + 'px';
     await Plotly.newPlot(target,traces,snapshot,{staticPlot:true,displayModeBar:false});
-    await Plotly.downloadImage(target,{filename:currentYear + '-' + sourceStations.map(source => source.id.replace(/[^a-zA-Z0-9_-]/g,'_')).join('-') + (isRatio ? '-vote-ratio-progress' : '-vote-growth-clock'),format:'png',width:1440,height:720,scale:2});
+    await Plotly.downloadImage(target,{filename:currentYear + '-' + sourceStations.map(source => source.id.replace(/[^a-zA-Z0-9_-]/g,'_')).join('-') + (isRatio ? '-vote-ratio-progress' : '-vote-growth-clock'),format:'png',width:1440,height:exportHeight,scale:2});
   } catch(error) { console.error(error); }
   finally { Plotly.purge(target); target.remove(); exporting = false; }
 }
@@ -888,7 +1087,7 @@ Plotly.register({moduleType:'locale',name:'zh-tw',dictionary:{'Zoom':'縮放','P
 
 function growthLayout(station) { return {
   paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'#121619',font:{family:'Microsoft JhengHei, sans-serif',size:12,color:'#b8c6ce'},
-  margin:{l:72,r:18,t:28,b:48},showlegend:true,legend:nativeLegend(),hovermode:'closest',dragmode:'zoom',
+  margin:{l:72,r:18,t:28,b:48},showlegend:true,legend:nativeLegend(),hovermode:'closest',dragmode:touchInput.matches ? false : 'zoom',
   hoverlabel:{bgcolor:'#24323a',bordercolor:'#758b98',font:{color:'#edf2f4',size:13},align:'left'},
   xaxis:{
     type:'date',range:[...timeRange],autorange:false,minallowed:fullTimeRange[0],maxallowed:fullTimeRange[1],
@@ -901,23 +1100,164 @@ function growthLayout(station) { return {
   yaxis:{domain:[.16,1],title:{text:'票數',standoff:16},automargin:true,rangemode:'tozero',gridcolor:'#303c44',zerolinecolor:'#53626a',tickformat:',d',fixedrange:false,
     ...(growthYRange ? {range:[...growthYRange],autorange:false} : {autorange:true}),minallowed:0},
   yaxis2:{domain:[0,.06],range:[0,1],visible:false,fixedrange:true},
-  shapes:[],
+  shapes:comparisonShapes(),
   annotations:[{xref:'paper',yref:'paper',x:0,y:.035,text:'觀測',showarrow:false,xanchor:'right',xshift:-12,font:{size:10,color:'#8fabb8'}}],
   uirevision:globalRevision + ':' + station.id + ':time'
 }; }
 
 function plotConfig() {
   const resetButton = {name:'重設視圖',icon:Plotly.Icons.home,click:resetView};
-  return {responsive:true,displaylogo:false,displayModeBar:'hover',scrollZoom:false,doubleClick:false,locale:'zh-tw',modeBarButtons:[['zoom2d','pan2d'],['zoomIn2d','zoomOut2d',resetButton],[{name:'下載 PNG',icon:Plotly.Icons.camera,click:exportPNG}]]};
+  const zoomInButton = {name:'放大',icon:Plotly.Icons.zoom_plus,click:graph => zoomPlot(graph,.7).catch(reportChartError)};
+  const zoomOutButton = {name:'縮小',icon:Plotly.Icons.zoom_minus,click:graph => zoomPlot(graph,1/.7).catch(reportChartError)};
+  return {responsive:true,displaylogo:false,displayModeBar:touchInput.matches ? false : 'hover',scrollZoom:false,doubleClick:false,locale:'zh-tw',modeBarButtons:[['zoom2d','pan2d'],[zoomInButton,zoomOutButton,resetButton],[{name:'下載 PNG',icon:Plotly.Icons.camera,click:exportPNG}]]};
 }
 
 const graphs = [chart];
+const touchGestures = new WeakMap();
+for(const graph of [chart,ratioChart]) {
+  const gesture = {active:false,id:null,x:0,y:0,moved:false,suppressUntil:0};
+  touchGestures.set(graph,gesture);
+  graph.addEventListener('pointerdown',event => {
+    if(event.pointerType !== 'touch') {gesture.active=false;gesture.suppressUntil=0;return;}
+    if(gesture.active) {gesture.moved=true;gesture.suppressUntil=performance.now()+600;return;}
+    Object.assign(gesture,{active:true,id:event.pointerId,x:event.clientX,y:event.clientY,moved:false,suppressUntil:0});
+  },{capture:true,passive:true});
+  graph.addEventListener('pointermove',event => {
+    if(gesture.active && event.pointerId === gesture.id && Math.hypot(event.clientX-gesture.x,event.clientY-gesture.y)>8) {
+      gesture.moved = true;
+      gesture.suppressUntil = performance.now()+600;
+    }
+  },{capture:true,passive:true});
+  graph.addEventListener('pointerup',event => {
+    if(event.pointerId !== gesture.id) return;
+    if(gesture.moved) gesture.suppressUntil=performance.now()+600;
+    gesture.active=false;
+  },{capture:true,passive:true});
+  graph.addEventListener('pointercancel',() => {
+    gesture.active=false;gesture.moved=true;gesture.suppressUntil=performance.now()+600;
+  },{capture:true,passive:true});
+}
+window.addEventListener('scroll',() => {
+  for(const graph of [chart,ratioChart]) {
+    const gesture = touchGestures.get(graph);
+    if(gesture.active) {gesture.moved=true;gesture.suppressUntil=performance.now()+600;}
+  }
+},{capture:true,passive:true});
+
+touchInput.addEventListener('change',async () => {
+  document.documentElement.classList.toggle('touch-charts',touchInput.matches);
+  if(!ready) return;
+  try {
+    await refreshGrowth();
+    if(hasRatio) await Plotly.react(ratioChart,ratioTraces(),makeRatioLayout(),plotConfig());
+    for(const graph of graphs) await Plotly.relayout(graph,{dragmode:touchInput.matches ? false : 'zoom'});
+  } catch(error) { reportChartError(error); }
+});
+
+function scaledRange(range,factor,isTime = false) {
+  if(!range || range.length !== 2) return null;
+  const values = range.map(value => isTime ? clockMillis(value) : value);
+  if(!values.every(Number.isFinite)) return null;
+  const center = (values[0]+values[1])/2, half = (values[1]-values[0])*factor/2;
+  const next = [center-half,center+half];
+  return isTime ? next.map(value => new Date(value).toISOString().slice(0,23)) : next;
+}
+
+function zoomPlot(graph,factor) {
+  const layout = graph._fullLayout;
+  if(!layout) return Promise.resolve();
+  const x = scaledRange(layout.xaxis.range,factor,graph === chart);
+  const y = scaledRange(layout.yaxis.range,factor);
+  if(!x || !y) return Promise.resolve();
+  return Plotly.relayout(graph,{'xaxis.range':x,'xaxis.autorange':false,'yaxis.range':y,'yaxis.autorange':false});
+}
+
+let rightZoom = null, suppressRatioMenuUntil = 0;
+function cancelRightZoom() {
+  if(!rightZoom) return;
+  const {box,id} = rightZoom;
+  rightZoom = null;
+  box.remove();
+  if(ratioChart.hasPointerCapture(id)) ratioChart.releasePointerCapture(id);
+}
+
+ratioChart.addEventListener('pointerdown',event => {
+  const target = event.target.closest?.('.nsewdrag');
+  if(!ready || event.pointerType !== 'mouse' || event.button !== 2 || !target) return;
+  event.stopImmediatePropagation();
+  cancelRightZoom();
+  suppressRatioMenuUntil = 0;
+  const bounds = target.getBoundingClientRect(), graphBounds = ratioChart.getBoundingClientRect();
+  const box = document.createElement('div');
+  box.className = 'zoom-out-box';
+  box.textContent = '縮小';
+  box.hidden = true;
+  box.setAttribute('aria-hidden','true');
+  ratioChart.append(box);
+  rightZoom = {id:event.pointerId,box,bounds,left:bounds.left-graphBounds.left,top:bounds.top-graphBounds.top,
+    x:event.clientX-bounds.left,y:event.clientY-bounds.top,moved:false,
+    xRange:[...ratioChart._fullLayout.xaxis.range],yRange:[...ratioChart._fullLayout.yaxis.range]};
+  ratioChart.setPointerCapture(event.pointerId);
+},true);
+// Plotly handles mouse events separately; keep a right drag out of its left-drag zoom handler.
+ratioChart.addEventListener('mousedown',event => {
+  if(event.button === 2 && rightZoom) {event.preventDefault();event.stopImmediatePropagation();}
+},true);
+ratioChart.addEventListener('pointermove',event => {
+  if(!rightZoom || event.pointerId !== rightZoom.id) return;
+  const state = rightZoom;
+  const x = Math.max(0,Math.min(state.bounds.width,event.clientX-state.bounds.left));
+  const y = Math.max(0,Math.min(state.bounds.height,event.clientY-state.bounds.top));
+  const width = Math.abs(x-state.x), height = Math.abs(y-state.y);
+  state.moved = width >= 8 && height >= 8;
+  state.box.hidden = !state.moved;
+  Object.assign(state.box.style,{left:state.left+Math.min(x,state.x)+'px',top:state.top+Math.min(y,state.y)+'px',width:width+'px',height:height+'px'});
+});
+ratioChart.addEventListener('pointerup',event => {
+  if(!rightZoom || event.pointerId !== rightZoom.id || event.button !== 2) return;
+  const state = rightZoom;
+  const x = Math.max(0,Math.min(state.bounds.width,event.clientX-state.bounds.left));
+  const y = Math.max(0,Math.min(state.bounds.height,event.clientY-state.bounds.top));
+  cancelRightZoom();
+  if(Math.abs(x-state.x) < 8 || Math.abs(y-state.y) < 8) return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  suppressRatioMenuUntil = performance.now()+600;
+  touchGestures.get(ratioChart).suppressUntil = suppressRatioMenuUntil;
+  // Map the current view into the drawn rectangle, the inverse of box zoom-in.
+  const xSpan = (state.xRange[1]-state.xRange[0])*state.bounds.width/Math.abs(x-state.x);
+  const ySpan = (state.yRange[1]-state.yRange[0])*state.bounds.height/Math.abs(y-state.y);
+  const xMin = state.xRange[0]-Math.min(x,state.x)/state.bounds.width*xSpan;
+  const yMin = state.yRange[0]-(1-Math.max(y,state.y)/state.bounds.height)*ySpan;
+  Plotly.relayout(ratioChart,{'xaxis.range':[xMin,xMin+xSpan],'xaxis.autorange':false,
+    'yaxis.range':[yMin,yMin+ySpan],'yaxis.autorange':false}).catch(reportChartError);
+});
+ratioChart.addEventListener('contextmenu',event => {
+  if(rightZoom?.moved || performance.now() < suppressRatioMenuUntil) event.preventDefault();
+});
+ratioChart.addEventListener('pointercancel',cancelRightZoom);
+ratioChart.addEventListener('lostpointercapture',cancelRightZoom);
+document.addEventListener('keydown',event => {if(event.key === 'Escape') cancelRightZoom();});
+window.addEventListener('blur',cancelRightZoom);
+window.addEventListener('resize',cancelRightZoom);
+window.addEventListener('scroll',cancelRightZoom,{capture:true,passive:true});
+
+for(const button of document.querySelectorAll('.chart-tools button')) button.addEventListener('click',async () => {
+  if(!ready) return;
+  const graph = document.getElementById(button.dataset.graph);
+  try {
+    if(button.dataset.action === 'png') await exportPNG(graph);
+    else if(button.dataset.action === 'reset') await resetView(graph);
+    else await zoomPlot(graph,button.dataset.action === 'in' ? .7 : 1/.7);
+  } catch(error) { reportChartError(error); }
+});
 
 function syncGraphs() {
   graphs.splice(0, graphs.length, ...(hasRatio ? [chart, ratioChart] : [chart]));
 }
 
 function mountPlots() {
+  cancelRightZoom();
   if (!currentStation) {
     loadStatus.hidden = true;
     chart.setAttribute('aria-busy','false');
@@ -937,6 +1277,8 @@ function mountPlots() {
         graph.removeAllListeners('plotly_restyle');
       }
       graph.on('plotly_click', event => {
+        const gesture = touchGestures.get(graph);
+        if(gesture && (gesture.active && gesture.moved || performance.now() < gesture.suppressUntil)) return;
         const point = event.points[0];
         const detail = point?.customdata;
         if (!detail) return;
@@ -948,12 +1290,12 @@ function mountPlots() {
           if (sourceId && detail[voteSlots + 3] !== undefined) selectIdentity(sourceId, String(detail[voteSlots + 3]));
         }
       });
-      graph.on('plotly_doubleclick', () => resetView(graph).catch(reportChartError));
+      graph.on('plotly_doubleclick', () => {if(!touchInput.matches) resetView(graph).catch(reportChartError);});
       graph.on('plotly_relayout', changes => syncRange(graph, changes));
       graph.on('plotly_restyle', changes => rememberLegend(graph,changes));
     }
     await refreshGrowth();
-    selectObservation(current);
+    renderCurrentObservation({preserveComparisonTime:true});
     document.documentElement.dataset.chartReady = 'true';
     loadStatus.hidden = true;
   }).catch(error => {loadStatus.hidden=true;chart.setAttribute('aria-busy','false');chart.textContent = '圖表載入失敗：' + error.message;chart.className='load-error';document.documentElement.dataset.chartError=error.message;});
@@ -963,7 +1305,7 @@ renderYearTabs();
 initElectionState();
 if (currentStation) {
   renderStation();
-  selectObservation(current);
+  renderCurrentObservation();
   mountPlots();
 } else showActiveElection();
 
@@ -985,7 +1327,8 @@ function makeRatioLayout() {
   layout.yaxis.tickformat = '.0f';
   layout.yaxis.range = [...ratioYRange];
   layout.yaxis.autorange = false;
-  [layout.yaxis.minallowed,layout.yaxis.maxallowed] = shareBounds();
+  layout.yaxis.minallowed = 0;
+  layout.yaxis.maxallowed = 100;
   layout.yaxis.rangemode = 'normal';
   layout.yaxis.ticksuffix = '%';
   layout.margin.l = 72;
@@ -1033,9 +1376,9 @@ function syncRange(source,changes) {
   const update = {};
   if(['yaxis.range','yaxis.range[0]','yaxis.range[1]','yaxis.autorange'].some(key => Object.hasOwn(changes,key))) {
     if(source === ratioChart) {
-      const bounds = shareBounds();
+      const bounds = [0,100];
       const automatic = Object.hasOwn(changes,'yaxis.autorange') && changes['yaxis.autorange'] !== false;
-      const requested = automatic ? bounds : changes['yaxis.range'] ||
+      const requested = automatic ? shareBounds() : changes['yaxis.range'] ||
         [changes['yaxis.range[0]'] ?? ratioYRange[0],changes['yaxis.range[1]'] ?? ratioYRange[1]];
       const ordered = ascendingAxisRange(requested);
       ratioYRange = ordered ? ordered.map(value => Math.max(bounds[0],Math.min(bounds[1],value))) : [...bounds];
@@ -1103,8 +1446,8 @@ for(const graph of graphs) observer.observe(graph);
 
 function updateAxisNotice() {
   const note = document.getElementById('axis-empty-note');
-  const unconfirmed = observations.filter(row => row.observationEligibility === 'unconfirmed_template').length;
-  const readable = observations.filter(row => hasReadableVotes(row) && row.observationEligibility !== 'unconfirmed_template');
+  const unconfirmed = observations.filter(row => isPrimaryPresentation(row) && row.observationEligibility === 'unconfirmed_template').length;
+  const readable = observations.filter(row => isPrimaryPresentation(row) && hasReadableVotes(row) && row.observationEligibility !== 'unconfirmed_template');
   const missingClock = readable.filter(row => rowAxisX(row) === null).length;
   const fallbackClock = readable.filter(row => rowAxisX(row) !== null && isUnverifiedLiveStart(row)).length;
   const estimatedClock = readable.filter(row => rowAxisX(row) !== null && row.timeEstimate && !isUnverifiedLiveStart(row)).length;
@@ -1164,7 +1507,7 @@ frameDialog.addEventListener('keydown', event => {
 });
 document.getElementById('frame-zoom').addEventListener('click', () => {
   const image = document.getElementById('frame-image');
-  if(!image.getAttribute('src')) return;
+  if(selectionState.dataset.frameState !== 'ready' || !image.getAttribute('src')) return;
   const full = document.getElementById('frame-full-image');
   full.src = image.src; full.alt = image.alt;
   document.getElementById('frame-full-caption').textContent = document.getElementById('frame-caption').textContent;

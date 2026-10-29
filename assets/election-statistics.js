@@ -142,7 +142,7 @@
   }
 
   function buildRecords(payload, archive = global.ElectionArchive) {
-    if (!archive || typeof archive.trendSummary !== 'function' || typeof archive.rowAxisX !== 'function' || typeof archive.isAnalysisEligible !== 'function') throw new Error('需要先載入 ElectionArchive 統計共用函數。');
+    if (!archive || typeof archive.trendSummary !== 'function' || typeof archive.rowAxisX !== 'function' || typeof archive.isPrimaryPresentation !== 'function') throw new Error('需要先載入 ElectionArchive 統計共用函數。');
     const elections = payload.elections || {[payload.electionYear || '']: payload};
     const records = [];
     for (const [year, election] of Object.entries(elections)) {
@@ -161,7 +161,7 @@
           const complete = [];
           const readable = [];
           for (const row of station.observations || []) {
-            if (!archive.isAnalysisEligible(row)) continue;
+            if (!archive.isPrimaryPresentation(row)) continue;
             const time = timeDetails(row, context.electionDate, archive);
             if (candidates.some(candidate => Number.isSafeInteger(row.votes?.[candidate.id]) && row.votes[candidate.id] >= 0)) readable.push(time);
             const votes = completeVotes(row, candidates, archive);
