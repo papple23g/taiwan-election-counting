@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://papple23g.com/sitemap.xml
+Sitemap: https://taiwan-votetrace.papple23g.com/sitemap.xml
