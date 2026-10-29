@@ -1,0 +1,32 @@
+name: 網站問題
+description: 回報操作、版面或載入問題
+title: "[網站問題] "
+body:
+  - type: markdown
+    attributes:
+      value: "回報內容會公開，請先遮蔽截圖中的個人資訊。"
+  - type: textarea
+    id: steps
+    attributes:
+      label: 重現步驟
+      description: 請附頁面網址，以及相關的年份、選區、來源或統計篩選條件。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 預期結果
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 實際結果
+      description: 可附截圖或錯誤訊息，但請勿提供敏感資料。
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 裝置與瀏覽器
+      placeholder: 例如：Windows 10 / Chrome、Android / Chrome

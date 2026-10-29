@@ -1,6 +1,7 @@
 (function (global) {
   'use strict';
 
+  const minimumCompleteCount = 10;
   const broadcasterAliases = {
     pts: ['pts', '公視'], pts_2016: ['pts', '公視'], pts_2020: ['pts', '公視'], pts_2018: ['pts', '公視'], pts2014: ['pts', '公視'],
     cts: ['cts', '華視'], cts_2020: ['cts', '華視'], cts17_2018: ['cts', '華視'],
@@ -22,6 +23,12 @@
     if (!sorted.length) return null;
     const middle = Math.floor(sorted.length / 2);
     return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2;
+  }
+
+  function nearestRank(values, fraction) {
+    if (!Number.isFinite(fraction) || fraction <= 0 || fraction > 1) return null;
+    const sorted = values.filter(Number.isFinite).slice().sort((left, right) => left - right);
+    return sorted.length ? sorted[Math.ceil(fraction * sorted.length) - 1] : null;
   }
 
   function mean(values) {
@@ -169,7 +176,11 @@
               offset: Number.isFinite(row.videoOffset) && row.videoOffset >= 0 ? row.videoOffset : null});
           }
           const clocks = readable.filter(time => time.millis !== null).sort((left, right) => left.millis - right.millis);
-          const result = findThreshold(complete, context, station, winner);
+          const originalResult = findThreshold(complete, context, station, winner);
+          const excluded = complete.length < minimumCompleteCount;
+          const result = excluded
+            ? {status: 'excluded', reason: '完整票組少於 ' + minimumCompleteCount + ' 筆，未納入統計。' + (originalResult.status === 'confirmed' ? '' : ' ' + originalResult.reason), threshold: null}
+            : originalResult;
           const query = new URLSearchParams({year, ...(mayor ? {county: String(countyId)} : {}), source: station.id});
           records.push({key: JSON.stringify([year, countyId, station.id]), year,
             yearLabel: Number.parseInt(year, 10) + ' 年' + (mayor ? '縣市首長' : '總統') + '選舉',
@@ -179,7 +190,8 @@
             winnerName: winner?.candidate.name || winner?.candidate.id || null,
             completeCount: complete.length, readableCount: readable.length,
             coverageStart: clocks[0]?.time || null, coverageEnd: clocks[clocks.length - 1]?.time || null,
-            ...result, error: archive.trendSummary(context, station), curveHref: 'index.html?' + query.toString()});
+            ...result, excludedFrames: excluded ? complete.map(item => item.row.frameHref).filter(Boolean) : [],
+            error: archive.trendSummary(context, station), curveHref: 'index.html?' + query.toString()});
         }
       }
     }
@@ -196,7 +208,7 @@
       }
       entry.entries.push(record);
       entry.isReference ||= record.isReference === true;
-      if (!Number.isFinite(record.error?.value)) continue;
+      if (record.status === 'excluded' || !Number.isFinite(record.error?.value)) continue;
       const raceKey = JSON.stringify([record.year, record.countyId]);
       let race = entry.races.get(raceKey);
       if (!race) { race = {year: record.year, values: [], coverages: []}; entry.races.set(raceKey, race); }
@@ -219,5 +231,5 @@
     return ranked;
   }
 
-  global.ElectionStatistics = Object.freeze({buildRecords, aggregateRankings, median});
+  global.ElectionStatistics = Object.freeze({buildRecords, aggregateRankings, median, nearestRank});
 })(typeof window === 'undefined' ? globalThis : window);

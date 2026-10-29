@@ -4,30 +4,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>開票研究｜歷屆選舉開票曲線與統計</title>
-<meta name="description" content="整理臺灣歷屆選舉的公開開票資料與影音畫面，比較各來源的開票曲線、得票率走勢與領先穩定時間，並保留原始影格供研究查核。">
+<meta name="description" content="從歷屆總統選舉與六都市長選舉的開票畫面，看各來源的票數變化，並回查原始截圖。">
 <link rel="canonical" href="https://taiwan-votetrace.papple23g.com/">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:site_name" content="開票研究">
 <meta property="og:title" content="開票研究｜歷屆選舉開票曲線與統計">
-<meta property="og:description" content="比較臺灣歷屆選舉的開票曲線、得票率走勢與領先穩定時間，透過原始影格回查公開資料。">
+<meta property="og:description" content="從歷屆總統選舉與六都市長選舉的開票畫面，看各來源的票數變化，並回查原始截圖。">
 <meta property="og:url" content="https://taiwan-votetrace.papple23g.com/">
 <meta property="og:image" content="https://taiwan-votetrace.papple23g.com/assets/social-preview.png">
 <meta property="og:image:alt" content="開票研究：歷屆選舉開票曲線與統計">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="開票研究｜歷屆選舉開票曲線與統計">
-<meta name="twitter:description" content="比較臺灣歷屆選舉的開票曲線、得票率走勢與領先穩定時間，透過原始影格回查公開資料。">
+<meta name="twitter:description" content="從歷屆總統選舉與六都市長選舉的開票畫面，看各來源的票數變化，並回查原始截圖。">
 <meta name="twitter:image" content="https://taiwan-votetrace.papple23g.com/assets/social-preview.png">
 <meta name="twitter:image:alt" content="開票研究：歷屆選舉開票曲線與統計">
 <style>
 :root{color-scheme:dark;--bg:#121619;--surface:#1c2429;--text:#edf2f4;--muted:#a8b7be;--border:#3d4b52;--focus:#edc46a}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.6 "Microsoft JhengHei","PingFang TC",sans-serif;letter-spacing:0}a{color:#91d5f1;text-underline-offset:4px;overflow-wrap:anywhere}button,select,input{font:inherit}button,select{color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:4px;min-height:40px}button{cursor:pointer}button:hover{background:#29363d}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,#chart:focus-visible{outline:2px solid var(--focus);outline-offset:4px}button:disabled{opacity:.35;cursor:default}
 .page{width:min(100%,1360px);margin:auto;padding:26px 30px 40px}
-.election-nav{display:flex;gap:8px;overflow-x:auto;padding:0 0 12px;margin:0 0 16px;border-bottom:1px solid var(--border);scrollbar-width:thin}
-.year-tab{background:var(--surface);color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:500;white-space:nowrap;transition:all .15s ease;cursor:pointer}
+.election-nav{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0 0 24px}
+.year-tab{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:5px;padding:6px 12px;font-size:13px;font-weight:500;white-space:nowrap;text-decoration:none;transition:background .15s ease,color .15s ease,border-color .15s ease;cursor:pointer}
 .year-tab:hover{color:var(--text);border-color:#5a6e78;background:#25333a}
-.year-tab.active{background:#223740;color:#edc46a;border-color:#edc46a;font-weight:600}
+.year-tab.active{background:#25363d;color:#edc46a;border-color:#edc46a;font-weight:600}
 header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;border-bottom:1px solid var(--border);padding-bottom:18px}.eyebrow{font-size:12px;color:#91d5f1;margin:0 0 4px}h1{font-size:26px;line-height:1.4;margin:0}header p{color:var(--muted);margin:8px 0 0}nav{display:flex;gap:20px;font-size:13px;padding-top:5px;white-space:nowrap}.summary{display:flex;flex-wrap:wrap;gap:6px 24px;color:var(--muted);margin:15px 0 0;font-size:13px}.summary strong{color:var(--text);font-weight:600}.candidates{display:flex;gap:12px 24px;flex-wrap:wrap;border:0;padding:0;margin:0}.candidates label{display:flex;align-items:center;gap:8px;min-height:36px;cursor:pointer}.candidates input{width:17px;height:17px;margin:0;accent-color:var(--candidate-color)}.swatch{display:inline-block;width:20px;height:3px;background:var(--candidate-color)}
 #chart{height:480px;width:100%;margin-top:2px}.point-band{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:28px;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.point-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.point-controls h2{font-size:16px;margin:0 6px 0 0}.point-controls select{padding:4px 10px;max-width:100%;min-width:180px}.point-controls .icon{width:40px;height:40px;font-size:21px;line-height:1;padding:0}.counter{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}.votes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:16px 0 10px}.votes dt{font-size:13px;color:var(--muted);border-left:3px solid var(--candidate-color);padding-left:8px}.votes dd{font-size:25px;line-height:1.4;font-variant-numeric:tabular-nums;margin:5px 0 0}.votes small{font-size:12px;color:var(--muted);margin-left:5px}.point-status{margin:0;color:var(--muted);font-size:12px}.frame{margin:0;min-width:0}.frame img{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#090c0e;border:1px solid var(--border)}.frame figcaption{margin-top:6px;font-size:12px;color:var(--muted)}.frame a{display:block}.notes{font-size:12px;color:var(--muted);margin:14px 0 22px}.table-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 8px}.table-heading h2{font-size:17px;margin:0}.table-heading a{font-size:12px}.table-wrap{width:100%;overflow:auto}table{width:100%;border-collapse:collapse;text-align:left;font-size:13px;font-variant-numeric:tabular-nums}th{font-weight:400;color:var(--muted);border-bottom:1px solid var(--border);padding:10px 12px}td{padding:9px 12px;border-bottom:1px solid #29343b}tr[aria-current=true]{background:#25343d}td.numeric,th.numeric{text-align:right}.row-time{border:0;background:none;padding:0;min-height:28px;color:#91d5f1;text-decoration:underline;text-underline-offset:4px;text-align:left}.row-time:hover{background:none;color:#fff}.row-status{color:var(--muted);font-size:12px}.row-status.incomplete{color:#edc46a}footer{margin-top:18px;color:var(--muted);font-size:11px;overflow-wrap:anywhere}.load-error{color:#f3a19b;padding:30px 0}.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 @media(max-width:700px){.page{padding:20px 16px 30px}header{display:block}h1{font-size:23px}nav{margin-top:12px}.summary{gap:4px 16px}.candidates{gap:8px 18px}.candidates label{font-size:13px}#chart{height:400px}.point-band{grid-template-columns:1fr;gap:16px}.point-controls{gap:8px}.point-controls h2{width:100%}.point-controls select{min-width:160px;flex:1}.votes{gap:12px}.votes dd{font-size:23px}.frame{max-width:300px}.frame a{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:center;text-decoration:none}.frame img{width:100px}.frame figcaption{margin:0}.table-wrap{overflow:visible}th,td{padding:9px 5px;font-size:12px}.frame-column{display:none}.row-status{font-size:11px}.table-heading h2{font-size:16px}}
@@ -41,20 +41,17 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 .votes{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
 #chart.empty-chart{height:auto;min-height:80px;padding:20px 0;color:var(--muted)}
 .skip-link{position:fixed;left:16px;top:-80px;z-index:60;background:var(--surface);padding:10px 18px}.skip-link:focus{top:12px}
-.election-sidebar .election-nav[hidden]{display:none}
 .ratio-explanation{font-size:12px;color:var(--muted);margin:8px 0 0;line-height:1.7}
 .js-plotly-plot .modebar-btn{padding:5px;line-height:16px}.js-plotly-plot .modebar-btn svg.icon{width:16px;height:16px;font-size:16px}
 #chart:focus-within .modebar-group,#ratio-chart:focus-within .modebar-group{opacity:1!important}
 .chart-tools{display:none;flex-wrap:wrap;gap:8px;margin:8px 0}.chart-tools button{min-width:60px;min-height:44px;padding:6px 12px;font-size:16px}.touch-charts .chart-tools{display:flex}.touch-charts .js-plotly-plot,.touch-charts .draglayer .nsewdrag{touch-action:pan-y pinch-zoom}.touch-charts .draglayer .drag:not(.nsewdrag){pointer-events:none!important}.touch-charts .draglayer .nsewdrag{cursor:default!important}.chart-tools[hidden]{display:none}
-.election-menu svg{width:20px;height:20px;flex:none}
-.election-sidebar{position:fixed;inset:0 auto 0 0;width:208px;padding:28px 16px;background:#171e23;border-right:1px solid var(--border);overflow-y:auto;z-index:40}.sidebar-heading{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:18px}.sidebar-heading button{display:none}.election-sidebar .election-nav{display:flex;flex-direction:column;gap:6px;border:0;margin:0;padding:0;overflow:visible}.election-sidebar .year-tab{width:100%;white-space:normal;text-align:left;border-radius:5px;padding:10px 12px;min-height:44px}.election-sidebar .year-tab.active{border-left:3px solid var(--focus)}.election-sidebar ~ .page{width:calc(100% - 208px);max-width:1360px;margin:0 auto 0 208px;min-width:0}.election-menu,.nav-backdrop{display:none}
 .chart-workspace{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);column-gap:30px;align-items:start}.growth-panel{min-width:0}.chart-workspace>.ratio-section{grid-column:1;grid-row:2;min-width:0}.source-strip{grid-column:2;grid-row:1;position:static;display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:16px 0 0;margin:0;max-width:none}.source-strip .frame-zoom{width:100%;padding:0;border:0;border-radius:2px;min-height:0;cursor:zoom-in;background:none}.source-strip .frame-zoom[hidden]{display:none}.source-strip img{width:100%;height:auto}.source-strip figcaption{margin:0;min-width:0}.source-strip #frame-link{display:flex;align-items:flex-start;gap:9px;font-size:12px}.youtube-icon{width:24px;height:18px;flex:none;margin-top:2px}.source-strip[hidden],.source-strip a[hidden]{display:none}.ratio-section{margin-top:8px;padding-top:16px}.ratio-legend{margin-top:10px}.axis-empty-note{margin:8px 0 16px;color:var(--muted)}.axis-empty-note button{padding:4px 12px;margin-left:8px}
 .error-section{grid-column:2;grid-row:2;min-width:0;margin-top:8px;padding-top:16px;border-top:1px solid var(--border)}.error-table th:first-child{width:60%}.error-table th.numeric{width:40%}.error-table td:first-child{overflow-wrap:anywhere}.error-sort{padding:0 4px;border:0;background:none;color:inherit;white-space:nowrap}.error-sort:hover{background:var(--surface);color:var(--text)}.error-note{margin:12px 0 0;color:var(--muted);font-size:12px;line-height:1.7}.error-empty{color:var(--muted);text-align:center}
-.frame-dialog{position:fixed;max-width:96vw;width:fit-content;max-height:96vh;padding:44px 14px 12px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);overflow:auto}.frame-dialog::backdrop{background:#000c}.frame-dialog img{display:block;max-width:calc(96vw - 30px);max-height:calc(96vh - 120px);object-fit:contain;margin:auto}.frame-dialog p{font-size:12px;margin:8px 0 0;max-width:1000px}.dialog-close{position:absolute;right:8px;top:4px;width:40px;font-size:25px}.nav-open{overflow:hidden}
-@media(max-width:1023px){.election-sidebar ~ .page{width:100%;margin:0 auto;padding-top:12px}.election-menu{display:flex;align-items:center;gap:8px;margin:16px 0 0 30px;padding:6px 14px;min-width:44px;min-height:44px}.election-sidebar{visibility:hidden;transform:translateX(-100%);width:min(280px,85vw)}.election-sidebar.open{visibility:visible;transform:translateX(0)}.sidebar-heading button{display:block;width:44px;font-size:24px}.nav-backdrop:not([hidden]){display:block;position:fixed;inset:0;background:#0009;z-index:39}}
-@media(max-width:700px){.election-menu{margin-left:16px}.chart-workspace{grid-template-columns:minmax(0,1fr)}.chart-workspace>.ratio-section,.source-strip,.error-section{grid-column:1;grid-row:auto}.source-strip{padding:12px 0}.source-strip .frame-zoom,.source-strip .frame-zoom img{width:100%}.source-strip #frame-link{display:flex}.source-strip figcaption{font-size:12px}}
+.frame-dialog{position:fixed;max-width:96vw;width:fit-content;max-height:96vh;padding:44px 14px 12px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);overflow:auto}.frame-dialog::backdrop{background:#000c}.frame-dialog img{display:block;max-width:calc(96vw - 30px);max-height:calc(96vh - 120px);object-fit:contain;margin:auto}.frame-dialog p{font-size:12px;margin:8px 0 0;max-width:1000px}.dialog-close{position:absolute;right:8px;top:4px;width:40px;font-size:25px}
+@media(max-width:700px){.chart-workspace{grid-template-columns:minmax(0,1fr)}.chart-workspace>.ratio-section,.source-strip,.error-section{grid-column:1;grid-row:auto}.source-strip{padding:12px 0}.source-strip .frame-zoom,.source-strip .frame-zoom img{width:100%}.source-strip #frame-link{display:flex}.source-strip figcaption{font-size:12px}}
 
-.source-controls{margin:16px 0 20px;min-width:0}.source-controls h2{font-size:16px;margin:0 0 10px}.source-fields{display:flex;align-items:end;gap:12px;flex-wrap:wrap}.source-field{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1 1 180px}.source-field label{color:var(--muted);font-size:13px}.source-field select{width:100%;min-height:44px;min-width:0;padding:6px 10px;font-size:16px}.source-field select:disabled{opacity:.65}.channel-controls{display:flex;gap:8px}.channel-controls button{min-height:44px;padding:6px 14px;font-size:16px}.source-help{font-size:12px;color:var(--muted);margin:8px 0 0}.sidebar-analysis{display:block;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}.sidebar-analysis a{display:block;min-height:44px;padding:10px 12px;border:1px solid var(--border);border-radius:5px;text-decoration:none;font-size:13px;background:var(--surface)}.sidebar-analysis a:hover{background:#25333a;color:#fff}
+.source-controls{margin:16px 0 20px;min-width:0}.source-controls h2{font-size:16px;margin:0 0 10px}.source-fields{display:flex;align-items:end;gap:12px;flex-wrap:wrap}.source-field{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1 1 180px}.source-field label{color:var(--muted);font-size:13px}.source-field select{width:100%;min-height:44px;min-width:0;padding:6px 10px;font-size:16px}.source-field select:disabled{opacity:.65}.channel-controls{display:flex;gap:8px}.channel-controls button{min-height:44px;padding:6px 14px;font-size:16px}.source-help{font-size:12px;color:var(--muted);margin:8px 0 0}
+.site-intro{font-size:14px;color:var(--muted);margin:10px 0;line-height:1.7}.source-controls .source-help{font-size:13px;line-height:1.7}
 .frame-times{margin:0;font-size:13px;font-variant-numeric:tabular-nums}.frame-times>div{display:flex;gap:8px;flex-wrap:wrap}.frame-times dt{color:var(--muted);min-width:4em}.frame-times dd{margin:0;overflow-wrap:anywhere}.channel-screen{position:relative;aspect-ratio:16/9;width:100%;overflow:hidden;background:#090c0e;border:1px solid var(--border);border-radius:3px}.channel-screen .frame-zoom{height:100%}.channel-screen .frame-zoom img{height:100%;aspect-ratio:auto;border:0;object-fit:contain}.frame-status{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;text-align:center;color:var(--muted)}.frame-status button{min-height:44px;padding:6px 14px}.frame-status[hidden],.frame-status button[hidden]{display:none}.channel-label{display:none;position:absolute;inset:12px 12px auto auto;padding:3px 8px;max-width:calc(100% - 24px);background:#121619e6;color:var(--text);font-size:13px;pointer-events:none}.changing-channel .channel-label{display:block}
 @media(max-width:700px){.source-field{flex-basis:100%}.channel-controls{width:100%}.channel-controls button{flex:1}.source-controls{margin-top:12px}}
 
@@ -74,20 +71,15 @@ header>div,.point-band>div{min-width:0}nav{flex-wrap:wrap;white-space:normal}.po
 </head>
 <body>
 <a class="skip-link" href="#growth-title">跳到圖表</a>
-<button type="button" id="election-menu" class="election-menu" aria-controls="election-sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>選單</span></button>
-<div id="nav-backdrop" class="nav-backdrop" hidden></div>
-<aside id="election-sidebar" class="election-sidebar" aria-label="選舉與統計導覽">
-<div class="sidebar-heading"><span>選擇選舉</span><button type="button" id="close-election-menu" aria-label="關閉導覽選單">×</button></div>
-<nav class="election-nav" id="election-nav" aria-label="選擇選舉" hidden></nav>
-<nav class="sidebar-analysis" aria-label="開票分析"><a href="statistics.html">開票統計</a></nav>
-</aside>
 <main class="page">
-<header><div><p class="eyebrow" id="eyebrow">總統大選</p><h1 id="growth-title" tabindex="-1">開票曲線</h1><p id="time-span"></p></div><nav aria-label="圖表導覽"><a href="statistics.html">開票統計</a><a id="ratio-nav" href="#ratio-section" hidden>走勢偏差</a></nav></header>
+<nav id="election-nav" class="election-nav" aria-label="選舉年份與開票統計"><a class="year-tab" href="statistics.html">開票統計</a></nav>
+<header><div><p class="eyebrow" id="eyebrow">總統大選</p><h1 id="growth-title" tabindex="-1">開票曲線</h1><p id="time-span"></p></div><nav aria-label="圖表導覽"><a id="ratio-nav" href="#ratio-section" hidden>走勢偏差</a></nav></header>
+<p class="site-intro">本站整理 2012–2024 年總統選舉與 2014–2022 年六都市長選舉的開票畫面。點選曲線上的圓點可查看截圖；無法辨識的票數不代表零票。</p>
 <p id="curve-load-status" class="load-status" role="status" aria-live="polite">正在載入開票資料與圖表…</p>
 <section class="source-controls" aria-labelledby="source-controls-title">
 <h2 id="source-controls-title">選擇開票資料</h2>
 <div class="source-fields"><div class="source-field"><label for="county-select">選區</label><select id="county-select" disabled><option>正在載入…</option></select></div><div class="source-field"><label for="source-select">電視台／資料來源</label><select id="source-select" disabled><option>正在載入…</option></select></div></div>
-<p class="source-help">轉台時保留比較時間，顯示該來源時間最接近的主要觀測截圖；時間差不設上限，請連同影格時間閱讀。點選觀測可設定新的比較時間。</p>
+<p class="source-help">點選曲線上的圓點可設定比較時間。轉台後會顯示最接近該時間的截圖，但可能相差很久，請留意截圖旁的時間差。</p>
 </section>
 <div class="chart-workspace">
 <div class="growth-panel">
@@ -566,9 +558,9 @@ function initElectionState() {
 }
 
 function renderYearTabs() {
-  if (!hasMultiElection) { electionNav.hidden = true; return; }
-  electionNav.hidden = false;
-  electionNav.replaceChildren();
+  if (!hasMultiElection) return;
+  const statisticsLink = electionNav.querySelector('a[href="statistics.html"]');
+  electionNav.querySelectorAll('button.year-tab').forEach(button => button.remove());
   for (const yr of electionYears) {
     const elData = masterData.elections[yr];
     const btn = document.createElement('button');
@@ -576,9 +568,11 @@ function renderYearTabs() {
     btn.className = 'year-tab' + (yr === currentYear ? ' active' : '');
     btn.dataset.year = yr;
     if (yr === currentYear) btn.setAttribute('aria-current', 'page');
-    btn.textContent = electionTitle(elData,yr);
-    btn.addEventListener('click', () => { switchElection(yr); setElectionMenu(false); document.getElementById('growth-title').focus(); });
-    electionNav.append(btn);
+    btn.setAttribute('aria-label', electionTitle(elData,yr));
+    const mayor = elData.kind === 'mayors' || Array.isArray(elData.counties) || String(yr).endsWith('-mayors');
+    btn.textContent = String(elData.electionYear || yr).match(/^\d{4}/)?.[0] + (mayor ? ' 市長' : ' 總統');
+    btn.addEventListener('click', () => switchElection(yr));
+    electionNav.insertBefore(btn, statisticsLink);
   }
 }
 
@@ -1468,36 +1462,6 @@ function updateAxisNotice() {
   document.getElementById('axis-empty-text').textContent = [timeNotice,estimateNotice,fallbackNotice,candidateNotice,completeNotice,unconfirmed ? '另有 ' + unconfirmed + ' 張比較介紹版型未確認為即時計票，未列入有效觀測。' : ''].filter(Boolean).join(' ');
 }
 
-const sidebar = document.getElementById('election-sidebar');
-const menuButton = document.getElementById('election-menu');
-const navBackdrop = document.getElementById('nav-backdrop');
-const desktopNavigation = window.matchMedia('(min-width:1024px)');
-function setElectionMenu(open) {
-  const active = open && !desktopNavigation.matches;
-  sidebar.classList.toggle('open', active);
-  sidebar.inert = !desktopNavigation.matches && !active;
-  sidebar.toggleAttribute('aria-modal', active);
-  if(active) sidebar.setAttribute('role', 'dialog');
-  else sidebar.removeAttribute('role');
-  menuButton.setAttribute('aria-expanded', String(active));
-  navBackdrop.hidden = !active;
-  document.body.classList.toggle('nav-open', active);
-  document.querySelector('main').inert = active;
-  if(active) sidebar.querySelector('button').focus();
-}
-menuButton.addEventListener('click', () => setElectionMenu(true));
-document.getElementById('close-election-menu').addEventListener('click', () => {setElectionMenu(false);menuButton.focus();});
-navBackdrop.addEventListener('click', () => {setElectionMenu(false);menuButton.focus();});
-desktopNavigation.addEventListener('change', () => setElectionMenu(false));
-setElectionMenu(false);
-sidebar.addEventListener('keydown', event => {
-  if(event.key === 'Escape') {setElectionMenu(false);menuButton.focus();}
-  if(event.key !== 'Tab' || !sidebar.classList.contains('open')) return;
-  const items = [...sidebar.querySelectorAll('button:not([disabled]),a[href]')];
-  const first = items[0], last = items.at(-1);
-  if(event.shiftKey && document.activeElement === first) {event.preventDefault();last.focus();}
-  else if(!event.shiftKey && document.activeElement === last) {event.preventDefault();first.focus();}
-});
 const frameDialog = document.getElementById('frame-dialog');
 frameDialog.addEventListener('keydown', event => {
   if(event.key === 'Tab') {

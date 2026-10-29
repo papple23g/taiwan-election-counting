@@ -1,0 +1,47 @@
+name: 資料更正
+description: 回報票數、時間、資料來源或統計結果的疑問
+title: "[資料更正] "
+body:
+  - type: markdown
+    attributes:
+      value: "回報內容會公開，請勿提供個人敏感資訊。請盡可能附上可公開查閱的佐證，以便核對。"
+  - type: input
+    id: election
+    attributes:
+      label: 選舉年份與類型
+      placeholder: 例如：2022 縣市長選舉
+    validations:
+      required: true
+  - type: input
+    id: district
+    attributes:
+      label: 選區
+      placeholder: 例如：臺北市、全國
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 播出來源或計票來源
+      description: 涵蓋多個來源或不適用時，請註明。
+    validations:
+      required: true
+  - type: input
+    id: observation
+    attributes:
+      label: 觀測時間或影格位置
+      description: 如可辨識，請提供畫面時間、影片位置或截圖位置；未知時不必猜測。
+  - type: textarea
+    id: correction
+    attributes:
+      label: 疑似錯誤與建議更正
+      description: 請說明網站目前顯示的內容與疑問。若涉及統計，請附篩選條件及顯示數值；更正值尚不確定時請註明。
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: 佐證與核對位置
+      description: 請提供可公開查閱的來源網址、影格或影片位置；來源無法開啟或未知時請註明。
+    validations:
+      required: true

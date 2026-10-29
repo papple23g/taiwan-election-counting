@@ -1,7 +1,13 @@
 (() => {
   'use strict';
 
-  const state = { year: 'all', county: 'all', view: 'progress', verifiedOnly: false, records: [], filtered: [], selectedBin: null, loaded: false };
+  const state = { year: 'all', county: 'all', view: 'progress', progressZoom: false, verifiedOnly: false, records: [], filtered: [], selectedBin: null, loaded: false };
+  const percentileSpecs = [
+    { id: 'p25', label: 'P25', fraction: .25, color: '#edc46a', dash: 'dot' },
+    { id: 'p50', label: 'P50（中位數）', fraction: .5, color: '#8de1b8', dash: 'solid' },
+    { id: 'p75', label: 'P75', fraction: .75, color: '#ffb79a', dash: 'dash' },
+    { id: 'p90', label: 'P90', fraction: .9, color: '#e6c5ff', dash: 'dashdot' }
+  ];
   const formatNumber = new Intl.NumberFormat('zh-TW', { maximumFractionDigits: 0 });
   let countyDefinitions = [];
   let plotly;
@@ -9,6 +15,9 @@
   let rendering = false;
   let pending = false;
   let pendingFull = false;
+  let pendingResize = false;
+  let pendingTimeChange = false;
+  let chartResizeObserver;
 
   const byId = id => document.getElementById(id);
   const finite = value => typeof value === 'number' && Number.isFinite(value);
@@ -19,9 +28,40 @@
   const yearName = record => record.yearLabel || String(record.year);
   const hasThreshold = record => Boolean(record.threshold);
   const thresholdRecords = records => records.filter(hasThreshold);
+  const hasRankingError = record => record.status !== 'excluded' && finite(record.error?.value);
   const median = values => values.length ? statistics.median(values) : null;
   const raceCount = records => new Set(records.map(record => String(record.year) + '|' + record.countyId)).size;
   const filterKey = snapshot => snapshot.year + '|' + snapshot.county;
+
+  function syncUrlState() {
+    const url = new URL(window.location.href);
+    for (const [key, value, defaultValue] of [
+      ['year', state.year, 'all'], ['county', state.county, 'all'],
+      ['view', state.view, 'progress'], ['verified', state.verifiedOnly ? '1' : '', '']
+    ]) {
+      if (value === defaultValue) url.searchParams.delete(key);
+      else url.searchParams.set(key, value);
+    }
+    if (url.href === window.location.href) return;
+    try { window.history.replaceState(window.history.state, '', url.href); }
+    catch (error) { if (window.location.protocol !== 'file:') throw error; }
+  }
+
+  function restoreUrlState() {
+    const query = new URL(window.location.href).searchParams;
+    const valueOrDefault = (id, key) => {
+      const value = query.get(key);
+      return [...byId(id).options].some(option => option.value === value) ? value : 'all';
+    };
+    state.year = valueOrDefault('year-filter', 'year');
+    state.county = valueOrDefault('county-filter', 'county');
+    const view = query.get('view');
+    state.view = [...byId('threshold-tabs').querySelectorAll('[role="tab"]')].some(button => button.dataset.view === view) ? view : 'progress';
+    state.verifiedOnly = query.get('verified') === '1';
+    byId('year-filter').value = state.year;
+    byId('county-filter').value = state.county;
+    byId('verified-time-only').checked = state.verifiedOnly;
+  }
 
   function element(tag, text, className) {
     const node = document.createElement(tag);
@@ -82,7 +122,7 @@
   }
 
   function statusLabel(record) {
-    return ({ confirmed: '可判定', inconclusive: '無法判定', 'no-complete': '無完整可讀畫面' })[record.status] || (record.threshold ? '可判定' : '無法判定');
+    return ({ confirmed: '可判定', inconclusive: '無法判定', 'no-complete': '無完整可讀畫面', excluded: '已排除' })[record.status] || (record.threshold ? '可判定' : '無法判定');
   }
 
   function recordRow(record) {
@@ -97,7 +137,7 @@
     row.append(element('td', finite(threshold?.totalVotes) ? count(threshold.totalVotes) : '缺值', 'numeric'));
     row.append(element('td', percent(threshold?.progress), 'numeric'));
     row.append(element('td', threshold && finite(threshold.clockMinutes) ? clockLabel(threshold.clockMinutes) + ' · ' + qualityLabel(threshold.timeQuality) : '缺少時間'));
-    row.append(element('td', threshold ? (threshold.leftCensored ? '左設限（上限）' : '換手後穩定') : '—'));
+    row.append(element('td', threshold ? (threshold.leftCensored ? '第一張完整畫面就已領先' : '較晚的畫面才見持續領先') : '—'));
     const evidenceCell = element('td');
     const evidence = element('div', undefined, 'evidence');
     appendLink(evidence, '各場曲線', record.curveHref);
@@ -107,6 +147,7 @@
       appendLink(evidence, '最後完整影格', threshold.finalFrameHref);
       appendLink(evidence, '影片', videoAtOffset(threshold.videoHref, threshold.videoOffset));
     }
+    (record.excludedFrames || []).forEach((frame, index) => appendLink(evidence, '影格 ' + (index + 1), frame));
     if (!evidence.childNodes.length) evidence.textContent = '缺少連結';
     evidenceCell.append(evidence);
     row.append(evidenceCell);
@@ -139,6 +180,7 @@
   function openBin(model, bin) {
     if (model.filterKey !== filterKey(state) || (model.kind === 'time' && model.verifiedOnly !== state.verifiedOnly)) return;
     if (model.kind !== 'time' && model.viewKey !== state.view) return;
+    if (model.kind === 'progress' && model.zoom !== state.progressZoom) return;
     state.selectedBin = { chartId: model.id, lower: bin.lower, upper: bin.upper, count: bin.records.length };
     byId('bin-description').textContent = model.title + ' · ' + rangeLabel(model.kind, bin.lower, bin.upper) + ' · ' + count(bin.records.length) + ' 筆紀錄（來源 × 場次）';
     renderRecordRows('bin-records-body', bin.records);
@@ -151,12 +193,13 @@
   function updateSummary(records) {
     const thresholds = thresholdRecords(records);
     const left = thresholds.filter(record => record.threshold.leftCensored).length;
+    const excluded = records.filter(record => record.status === 'excluded').length;
+    const inconclusive = records.length - thresholds.length - excluded;
+    const exceptions = [excluded ? count(excluded) + ' 筆完整票組不足而排除' : '', inconclusive ? count(inconclusive) + ' 筆無法判定' : ''].filter(Boolean);
     byId('limits-story').textContent = thresholds.length
-      ? '可判定的 ' + count(thresholds.length) + ' 筆紀錄中，有 ' + count(left) + ' 筆從第一個完整畫面就由最終當選人持續領先，門檻只能視為上限。另有 ' + count(records.length - thresholds.length) + ' 筆無法判定，可在原始紀錄查看原因。'
-      : '目前篩選沒有可判定的觀測門檻；' + (records.length ? '原始紀錄保留無法判定的原因與影格。' : '這個年份與選區組合沒有收錄紀錄。');
-    const elections = new Set(records.map(record => record.year)).size;
-    byId('filter-scope').textContent = '目前範圍：' + count(elections) + ' 屆選舉、' + count(raceCount(records)) + ' 場選舉、' + count(records.length) + ' 筆來源紀錄。';
-    byId('all-records-summary').textContent = '查看所有來源紀錄與影格證據（' + count(records.length) + ' 筆，含無法判定）';
+      ? '可判定的 ' + count(thresholds.length) + ' 筆紀錄中，有 ' + count(left) + ' 筆第一張完整畫面就由當選人領先，之後的已收錄完整畫面也都領先；實際開始時間可能更早。' + (exceptions.length ? '另有 ' + exceptions.join('，') + '；可在原始紀錄查看原因。' : '')
+      : '目前篩選沒有可判定的持續領先畫面；' + (records.length ? '原始紀錄保留排除與無法判定的原因及影格。' : '這個年份與選區組合沒有收錄紀錄。');
+    byId('all-records-summary').textContent = '查看所有來源紀錄與影格證據（' + count(records.length) + ' 筆，含排除及無法判定）';
     renderRecordRows('all-records-body', records);
   }
 
@@ -168,7 +211,7 @@
 
   function rankingDetail(entries) {
     const wrapper = element('div');
-    wrapper.append(element('p', '各場偏差分數與進度覆蓋情況；缺值保留為缺值。'));
+    wrapper.append(element('p', '各場偏差分數與進度覆蓋情況；缺值保留為缺值，排除的來源不納入平均。'));
     const table = element('table');
     const head = element('thead');
     const headers = element('tr');
@@ -178,8 +221,10 @@
     for (const record of entries) {
       const row = element('tr');
       const error = record.error;
-      row.append(element('td', yearName(record)), element('td', record.countyName), element('td', sourceName(record)));
-      row.append(element('td', decimal(error?.value), 'numeric'), element('td', finite(error?.pointCount) ? count(error.pointCount) : '缺值', 'numeric'));
+      const source = element('td', sourceName(record));
+      if (record.status === 'excluded') source.append(element('span', record.reason, 'reason'));
+      row.append(element('td', yearName(record)), element('td', record.countyName), source);
+      row.append(element('td', record.status === 'excluded' ? '未納入' : decimal(error?.value), 'numeric'), element('td', finite(error?.pointCount) ? count(error.pointCount) : '缺值', 'numeric'));
       row.append(element('td', finite(error?.minProgress) && finite(error?.maxProgress) ? percent(error.minProgress) + '–' + percent(error.maxProgress) : '缺值'));
       row.append(element('td', percent(error?.coveragePercent), 'numeric'));
       const evidence = element('td');
@@ -231,7 +276,8 @@
       fragment.append(row);
     }
     byId('rankings-body').replaceChildren(fragment);
-    byId('rankings-note').textContent = '目前可計算偏差的來源紀錄：' + count(records.filter(record => finite(record.error?.value)).length) + ' 筆。';
+    const excluded = records.filter(record => record.status === 'excluded').length;
+    byId('rankings-note').textContent = '目前可計算偏差的來源紀錄：' + count(records.filter(hasRankingError).length) + ' 筆。' + (excluded ? '另有 ' + count(excluded) + ' 筆排除。' : '');
     return rankings;
   }
 
@@ -239,8 +285,8 @@
     const ranked = rankings.filter(ranking => !ranking.isReference && finite(ranking.meanError));
     const best = ranked[0];
     byId('ranking-story').textContent = best
-      ? '目前收錄中，' + rankingLabel(best) + ' 的平均偏差 ' + decimal(best.meanError) + ' 百分點，為此範圍最低；來自 ' + count(best.raceCount) + ' 場選舉，進度覆蓋率 ' + percent(best.coveragePercent) + '。這個名次也受樣本涵蓋影響。'
-      : '目前篩選沒有可比較的電視臺偏差分數；缺值不視為零，個別原因保留在完整總表。';
+      ? '在目前收錄的畫面中，' + rankingLabel(best) + ' 的當選人得票率與最後結果平均差距為 ' + decimal(best.meanError) + ' 個百分點，是此範圍中最小的。'
+      : '目前篩選沒有可比較的得票率差距；缺讀不視為零，原因可在完整比較表查看。';
     const graph = byId('ranking-chart');
     const height = Math.max(300, ranked.length * 34 + 86);
     graph.style.height = height + 'px';
@@ -273,11 +319,20 @@
       button.title=button.disabled?'目前閱讀範圍沒有此選區資料':'';
       if(selected) byId('threshold-panel').setAttribute('aria-labelledby',button.id);
     }
+    syncUrlState();
   }
 
   function selectView(value) {
     if(state.view===value) return;
     state.view=value;
+    syncUrlState();
+    clearBin();
+    requestRender();
+  }
+
+  function selectProgressZoom(zoom) {
+    if (state.progressZoom === zoom) return;
+    state.progressZoom = zoom;
     clearBin();
     requestRender();
   }
@@ -343,27 +398,35 @@
     const usable = records.map(record => ({ record, value: definition.kind === 'progress' ? record.threshold.progress : definition.kind === 'votes' ? record.threshold.totalVotes : record.threshold.clockMinutes }))
       .filter(item => finite(item.value) && (definition.kind !== 'time' || item.record.threshold.timeQuality !== 'missing') && (definition.kind !== 'time' || !snapshot.verifiedOnly || item.record.threshold.timeQuality === 'verified'));
     const values = usable.map(item => item.value);
+    const zoom = definition.kind === 'progress' && snapshot.progressZoom;
     const lowest = values.length ? Math.min(...values) : definition.kind === 'time' ? 960 : 0;
     const highest = values.length ? Math.max(...values) : definition.kind === 'time' ? 1320 : definition.kind === 'progress' ? 100 : 100000;
-    const width = definition.kind === 'progress' ? 5 : definition.kind === 'time' ? 10 : voteBinWidth(values);
-    const start = Math.floor((definition.kind === 'progress' ? Math.min(0, lowest) : lowest) / width) * width;
-    const end = Math.max(start + width, (Math.floor((definition.kind === 'progress' ? Math.max(100, highest) : highest) / width) + 1) * width);
+    const width = zoom ? .25 : definition.kind === 'progress' ? 5 : definition.kind === 'time' ? 10 : voteBinWidth(values);
+    const start = zoom ? 0 : Math.floor((definition.kind === 'progress' ? Math.min(0, lowest) : lowest) / width) * width;
+    const end = zoom ? 5 : Math.max(start + width, (Math.floor((definition.kind === 'progress' ? Math.max(100, highest) : highest) / width) + 1) * width);
     const numberOfBins = Math.max(1, Math.round((end - start) / width));
     const bins = Array.from({ length: numberOfBins }, (_, index) => ({ lower: start + index * width, upper: start + (index + 1) * width, records: [], left: 0, changed: 0 }));
     for (const item of usable) {
+      if (zoom && (item.value < start || item.value >= end)) continue;
       const index = Math.min(bins.length - 1, Math.max(0, Math.floor((item.value - start) / width)));
       bins[index].records.push(item.record);
       bins[index][item.record.threshold.leftCensored ? 'left' : 'changed'] += 1;
     }
-    return { ...definition, bins, values, width, start, end, median: median(values), filterKey: filterKey(snapshot), verifiedOnly: snapshot.verifiedOnly, usable };
+    const medianValue = median(values);
+    const percentiles = percentileSpecs.map(spec => ({
+      ...spec, value: spec.id === 'p50' ? medianValue : statistics.nearestRank(values, spec.fraction)
+    }));
+    return { ...definition, bins, values, width, start, end, zoom, median: medianValue, percentiles,
+      shownCount: bins.reduce((total, bin) => total + bin.records.length, 0),
+      filterKey: filterKey(snapshot), verifiedOnly: snapshot.verifiedOnly, usable };
   }
 
   function graphTraces(model) {
     const scale = model.kind === 'votes' && model.end >= 10000 ? 10000 : 1;
     model.scale = scale;
     const traces = [
-      { key: 'left', name: '起始即領先（左設限）', color: '#82c9ff' },
-      { key: 'changed', name: '觀測到換手後穩定', color: '#d09bfa' }
+      { key: 'left', name: '第一張完整畫面就已領先', color: '#82c9ff' },
+      { key: 'changed', name: '較晚的畫面才見持續領先', color: '#d09bfa' }
     ].map(group => ({
       type: 'bar', name: group.name,
       x: model.bins.map(bin => (bin.lower + bin.upper) / 2 / scale),
@@ -391,10 +454,34 @@
     return traces;
   }
 
-  function graphLayout(model) {
-    const valueLabel = model.kind === 'time' ? clockLabel(model.median) : model.kind === 'votes' ? decimal(model.median, 1) + ' 票' : percent(model.median);
+  function percentileAnnotations(model, graphWidth) {
+    const marks = model.percentiles.filter(mark => finite(mark.value)
+      && (!model.zoom || (mark.value >= model.start && mark.value < model.end)));
+    const plotWidth = Math.max(1, graphWidth - 68);
+    const context = document.createElement('canvas').getContext('2d');
+    if (context) context.font = '12px "Microsoft JhengHei", "PingFang TC", sans-serif';
+    const lanes = [];
+    const annotations = marks.map(mark => {
+      const text = mark.id.toUpperCase() + ' ' + percentileValueLabel(model, mark.value);
+      const textWidth = context ? context.measureText(text).width : text.length * 12;
+      const labelWidth = Math.min(plotWidth, textWidth + 12);
+      const position = (mark.value - model.start) / (model.end - model.start) * plotWidth;
+      const center = Math.max(labelWidth / 2, Math.min(plotWidth - labelWidth / 2, position));
+      const interval = { left: center - labelWidth / 2, right: center + labelWidth / 2 };
+      let lane = lanes.findIndex(row => row.every(item => interval.right + 4 <= item.left || interval.left >= item.right + 4));
+      if (lane < 0) { lane = lanes.length; lanes.push([]); }
+      lanes[lane].push(interval);
+      return { xref: 'x', x: mark.value / model.scale, yref: 'paper', y: 1, text, showarrow: true,
+        arrowhead: 0, arrowwidth: 1, arrowcolor: mark.color, ax: center - position, ay: -(14 + lane * 23),
+        xanchor: 'center', yanchor: 'middle', bgcolor: '#121619', borderpad: 2, captureevents: false,
+        font: { color: mark.color, size: 12, family: 'Microsoft JhengHei, PingFang TC, sans-serif' } };
+    });
+    return { marks, annotations, marginTop: Math.max(44, 22 + lanes.length * 23) };
+  }
+
+  function graphLayout(model, graphWidth) {
     const range = [model.start / model.scale, model.end / model.scale];
-    const axisTitle = model.kind === 'time' ? '選舉日時間（每 10 分鐘）' : model.kind === 'progress' ? '開票比例（每 5 百分點）' : '已收錄候選人票數合計（' + (model.scale === 10000 ? '萬票' : '票') + '）';
+    const axisTitle = model.kind === 'time' ? '選舉日時間（每 10 分鐘）' : model.kind === 'progress' ? '開票比例（每 ' + (model.zoom ? '0.25' : '5') + ' 個百分點）' : '已收錄候選人票數合計（' + (model.scale === 10000 ? '萬票' : '票') + '）';
     const xaxis = { title: { text: axisTitle, font: { size: 11 }, standoff: 12 }, range, gridcolor: '#29343b', zeroline: false, linecolor: '#3d4b52', tickfont: { size: 11 }, nticks: 5, automargin: true };
     if (model.kind === 'time') {
       const tickStep = niceStep((model.end - model.start) / 4 / 10) * 10;
@@ -407,18 +494,26 @@
       if (model.kind === 'progress') xaxis.ticksuffix = '%';
     }
     const highestCount = Math.max(1, ...model.bins.map(bin => bin.records.length));
+    const labels = percentileAnnotations(model, graphWidth);
     const layout = {
       autosize: true, paper_bgcolor: '#121619', plot_bgcolor: '#121619', font: { color: '#a8b7be', family: 'Microsoft JhengHei, PingFang TC, sans-serif', size: 11 },
-      margin: { l: 54, r: 14, t: 44, b: 68 }, xaxis,
+      margin: { l: 54, r: 14, t: labels.marginTop, b: 68 }, xaxis,
       yaxis: { title: { text: '紀錄數（來源×場次）', font: { size: 11 }, standoff: 8 }, range: [0, highestCount * 1.2], gridcolor: '#29343b', zeroline: false, automargin: true, dtick: highestCount <= 5 ? 1 : undefined, tickformat: ',d' },
       barmode: 'stack', bargap: .08, showlegend: false, hovermode: 'closest', dragmode: false,
-      shapes: [], annotations: []
+      shapes: [], annotations: labels.annotations
     };
-    if (finite(model.median)) {
-      layout.shapes.push({ type: 'line', xref: 'x', yref: 'paper', x0: model.median / model.scale, x1: model.median / model.scale, y0: 0, y1: 1, line: { color: '#8de1b8', width: 2, dash: 'solid' } });
-      layout.annotations.push({ xref: 'x', yref: 'paper', x: model.median / model.scale, y: 1, yshift: 12, text: '中位數 ' + valueLabel + ' · n=' + model.values.length, showarrow: false, xanchor: model.median > (model.start + model.end) / 2 ? 'right' : 'left', yanchor: 'bottom', font: { color: '#8de1b8', size: 11 } });
-    } else {
+    for (const mark of labels.marks) {
+      layout.shapes.push({ type: 'line', xref: 'x', yref: 'paper', x0: mark.value / model.scale, x1: mark.value / model.scale, y0: 0, y1: 1,
+        line: { color: '#121619', width: 6, dash: 'solid' } });
+    }
+    for (const mark of labels.marks) {
+      layout.shapes.push({ type: 'line', xref: 'x', yref: 'paper', x0: mark.value / model.scale, x1: mark.value / model.scale, y0: 0, y1: 1,
+        line: { color: mark.color, width: mark.id === 'p50' ? 2.5 : 2, dash: mark.dash } });
+    }
+    if (!model.values.length) {
       layout.annotations.push({ xref: 'paper', yref: 'paper', x: .5, y: .5, text: '此篩選沒有可用紀錄（n=0）', showarrow: false, font: { color: '#a8b7be', size: 12 } });
+    } else if (model.zoom && !model.shownCount) {
+      layout.annotations.push({ xref: 'paper', yref: 'paper', x: .5, y: .5, text: '0–5% 範圍內沒有紀錄', showarrow: false, font: { color: '#a8b7be', size: 12 } });
     }
     if(model.kind === 'votes' && model.usable.length) {
       layout.yaxis.domain = [.2,1];
@@ -429,30 +524,54 @@
     return layout;
   }
 
+  function percentileValueLabel(model, value) {
+    if (!finite(value)) return '缺值';
+    return '約 ' + (model.kind === 'time' ? clockLabel(value) : model.kind === 'votes' ? decimal(value, 1) + ' 票' : percent(value));
+  }
+
+  function renderPercentileSummary(model) {
+    const fragment = document.createDocumentFragment();
+    fragment.append(element('span', '可用 ' + count(model.values.length) + ' 筆', 'percentile-count'));
+    for (const mark of model.percentiles) {
+      const item = element('span', undefined, 'percentile-item');
+      const symbol = element('i', undefined, 'percentile-key ' + mark.id);
+      symbol.setAttribute('aria-hidden', 'true');
+      const outside = model.zoom && finite(mark.value) && (mark.value < model.start || mark.value >= model.end);
+      item.append(symbol, element('span', mark.label + '：' + percentileValueLabel(model, mark.value) + (outside ? '（圖外）' : '')));
+      fragment.append(item);
+    }
+    if (model.values.length > 0 && model.values.length < 10) {
+      fragment.append(element('span', '樣本較少，結果容易受個別紀錄影響。', 'percentile-note'));
+    }
+    byId(model.id + '-summary').replaceChildren(fragment);
+  }
+
   async function renderGraph(definition, snapshot) {
     const model = makeModel(definition, snapshot);
     const graph = byId(definition.id);
     const traces = graphTraces(model);
-    const layout = graphLayout(model);
-    const value = !finite(model.median) ? '缺值' : model.kind === 'time' ? clockLabel(model.median) : model.kind === 'votes' ? decimal(model.median, 1) + ' 票' : percent(model.median);
-    byId(definition.id + '-summary').textContent = '觀測門檻中位數：' + value + ' · 有效 n=' + count(model.values.length);
+    const layout = graphLayout(model, graph.clientWidth);
+    graph.style.setProperty('--percentile-extra-height', Math.max(0, layout.margin.t - 44) + 'px');
+    renderPercentileSummary(model);
     if (model.kind === 'time') {
       const qualities = ['verified', 'estimated', 'unverified'].map(quality => qualityLabel(quality) + ' ' + model.usable.filter(item => item.record.threshold.timeQuality === quality).length);
       byId('time-hist-extra').textContent = qualities.join('／') + '；缺少時間不納入。';
-      byId('time-story').textContent=model.values.length
-        ? '在 '+count(model.values.length)+' 筆'+(snapshot.verifiedOnly?'已核對時間的':'具有時間的')+'紀錄中，第一名開始持續領先的觀測門檻，中位數是 '+clockLabel(model.median)+'。'
-        : '目前篩選沒有'+(snapshot.verifiedOnly?'已核對的':'可採用的')+'時間，無法判定時間中位數；票數紀錄仍保留。';
     } else {
       byId('threshold-view-title').textContent=definition.title;
+      byId('progress-range-options').hidden = model.kind !== 'progress';
+      byId('progress-range-full').setAttribute('aria-pressed', String(!model.zoom));
+      byId('progress-range-zoom').setAttribute('aria-pressed', String(model.zoom));
       const limited = model.values.length && (model.values.length<3 || new Set(model.values).size===1);
       byId('threshold-hist-extra').textContent=model.kind==='votes'
         ? (model.values.length?'每箱 '+count(model.width)+' 票，共 '+count(model.bins.length)+' 箱；下方每條短線代表一筆原始觀測，可懸停或點選回查。'+(limited?'樣本或不同票數太少，無法判讀分布形狀。':''):'目前沒有可用票數觀測。')
-        : '比例分母採相同候選人組的最終票數。';
-      byId('threshold-story').textContent=model.values.length
-        ? (model.kind==='votes'?definition.title.replace(' · 票數分布','')+'的觀測門檻，中位數是已收錄候選人合計 '+decimal(model.median,1)+' 票。':'這些畫面中的觀測門檻，中位數落在開票比例 '+percent(model.median)+'。')+'共 '+count(model.values.length)+' 筆可計算紀錄。'
-        : '目前篩選沒有可計算的'+(model.kind==='votes'?'票數':'比例')+'觀測門檻；缺讀及無法判定的原因可在文末紀錄查看。';
+        : (model.zoom
+          ? '顯示 0% 以上、未滿 5%；畫面內 '+count(model.shownCount)+' 筆／全部有效 '+count(model.values.length)+' 筆，每箱 0.25 個百分點。百分位使用全部有效紀錄。'
+          : '每箱 5 個百分點；比例分母採相同候選人組的最終票數。');
     }
-    graph.setAttribute('aria-label', definition.title + '；觀測門檻中位數 ' + value + '；有效 ' + model.values.length + ' 筆；下方所有來源紀錄可查看完整文字資料。');
+    const percentileLabels = model.percentiles.map(mark => mark.label + ' ' + percentileValueLabel(model, mark.value)
+      + (model.zoom && finite(mark.value) && (mark.value < model.start || mark.value >= model.end) ? '，圖外' : '')).join('；');
+    graph.setAttribute('aria-label', definition.title + '；有效 ' + model.values.length + ' 筆；' + percentileLabels
+      + (model.zoom ? '；顯示 0% 以上、未滿 5%，畫面內 ' + model.shownCount + ' 筆' : '') + '；下方所有來源紀錄可查看完整文字資料。');
     await plotly.react(graph, traces, layout, { responsive: true, displaylogo: false, displayModeBar: false });
     if (typeof graph.removeAllListeners === 'function') graph.removeAllListeners('plotly_click');
     if (typeof graph.on === 'function') graph.on('plotly_click', event => {
@@ -469,9 +588,13 @@
     try {
       while (pending) {
         const full = pendingFull;
+        const resize = pendingResize;
+        const timeChange = pendingTimeChange;
         pending = false;
         pendingFull = false;
-        const snapshot = { year: state.year, county: state.county, verifiedOnly: state.verifiedOnly, records: state.records.filter(record => (state.year === 'all' || String(record.year) === state.year) && (state.county === 'all' || record.countyId === state.county)) };
+        pendingResize = false;
+        pendingTimeChange = false;
+        const snapshot = { year: state.year, county: state.county, verifiedOnly: state.verifiedOnly, progressZoom: state.progressZoom, records: state.records.filter(record => (state.year === 'all' || String(record.year) === state.year) && (state.county === 'all' || record.countyId === state.county)) };
         state.filtered = snapshot.records;
         byId('load-status').textContent = '正在更新圖表…';
         let rankings;
@@ -480,9 +603,9 @@
           syncViewTabs(snapshot.records);
           updateSummary(snapshot.records);
           rankings = renderRankings(snapshot.records);
-        } else if (state.selectedBin?.chartId === 'time-hist') clearBin();
-        const selected = [{id:'time-hist',kind:'time',title:'第一名不再換人的時間分布'}];
-        if(full) selected.push(viewDefinition());
+        } else if (timeChange && state.selectedBin?.chartId === 'time-hist') clearBin();
+        const selected = [{id:'time-hist',kind:'time',title:'最終當選人持續領先的觀測時間分布'}];
+        if(full || resize) selected.push(viewDefinition());
         const jobs = selected.map(definition => renderGraph(definition, snapshot));
         if(full) jobs.push(renderRankingChart(rankings));
         const results = await Promise.allSettled(jobs);
@@ -491,6 +614,7 @@
       }
       byId('load-status').textContent = '圖表已更新。點選柱狀可查看區間紀錄與證據。';
       byId('load-status').classList.remove('error');
+      byId('load-status').classList.add('sr-only');
     } catch (error) {
       showError(error);
     } finally {
@@ -500,10 +624,36 @@
     }
   }
 
-  function requestRender(full = true) {
+  function requestRender(full = true, resizeOnly = false) {
     pending = true;
     pendingFull = pendingFull || full;
+    pendingResize = pendingResize || resizeOnly;
+    pendingTimeChange = pendingTimeChange || (!full && !resizeOnly);
     void renderLoop();
+  }
+
+  function setupChartResize() {
+    const graphs = [byId('time-hist'), byId('threshold-hist')];
+    if (typeof ResizeObserver !== 'function') {
+      window.addEventListener('resize', () => { if (state.loaded) requestRender(false, true); });
+      return;
+    }
+    const widths = new WeakMap();
+    chartResizeObserver = new ResizeObserver(entries => {
+      let changed = false;
+      for (const entry of entries) {
+        const width = Math.round(entry.contentRect.width);
+        if (!width) continue;
+        const previous = widths.get(entry.target);
+        widths.set(entry.target, width);
+        if (previous !== undefined && previous !== width) changed = true;
+      }
+      if (changed && state.loaded) requestRender(false, true);
+    });
+    for (const graph of graphs) {
+      widths.set(graph, Math.round(graph.getBoundingClientRect().width));
+      chartResizeObserver.observe(graph);
+    }
   }
 
   function populateFilters() {
@@ -533,66 +683,36 @@
     }
     byId('year-filter').disabled = false;
     byId('county-filter').disabled = false;
-    byId('year-filter').addEventListener('change', event => { state.year = event.target.value; requestRender(); });
-    byId('county-filter').addEventListener('change', event => { state.county = event.target.value; requestRender(); });
+    byId('year-filter').addEventListener('change', event => { state.year = event.target.value; syncUrlState(); requestRender(); });
+    byId('county-filter').addEventListener('change', event => { state.county = event.target.value; syncUrlState(); requestRender(); });
   }
 
   function showError(error) {
     const status = byId('load-status');
     status.textContent = '統計載入或圖表更新失敗：' + (error instanceof Error ? error.message : String(error));
+    status.classList.remove('sr-only');
     status.classList.add('error');
     console.error(error);
   }
 
   window.StatisticsPage = Object.freeze({
-    getState: () => ({ loaded: state.loaded, year: state.year, county: state.county, view: state.view, verifiedOnly: state.verifiedOnly, recordCount: state.records.length, filteredRecordCount: state.filtered.length, raceCount: raceCount(state.filtered), thresholdCount: thresholdRecords(state.filtered).length, rankingRecordCount: state.filtered.filter(record => finite(record.error?.value)).length, selectedBin: state.selectedBin ? { ...state.selectedBin } : null, chartCount: 3, rendering })
+    getState: () => ({ loaded: state.loaded, year: state.year, county: state.county, view: state.view, progressZoom: state.progressZoom, verifiedOnly: state.verifiedOnly, recordCount: state.records.length, filteredRecordCount: state.filtered.length, raceCount: raceCount(state.filtered), thresholdCount: thresholdRecords(state.filtered).length, rankingRecordCount: state.filtered.filter(hasRankingError).length, selectedBin: state.selectedBin ? { ...state.selectedBin } : null, chartCount: 3, rendering })
   });
-
-  function setupNavigation() {
-    const sidebar = byId('election-sidebar');
-    const menu = byId('election-menu');
-    const close = byId('close-election-menu');
-    const backdrop = byId('nav-backdrop');
-    const desktop = window.matchMedia('(min-width:1024px)');
-    function setMenu(open, restoreFocus = false) {
-      const active = Boolean(open && !desktop.matches);
-      sidebar.classList.toggle('open', active);
-      sidebar.inert = !desktop.matches && !active;
-      sidebar.toggleAttribute('aria-modal', active);
-      if (active) sidebar.setAttribute('role', 'dialog');
-      else sidebar.removeAttribute('role');
-      menu.setAttribute('aria-expanded', String(active));
-      backdrop.hidden = !active;
-      document.body.classList.toggle('nav-open', active);
-      byId('statistics-main').inert = active;
-      if (active) close.focus();
-      else if (restoreFocus && !desktop.matches) menu.focus();
-    }
-    menu.addEventListener('click', () => setMenu(true));
-    close.addEventListener('click', () => setMenu(false, true));
-    backdrop.addEventListener('click', () => setMenu(false, true));
-    desktop.addEventListener('change', () => setMenu(false));
-    sidebar.addEventListener('keydown', event => {
-      if (event.key === 'Escape') { event.preventDefault(); setMenu(false, true); }
-      if (event.key !== 'Tab' || !sidebar.classList.contains('open')) return;
-      const items = [...sidebar.querySelectorAll('button:not([disabled]),a[href]')];
-      const first = items[0], last = items.at(-1);
-      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-    });
-    setMenu(false);
-  }
 
   function populateNavigation(master) {
     const years = (master.electionYears || Object.keys(master.elections || {})).filter(year => Number.parseInt(year, 10) >= 2012);
     const nav = byId('election-nav');
+    const statisticsLink = nav.querySelector('[aria-current="page"]');
     nav.replaceChildren();
     for (const year of years) {
-      const label = Number.parseInt(year, 10) + (String(year).includes('mayors') ? ' 年縣市首長選舉' : ' 年總統選舉');
-      const link = element('a', label, 'year-tab');
+      const mayor = String(year).includes('mayors');
+      const numericYear = Number.parseInt(year, 10);
+      const link = element('a', numericYear + (mayor ? ' 市長' : ' 總統'), 'year-tab');
+      link.setAttribute('aria-label', numericYear + (mayor ? ' 年縣市首長選舉' : ' 年總統選舉'));
       link.href = 'index.html?year=' + encodeURIComponent(year);
       nav.append(link);
     }
+    nav.append(statisticsLink);
   }
 
   async function initialize() {
@@ -615,12 +735,15 @@
     state.records = records.filter(record => Number.parseInt(record.year, 10) >= 2012);
     populateFilters();
     populateViewTabs();
-    byId('verified-time-only').addEventListener('change',event=>{state.verifiedOnly=event.target.checked;requestRender(false);});
+    restoreUrlState();
+    setupChartResize();
+    byId('verified-time-only').addEventListener('change',event=>{state.verifiedOnly=event.target.checked;syncUrlState();requestRender(false);});
+    byId('progress-range-full').addEventListener('click', () => selectProgressZoom(false));
+    byId('progress-range-zoom').addEventListener('click', () => selectProgressZoom(true));
     byId('clear-bin').addEventListener('click', clearBin);
     state.loaded = true;
     requestRender();
   }
 
-  setupNavigation();
   void initialize().catch(showError);
 })();
